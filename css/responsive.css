@@ -151,14 +151,17 @@
     color: var(--color-on-surface-variant);
   }
 
+  .hero__photo {
+    object-position: center;
+  }
+
   .hero__media {
     height: 440px;
     box-shadow: 0 20px 25px -5px rgba(19, 27, 46, 0.1), 0 8px 10px -6px rgba(19, 27, 46, 0.1);
   }
 
-  /* Calculator: one wide card on a lavender band */
-  .rental {
-    padding-block: var(--section-space);
+  /* Pricing (with the estimator) sits on a lavender band */
+  .pricing {
     background: var(--color-surface-container);
   }
 
@@ -270,24 +273,6 @@
 
   .service-card--featured .service-card__top .badge {
     position: relative;   /* stays above the decorative corner */
-  }
-
-  .service-card--wide {
-    grid-column: 1 / -1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--gutter);
-  }
-
-  .service-card__icon--small {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-
-  .service-card__wide-button {
-    width: auto;
-    flex-shrink: 0;
   }
 
   /* Products */
@@ -435,14 +420,23 @@
     grid-column: 1 / -1;
   }
 
-  /* Services: 3 columns */
+  /* Services: a 6-part grid. Regular cards take 2 parts (3 per row);
+     the two "half" cards (Scanning, Binding) take 3 parts (2 per row). */
   .services__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 
-  /* Products: 4 in a row */
+  .service-card {
+    grid-column: span 2;
+  }
+
+  .service-card--half {
+    grid-column: span 3;
+  }
+
+  /* Products: 3 per row (2 rows of 3) */
   .products__grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   /* About: story (7/12) and "at a glance" card (5/12) */
@@ -459,6 +453,15 @@
 
   .glance {
     grid-column: span 5;
+  }
+}
+
+/* ---------- Narrow desktops (1024px – 1199px) ----------
+   The header is too crowded for the outlined phone button here.
+   The phone number is still shown in the top strip just above. */
+@media (min-width: 1024px) and (max-width: 1199.98px) {
+  .header-phone {
+    display: none;
   }
 }
 

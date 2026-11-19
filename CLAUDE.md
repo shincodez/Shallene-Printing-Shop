@@ -102,7 +102,9 @@ Facebook page name: Shallene's Printing Shop
 
 Facebook URL: https://www.facebook.com/shalenecover (confirmed by owner)
 
-Location: Larena (confirmed by owner). The full street address has not been provided — do not invent it.
+Address: North Poblacion, Larena, Siquijor — in front of Siquijor State College, Gate 1 (confirmed 2026-11-19).
+
+Also confirmed 2026-11-19: Scan service; E-Loading and Bills Payment available; binding includes hardbound binding (e.g. theses); delivery is available (details not yet provided — do not invent area or fees). See docs/business-information.md.
 
 Keep contact information easy to update.
 

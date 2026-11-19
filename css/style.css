@@ -38,8 +38,9 @@ figure {
   margin: 0;
 }
 
-ul[class],
-ol[class] {
+/* :where() gives this reset zero priority, so a component's own padding
+   (e.g. .glance__list) always wins over it. */
+:where(ul[class], ol[class]) {
   padding: 0;
   list-style: none;
 }
@@ -221,6 +222,7 @@ a {
   font-weight: var(--font-weight-semibold);
   letter-spacing: -0.005em;
   text-decoration: none;
+  white-space: nowrap;        /* button labels stay on one line */
   transition: background-color var(--transition-fast), color var(--transition-fast),
     border-color var(--transition-fast);
 }
@@ -1019,6 +1021,9 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;     /* fills the box without stretching the image */
+  /* Phones: show the lower part (paper stacks) so the photo's own
+     "Photocopy" label does not collide with the caption on top. */
+  object-position: center 92%;
 }
 
 /* Phones: dark fade at the bottom with a caption */
@@ -1107,11 +1112,7 @@ a {
   color: var(--color-on-surface-variant);
 }
 
-/* 10c. Computer rental calculator -------------------------------------- */
-.rental {
-  padding-bottom: var(--section-space);
-}
-
+/* 10c. Computer rental estimator (inside the Pricing section) ---------- */
 .rental__card {
   display: flex;
   flex-direction: column;
@@ -1359,12 +1360,9 @@ a {
   border-top: 1px solid rgba(191, 199, 210, 0.3);
 }
 
-.service-card__tag {
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.04em;
-  color: var(--color-outline);
+/* The last item always sits on the right edge */
+.service-card__footer > :last-child {
+  margin-left: auto;
 }
 
 .service-card__link,
@@ -1381,6 +1379,13 @@ a {
 
 .service-card__link:hover {
   text-decoration: underline;
+}
+
+/* Smaller link, e.g. "Estimate your cost" on the Computer Rental card */
+.service-card__link--small {
+  font-size: var(--text-label-md-size);
+  line-height: var(--text-label-md-line);
+  letter-spacing: 0.02em;
 }
 
 /* Plain text (not flex), so "₱30/hour" has no gap in the middle */
@@ -1442,34 +1447,6 @@ a {
   font-size: var(--text-body-sm-size);
   line-height: var(--text-body-sm-line);
   color: var(--color-outline);
-}
-
-/* Binding: one wide card under the others */
-.service-card--wide {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-
-.service-card__wide-head {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.service-card__wide-main .service-card__text {
-  margin-top: var(--space-sm);
-}
-
-.service-card__status {
-  font-size: var(--text-label-md-size);
-  line-height: var(--text-label-md-line);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-primary);
-}
-
-.service-card__wide-button {
-  width: 100%;
 }
 
 /* 10f. Products -------------------------------------------------------- */
@@ -1570,6 +1547,9 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Shows the edges of the book stack, not the top cover (which has a
+     student's name on it). */
+  object-position: center 70%;
 }
 
 .about__body {
@@ -1682,25 +1662,31 @@ a {
 .glance__list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
-  padding: var(--space-md);
+  padding: var(--space-xs) 1.25rem;
   border-radius: var(--radius-lg);
   background: var(--color-surface-lowest);
   font-size: var(--text-body-sm-size);
   line-height: var(--text-body-sm-line);
 }
 
+/* Each row: label on the left, value on the right, a thin line between rows */
 .glance__list li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: var(--space-sm);
+  gap: var(--space-md);
+  padding-block: 0.75rem;
   color: var(--color-on-surface);
+}
+
+.glance__list li + li {
+  border-top: 1px solid rgba(191, 199, 210, 0.35);
 }
 
 .glance__list li > span:first-child {
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
   gap: var(--space-sm);
 }
 
@@ -1710,10 +1696,26 @@ a {
 
 .glance__value {
   font-size: var(--text-label-md-size);
+  line-height: var(--text-body-sm-line);
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.02em;
   color: var(--color-primary);
+  text-align: right;
   text-decoration: none;
+}
+
+/* Second, smaller line under a value (e.g. the landmark under the address) */
+.glance__subvalue {
+  display: block;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-on-surface-variant);
+}
+
+.glance__value--plain {
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0;
+  color: var(--color-on-surface);
+  text-align: right;
 }
 
 .glance__value--closed {

@@ -219,3 +219,65 @@ plus at 14 stays at 14 (plus greyed out).
 Every price or "Contact us for pricing" is tagged `data-price="…"`:
 printing, photocopying, editing-encoding, research, lamination, binding,
 computer-rental. Search for the tag to update a price everywhere.
+
+## Pre-Phase 5 tweaks (2026-11-19, approved by owner)
+
+- **Real photos** (from the shop's Facebook page, permitted): hero uses
+  `assets/images/services/photocopying.jpg`; About (phones) uses
+  `assets/images/services/thesis-binding-stack.jpg`. Placeholder SVGs removed.
+  On phones the hero photo shows its lower part so the photo's own "Photocopy"
+  label doesn't sit under the caption; the About photo hides the top cover
+  (a student's name is printed on it).
+- Not used on the site (saved only): `printing.jpg` (customer faces),
+  `thesis-binding-covers.jpg` (student name readable). Reference-only photos are in
+  `docs/design-references/business-photos/`.
+- **Location:** "Near Siquijor State College" added to the desktop top strip,
+  About text, "At a glance" card, and meta description.
+- Hero photo card now says "Printing & Photocopying · Short to A3" instead of
+  repeating the hours.
+- Service cards: removed the duplicate top "Contact us for pricing" badge (5 cards)
+  and the repeated footer labels. Computer Rental keeps "Confirmed rate" and gets an
+  "Estimate your cost" link. Shorter Services intro.
+- **Calculator moved** into the Pricing section (`#pricing`, card id
+  `#rental-estimator`), reachable from the menu's "Pricing" link and the Computer
+  Rental card. Its title is now an `<h3>` under the "Prices & Estimates" heading.
+- Phone highlight label "Operating hours" → "Hours".
+- Kept the phone "HOME · Larena" strip (as recommended).
+
+### Saved for Phase 5
+- Contact: two Facebook buttons — "Message us on Facebook" and "Visit our Facebook page".
+- Footer: 4 columns on desktop (logo + line, real services, page links, hours/contact);
+  short centred sign-off on phones.
+
+### Follow-up fixes (2026-11-19)
+- **List padding bug:** the reset `ul[class] { padding: 0 }` outranked component
+  padding (e.g. `.glance__list`, `.hero__highlights` padding-top). Changed to
+  `:where(ul[class], ol[class])`, which has zero priority. The "At a glance" list
+  now has 20px side padding, 12px rows, and thin dividers; long values wrap.
+- **Address confirmed** and shown: "North Poblacion, Larena, Siquijor — in front of
+  Siquijor State College, Gate 1" (top strip, About text, At a glance, meta description).
+- **Binding card:** mentions hardbound binding for theses and that delivery is
+  available (contact for details — no area/fee invented).
+- **Header at 1024–1199px:** "Get in Touch" wrapped and the logo overlapped the menu.
+  Buttons now never wrap, and the outlined phone button is hidden in that range
+  (the hotline is still in the top strip).
+- Scan, E-Loading, and Bills Payment are confirmed but not placed yet (awaiting choice).
+
+### Scanning, E-Loading, Bills Payment added (2026-11-19)
+- **Services:** new "Scanning" card (`data-price="scanning"`). Binding is now a regular
+  card with spec rows ("Includes: Hardbound binding (e.g. theses)", "Delivery:
+  Available — contact us for details"). The old full-width Binding layout and its CSS
+  were removed.
+- **Desktop grid:** 6-part grid — six regular cards (2 parts each, 3 per row), then
+  Scanning + Binding side by side (3 parts each). Tablets: 2 per row. Phones: 1 per row.
+- **Products:** heading "Shop Essentials & More"; two new cards, E-Loading and Bills
+  Payment (Lucide smartphone / receipt icons). Desktop now shows 3 per row (2 rows).
+- New Lucide icons: scan-line, smartphone, receipt.
+
+### Photo privacy clean-up (2026-11-19, approved)
+- Deleted `assets/images/services/printing.jpg` (customer faces),
+  `assets/images/services/thesis-binding-covers.jpg` (readable student name), and
+  `docs/design-references/business-photos/facebook-post-hardbound-theses.jpg`
+  (people's names). Originals remain only on the user's Desktop.
+- `thesis-binding-stack.jpg` replaced with a copy whose top-cover text is blurred.
+- Privacy rules for future photos added to `docs/business-information.md`.
