@@ -18,7 +18,6 @@
     11. Footer
    ========================================================================== */
 
-
 /* ---------- 1. Reset ---------- */
 *,
 *::before,
@@ -39,7 +38,7 @@ figure {
 }
 
 /* :where() gives this reset zero priority, so a component's own padding
-   (e.g. .glance__list) always wins over it. */
+   (e.g. .hero__highlights) always wins over it. */
 :where(ul[class], ol[class]) {
   padding: 0;
   list-style: none;
@@ -59,7 +58,6 @@ button {
   padding: 0;
   cursor: pointer;
 }
-
 
 /* ---------- 2. Page layout ---------- */
 :root {
@@ -97,7 +95,6 @@ body {
 body.is-menu-open {
   overflow: hidden;
 }
-
 
 /* ---------- 3. Typography ---------- */
 h1,
@@ -140,7 +137,6 @@ a {
   color: var(--color-on-surface);
 }
 
-
 /* ---------- 4. Utilities ---------- */
 .container {
   width: 100%;
@@ -176,7 +172,6 @@ a {
 .skip-link:focus {
   transform: translateY(0);
 }
-
 
 /* ---------- 5. Icons ---------- */
 /* Icons are drawn once in the SVG "sprite" at the top of index.html and
@@ -217,7 +212,6 @@ a {
 .icon--facebook {
   color: var(--color-facebook);
 }
-
 
 /* ---------- 6. Shared components ---------- */
 
@@ -291,19 +285,6 @@ a {
   color: var(--color-primary);
 }
 
-/* Three small dots in the logo's cyan, magenta, and yellow before each label.
-   One dot is drawn; the other two are copies made with box-shadow. */
-.eyebrow::before {
-  content: "";
-  flex-shrink: 0;
-  width: 6px;
-  height: 6px;
-  margin-right: calc(18px + var(--space-sm));   /* room for the two copies */
-  border-radius: var(--radius-round);
-  background: var(--color-logo-cyan);
-  box-shadow: 9px 0 0 var(--color-logo-magenta), 18px 0 0 var(--color-tertiary-bright);
-}
-
 /* Badges / chips, e.g. "SUN – FRI" or "Contact us for pricing" */
 .badge {
   display: inline-flex;
@@ -330,20 +311,6 @@ a {
   letter-spacing: 0.02em;
 }
 
-.badge--accent {
-  background: var(--color-secondary-bright);
-  color: var(--color-on-primary);
-  text-transform: uppercase;
-}
-
-/* Cards — white "sheets" with a soft shadow */
-.card {
-  background: var(--color-surface-lowest);
-  border-radius: var(--radius-lg);
-  padding: var(--card-padding);
-  box-shadow: var(--shadow-sm);
-}
-
 /* Small round status dot (e.g. next to the opening hours) */
 .status-dot {
   display: inline-block;
@@ -352,12 +319,6 @@ a {
   height: 0.5rem;
   border-radius: var(--radius-round);
   background: var(--color-primary);
-}
-
-.status-dot--yellow {
-  width: 0.625rem;
-  height: 0.625rem;
-  background: var(--color-tertiary-bright);
 }
 
 /* Four dots in the logo's cyan, magenta, yellow, and black */
@@ -377,7 +338,6 @@ a {
 .cmyk-dots span:nth-child(2) { background: var(--color-logo-magenta); }
 .cmyk-dots span:nth-child(3) { background: var(--color-tertiary-bright); }
 .cmyk-dots span:nth-child(4) { background: var(--color-logo-charcoal); }
-
 
 /* ---------- 7. Header ---------- */
 .site-header {
@@ -585,7 +545,6 @@ a {
   color: var(--color-primary);
 }
 
-
 /* ---------- 8. Mobile menu (slide-out drawer) ---------- */
 /* The menu uses the HTML "hidden" attribute; navigation.js removes it to open. */
 .mobile-menu[hidden] {
@@ -742,7 +701,6 @@ a {
   color: var(--color-outline);
 }
 
-
 /* ---------- 9. Bottom navigation (phones and tablets) ---------- */
 .bottom-nav {
   position: fixed;
@@ -800,7 +758,6 @@ a {
   background: var(--color-primary-soft);
 }
 
-
 /* ---------- 10. Sections ---------- */
 .section {
   padding-block: var(--section-space);
@@ -808,98 +765,6 @@ a {
 
 /* 10a. Services strip (top of the home section) ------------------------ */
 /* Phones: a small rounded card */
-.info-strip__card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-sm);
-  margin: var(--space-md) var(--page-margin) var(--space-sm);
-  padding: var(--space-md);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-low);
-  box-shadow: var(--shadow-sm);
-}
-
-.info-strip__open {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-tertiary);
-}
-
-.info-strip__time {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  font-size: var(--text-label-md-size);
-  line-height: var(--text-label-md-line);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-on-surface-variant);
-}
-
-.info-strip__time .icon {
-  color: var(--color-primary);
-}
-
-/* Tablets and desktops: a full-width bar (styles used from 768px) */
-.info-strip__bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-sm) var(--gutter);
-  padding-block: var(--space-sm);
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.03em;
-  color: var(--color-on-surface-variant);
-}
-
-.info-strip__group {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-sm) var(--space-md);
-}
-
-.info-strip__chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.125rem 0.5rem;
-  border-radius: var(--radius);
-  background: var(--color-surface);
-  color: var(--color-primary);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.info-strip__services {
-  color: var(--color-on-surface);
-}
-
-.info-strip__muted {
-  color: var(--color-outline);
-}
-
-.info-strip__separator {
-  width: 4px;
-  height: 4px;
-  border-radius: var(--radius-round);
-  background: var(--color-outline-variant);
-}
-
-.info-strip__rate {
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
-}
 
 /* 10b. Hero ------------------------------------------------------------ */
 .hero {
@@ -1027,20 +892,11 @@ a {
   color: var(--color-primary);
 }
 
-.highlight__label--accent .icon {
-  color: var(--color-secondary);
-}
-
 .highlight__value {
   font-size: var(--text-title-md-size);
   line-height: var(--text-title-md-line);
   font-weight: var(--font-weight-semibold);
   color: var(--color-on-surface);
-}
-
-.highlight__value--accent {
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
 }
 
 .highlight__note {
@@ -1051,108 +907,24 @@ a {
 
 /* Hero photo */
 .hero__media {
-  position: relative;
-  height: 176px;
   margin: 0;
-  overflow: hidden;
+}
+
+.hero__photo {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;     /* fills the box without stretching the image */
+  object-position: center 70%;
   border-radius: var(--radius-lg);
   background: var(--color-surface-container);
   box-shadow: var(--shadow-sm);
 }
 
-.hero__photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;     /* fills the box without stretching the image */
-  /* Phones: show the lower part (paper stacks) so the photo's own
-     "Photocopy" label does not collide with the caption on top. */
-  object-position: center 92%;
-}
-
-/* Phones: dark fade at the bottom with a caption */
-.hero__overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: var(--space-md);
-  background: linear-gradient(to top, rgba(19, 27, 46, 0.8), rgba(19, 27, 46, 0.15) 60%, transparent);
-}
-
-.hero__overlay-label {
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #ffdf9a;
-}
-
-.hero__overlay-text {
-  font-size: var(--text-title-md-size);
-  line-height: var(--text-title-md-line);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-on-primary);
-}
-
-/* Larger screens: CMYK dot chip (top right) and info card (bottom) */
-.cmyk-dots--chip {
-  position: absolute;
-  top: var(--space-md);
-  right: var(--space-md);
-  padding: var(--space-sm);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.9);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--shadow-sm);
-}
-
-.cmyk-dots--chip span {
-  width: 0.625rem;
-  height: 0.625rem;
-}
-
-.hero__photo-card {
-  position: absolute;
-  left: var(--space-md);
-  right: var(--space-md);
-  bottom: var(--space-md);
-  padding: var(--space-md);
-  border-radius: var(--radius-lg);
-  background: rgba(250, 248, 255, 0.95);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 10px 15px -3px rgba(19, 27, 46, 0.1);
-}
-
-.hero__photo-card-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-sm);
-}
-
-.hero__photo-card-title {
-  display: flex;
-  align-items: center;
-  gap: 0.375rem;
-  font-size: var(--text-title-md-size);
-  line-height: var(--text-title-md-line);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-on-surface);
-}
-
-.hero__photo-card-title .icon {
-  color: var(--color-primary);
-}
-
-.hero__photo-card-text {
-  margin-top: var(--space-xs);
+.hero__caption {
+  margin-top: var(--space-sm);
   font-size: var(--text-body-sm-size);
   line-height: var(--text-body-sm-line);
-  color: var(--color-on-surface-variant);
+  color: var(--color-outline);
 }
 
 /* 10c. Computer rental estimator (inside the Pricing section) ---------- */
@@ -1266,7 +1038,6 @@ a {
 }
 
 .rental__total-value {
-  font-family: var(--font-heading);
   font-size: var(--text-headline-sm-size);
   line-height: var(--text-headline-sm-line);
   font-weight: var(--font-weight-bold);
@@ -1408,8 +1179,7 @@ a {
   margin-left: auto;
 }
 
-.service-card__link,
-.service-card__rate {
+.service-card__link {
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
@@ -1443,11 +1213,6 @@ a {
   letter-spacing: 0.02em;
 }
 
-/* Plain text (not flex), so "₱30/hour" has no gap in the middle */
-.service-card__rate {
-  display: inline;
-}
-
 /* Computer rental: the only confirmed price, so it is highlighted */
 .service-card--featured {
   overflow: hidden;
@@ -1470,23 +1235,15 @@ a {
   background: rgba(0, 97, 148, 0.06);
 }
 
-.service-card__price-label {
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-}
-
 .service-card__price-value {
   display: flex;
   align-items: baseline;
   gap: var(--space-xs);
 }
 
+/* Prices, times, and phone numbers use the body font: its numbers line up
+   evenly (Playfair's numbers rise and drop, so "₱30" can read like "₱3o"). */
 .service-card__price-amount {
-  font-family: var(--font-heading);
   font-size: var(--text-headline-md-size);
   line-height: var(--text-headline-md-line);
   font-weight: var(--font-weight-bold);
@@ -1496,12 +1253,6 @@ a {
 .service-card__price-unit {
   font-weight: var(--font-weight-medium);
   color: var(--color-on-surface-variant);
-}
-
-.service-card__price-note {
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-  color: var(--color-outline);
 }
 
 /* 10f. Products -------------------------------------------------------- */
@@ -1516,56 +1267,43 @@ a {
 
 .products__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* minmax(0, 1fr) lets columns shrink, so tiles can never widen the page */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.75rem;
 }
 
-.product-card {
+/* One small tile per item: icon + name */
+.product-tile {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 0.75rem;
-  padding: var(--card-padding);
+  padding: 0.875rem var(--space-md);
   border-radius: var(--radius-lg);
   background: var(--color-surface-lowest);
   box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--transition-fast);
 }
 
-.product-card:hover {
-  box-shadow: var(--shadow-md);
-}
-
-.product-card__icon {
+.product-tile__icon {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: var(--radius-lg);
   background: var(--color-surface-low);
   color: var(--color-primary);
 }
 
-.product-card__icon .icon--lg {
-  width: 1.25rem;
-  height: 1.25rem;
-}
+/* Phones: drinks in magenta, snacks in yellow (as in the mobile design) */
+.product-tile--magenta .product-tile__icon { color: var(--color-secondary); }
+.product-tile--yellow .product-tile__icon { color: var(--color-tertiary); }
 
-/* Phones: beverages in magenta, snacks in yellow (as in the mobile design) */
-.product-card--magenta .product-card__icon { color: var(--color-secondary); }
-.product-card--yellow .product-card__icon { color: var(--color-tertiary); }
-
-/* Same style as the other card titles (Playfair Display) */
-.product-card__title {
-  font-size: var(--text-card-title-mobile-size);
-  line-height: var(--text-card-title-mobile-line);
+.product-tile__name {
+  font-size: var(--text-title-md-size);
+  line-height: var(--text-title-md-line);
   font-weight: var(--font-weight-semibold);
-}
-
-.product-card__text {
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-  color: var(--color-on-surface-variant);
+  color: var(--color-on-surface);
 }
 
 .products__note {
@@ -1573,7 +1311,7 @@ a {
   text-align: center;
   font-size: var(--text-body-sm-size);
   line-height: var(--text-body-sm-line);
-  color: var(--color-outline);
+  color: var(--color-on-surface-variant);
 }
 
 /* 10g. About ----------------------------------------------------------- */
@@ -1583,31 +1321,27 @@ a {
   gap: var(--gutter);
 }
 
-/* Phones: the story is one white card with the photo on top */
-.about__story {
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-lowest);
-  box-shadow: var(--shadow-sm);
-}
-
 .about__photo {
-  height: 9rem;
+  order: -1;            /* phones: photo above the text, as in the mobile design */
   margin: 0;
-  background: var(--color-surface-container);
 }
 
 .about__photo img {
   width: 100%;
-  height: 100%;
+  height: 12rem;
   object-fit: cover;
-  /* Shows the edges of the book stack, not the top cover (which has a
-     student's name on it). */
-  object-position: center 70%;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-container);
+  box-shadow: var(--shadow-sm);
+  /* Shows the edges of the book stack, not the (blurred) top cover. */
+  object-position: center 82%;
 }
 
-.about__body {
-  padding: var(--card-padding);
+.about__caption {
+  margin-top: var(--space-sm);
+  font-size: var(--text-body-sm-size);
+  line-height: var(--text-body-sm-line);
+  color: var(--color-outline);
 }
 
 .about__body .section-header {
@@ -1622,159 +1356,6 @@ a {
 
 .about__text {
   margin-top: var(--space-md);
-}
-
-.about__facts {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.75rem;
-  margin-top: var(--space-lg);
-}
-
-.fact {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-  padding: var(--space-md);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-container);
-}
-
-.fact__title {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-size: var(--text-title-md-size);
-  line-height: var(--text-title-md-line);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-on-surface);
-}
-
-.fact__title .icon {
-  color: var(--color-primary);
-}
-
-.fact__text {
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-  color: var(--color-on-surface-variant);
-}
-
-/* "At a glance" card (tablets and desktops) */
-.glance {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  padding: var(--card-padding);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-high);
-  box-shadow: var(--shadow-sm);
-}
-
-.glance__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.glance__label {
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-outline);
-}
-
-.glance__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  padding: 0.125rem 0.5rem;
-  border-radius: var(--radius);
-  background: var(--color-primary);
-  color: var(--color-on-primary);
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.glance__title {
-  font-size: var(--text-headline-sm-size);
-  line-height: var(--text-headline-sm-line);
-}
-
-.glance__text {
-  margin-top: calc(var(--space-sm) * -1);
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-  color: var(--color-on-surface-variant);
-}
-
-.glance__list {
-  display: flex;
-  flex-direction: column;
-  padding: var(--space-xs) 1.25rem;
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-lowest);
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-}
-
-/* Each row: label on the left, value on the right, a thin line between rows */
-.glance__list li {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--space-md);
-  padding-block: 0.75rem;
-  color: var(--color-on-surface);
-}
-
-.glance__list li + li {
-  border-top: 1px solid rgba(191, 199, 210, 0.35);
-}
-
-.glance__list li > span:first-child {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  gap: var(--space-sm);
-}
-
-.glance__list .icon {
-  color: var(--color-primary);
-}
-
-.glance__value {
-  font-size: var(--text-label-md-size);
-  line-height: var(--text-body-sm-line);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.02em;
-  color: var(--color-primary);
-  text-align: right;
-  text-decoration: none;
-}
-
-/* Second, smaller line under a value (e.g. the landmark under the address) */
-.glance__subvalue {
-  display: block;
-  font-weight: var(--font-weight-regular);
-  color: var(--color-on-surface-variant);
-}
-
-.glance__value--plain {
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0;
-  color: var(--color-on-surface);
-  text-align: right;
-}
-
-.glance__value--closed {
-  text-transform: uppercase;
-  color: var(--color-secondary);
 }
 
 /* 10h. Pricing --------------------------------------------------------- */
@@ -1857,14 +1438,13 @@ a {
   white-space: nowrap;
 }
 
-/* The confirmed price stands out: tinted row, large blue amount */
+/* Computer rental has a fixed price, so its row stands out */
 .price-table__row--confirmed {
   background: rgba(0, 97, 148, 0.06);
 }
 
 .price-table__amount {
-  font-family: var(--font-heading);
-  font-size: var(--text-headline-sm-size);
+  font-size: var(--text-title-lg-size);
   line-height: var(--text-headline-sm-line);
   font-weight: var(--font-weight-bold);
   color: var(--color-primary);
@@ -1914,13 +1494,6 @@ a {
   box-shadow: var(--shadow-sm);
 }
 
-.contact-card__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-sm);
-}
-
 .contact-card__title {
   display: flex;
   align-items: center;
@@ -1933,25 +1506,10 @@ a {
   color: var(--color-primary);
 }
 
-.contact-card__label,
-.channel__label {
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-outline);
-}
-
-.contact-card__text {
-  color: var(--color-on-surface-variant);
-}
-
 /* Opening hours rows */
 .hours {
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
 }
 
 .hours__row {
@@ -1960,10 +1518,11 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-xs) var(--space-md);
-  padding: 0.75rem var(--space-md);
-  border: 1px solid transparent;
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-low);
+  padding-block: 0.75rem;
+}
+
+.hours__row + .hours__row {
+  border-top: 1px solid rgba(191, 199, 210, 0.45);
 }
 
 .hours__day {
@@ -1978,10 +1537,6 @@ a {
   color: var(--color-primary);
 }
 
-.hours__row--closed {
-  border-color: rgba(186, 0, 53, 0.2);
-}
-
 .hours__row--closed .hours__time {
   text-transform: uppercase;
   color: var(--color-secondary);
@@ -1992,9 +1547,8 @@ a {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  padding: var(--space-md);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-high);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(191, 199, 210, 0.45);
 }
 
 .location__title {
@@ -2021,65 +1575,45 @@ a {
 .location__button {
   align-self: flex-start;
   margin-top: var(--space-xs);
-  background: var(--color-surface-lowest);
 }
 
 /* Phone and Facebook boxes */
 .channels {
   display: grid;
-  gap: var(--space-md);
+  gap: var(--space-lg);
 }
 
+/* Phone and Facebook: separated by a thin line (side by side from 640px) */
 .channel {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
-  padding: var(--space-md);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-low);
 }
 
-.channel__value {
-  font-family: var(--font-heading);
-  font-size: var(--text-headline-sm-size);
-  line-height: var(--text-headline-sm-line);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-on-surface);
+.channel + .channel {
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgba(191, 199, 210, 0.45);
 }
 
-.channel__hint {
-  margin-bottom: var(--space-sm);
+.channel__label {
   font-size: var(--text-body-sm-size);
   line-height: var(--text-body-sm-line);
+  font-weight: var(--font-weight-medium);
   color: var(--color-on-surface-variant);
 }
 
-/* Buttons sit at the bottom of each box so both boxes line up */
-.channel > .button,
-.channel__buttons {
-  margin-top: auto;
+.channel__value {
+  margin-bottom: var(--space-sm);
+  font-size: var(--text-title-lg-size);
+  line-height: var(--text-title-lg-line);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-on-surface);
 }
 
 .channel__buttons {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-}
-
-.contact-card__footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--space-xs) var(--space-md);
-  margin-top: auto;
-  font-size: var(--text-label-md-size);
-  line-height: var(--text-label-md-line);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-outline);
-}
-
-.contact-card__footer-hours {
-  color: var(--color-primary);
 }
 
 /* ---------- 11. Footer ---------- */

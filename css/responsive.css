@@ -26,6 +26,14 @@
   }
 }
 
+/* ---------- Very small phones (below 360px) ----------
+   Two product tiles don't fit side by side, so they stack. */
+@media (max-width: 359.98px) {
+  .products__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /* ---------- Very narrow phones (below 400px) ----------
    Not enough room for the price beside the service name, so it moves to
    its own line under the details. */
@@ -44,9 +52,16 @@
     display: inline;
   }
 
-  /* Contact: phone and Facebook boxes side by side */
+  /* Contact: phone and Facebook side by side, with a thin line between */
   .channels {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .channel + .channel {
+    padding-top: 0;
+    padding-left: var(--space-lg);
+    border-top: 0;
+    border-left: 1px solid rgba(191, 199, 210, 0.45);
   }
 
   .footer__bottom {
@@ -73,11 +88,6 @@
     font-size: var(--text-headline-lg-size);
     line-height: var(--text-headline-lg-line);
     letter-spacing: -0.015em;
-  }
-
-  /* Services strip becomes a full-width bar */
-  .info-strip {
-    background: var(--color-surface-low);
   }
 
   /* Hero: desktop-style content (stacked until 1024px) */
@@ -154,37 +164,28 @@
     grid-column: auto;
   }
 
+  /* Body font for times and prices (even numbers) */
   .highlight__value {
-    font-family: var(--font-heading);
-    font-size: var(--text-headline-md-size);
-    line-height: var(--text-headline-md-line);
-    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-title-lg-size);
+    line-height: var(--text-title-lg-line);
+    font-weight: var(--font-weight-bold);
   }
 
   .highlight__value--primary {
     color: var(--color-primary);
   }
 
-  .highlight__value--accent {
-    color: var(--color-secondary);
-  }
-
   .highlight__note {
-    font-weight: var(--font-weight-bold);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
     color: var(--color-on-surface-variant);
   }
 
   .hero__photo {
+    height: 420px;
     object-position: center;
-  }
-
-  .hero__media {
-    height: 440px;
     box-shadow: 0 20px 25px -5px rgba(19, 27, 46, 0.1), 0 8px 10px -6px rgba(19, 27, 46, 0.1);
   }
-
 
   .rental__title {
     font-size: var(--text-headline-sm-size);
@@ -275,18 +276,6 @@
     margin-top: auto;
   }
 
-  .service-card--featured::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 6rem;
-    height: 6rem;
-    border-bottom-left-radius: 100%;
-    background: rgba(204, 229, 255, 0.35);
-    pointer-events: none;
-  }
-
   .service-card--featured .service-card__icon {
     background: var(--color-primary-soft);
     color: var(--color-primary);
@@ -302,45 +291,17 @@
   }
 
   .products__grid {
-    gap: var(--gutter);
-  }
-
-  .product-card {
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-md);
   }
 
-  .product-card__icon {
-    width: 3rem;
-    height: 3rem;
-    background: var(--color-surface-high);
-  }
-
-  .product-card__icon .icon--lg {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  .product-card--magenta .product-card__icon,
-  .product-card--yellow .product-card__icon {
+  .product-tile--magenta .product-tile__icon,
+  .product-tile--yellow .product-tile__icon {
     color: var(--color-primary);
   }
 
-  .product-card__title {
-    font-size: var(--text-headline-sm-size);
-    line-height: var(--text-headline-sm-line);
-    font-weight: var(--font-weight-medium);
-  }
-
-  /* About: the story is plain text (no card) on larger screens */
-  .about__story {
-    overflow: visible;
-    border-radius: 0;
-    background: none;
-    box-shadow: none;
-  }
-
-  .about__body {
-    padding: 0;
+  .about__photo img {
+    height: 18rem;
   }
 
   .about__body .section-header {
@@ -350,11 +311,6 @@
   .about__lead {
     font-size: var(--text-body-lg-size);
     line-height: var(--text-body-lg-line);
-  }
-
-  .about__facts {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
   }
 
   /* Pricing: a normal table with column headings */
@@ -538,7 +494,7 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  /* About: story (7/12) and "at a glance" card (5/12) */
+  /* About: text (7/12) and photo (5/12) */
   .about__layout {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -546,12 +502,18 @@
     gap: var(--gutter);
   }
 
-  .about__story {
+  .about__body {
     grid-column: span 7;
   }
 
-  .glance {
+  .about__photo {
     grid-column: span 5;
+    order: 0;
+  }
+
+  .about__photo img {
+    height: 24rem;
+    object-position: center 92%;   /* taller frame: move down past the blurred cover */
   }
 
   /* Contact: hours (5/12) and get-in-touch (7/12) */

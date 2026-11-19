@@ -394,3 +394,58 @@ tab with `rel="noopener noreferrer"`.
 - **Bottom navigation:** the current section's icon sits on a soft blue pill, so
   it's easier to see where you are.
 - Tested at 1280, 768, 375, 320px: no overflow, no console errors.
+
+## Visual quality audit — fixes (2026-11-19, all 10 approved)
+
+1. **Hero copy:** "Your Everyday Printing & Document Solution" (Stitch wording) →
+   "Printing & Document Services *at SSC Gate 1*". Lead: "Printing, photocopying,
+   lamination, scanning, binding, and computer rental — right in front of Siquijor
+   State College. Open Sunday to Friday." Eyebrow: "North Poblacion, Larena, Siquijor".
+   Buttons: "See Our Services", "Call 0995 042 9419".
+2. **Hero photo:** removed the floating frosted card, the CMYK chip, and the dark
+   phone overlay. Plain rounded photo + caption underneath ("Photocopying at the
+   shop counter"). A daytime storefront photo would still be better (owner).
+3. **Repetition:** removed the services strip under the header (desktop + phone),
+   the "Open Sunday – Friday" line at the bottom of the Contact card, the hours note
+   on the Computer Rental card, the second ₱30 in its footer, and the ₱30 in the
+   Pricing intro. Hours now: top strip, hero fact, Contact, footer, phone menu.
+4. **Filler copy removed:** card sentences that repeated titles ("Scanning of your
+   documents.", "Drinks available at the shop.", "Tap the button to call", etc.),
+   and the Services/Products intros. Editing & Encoding keeps one useful line
+   explaining what "encoding" means.
+5. **"Confirmed" wording:** removed the red "Confirmed rate"/"Confirmed" badges; the
+   hero label is now "Computer rental"; the estimator note reads "Estimate only,
+   based on ₱30 per hour." (`.badge--accent` removed.)
+6. **Phone number** shown as "0995 042 9419" everywhere; all `tel:09950429419`
+   links unchanged.
+7. **Numbers in Plus Jakarta Sans:** prices, times, phone numbers, and the calculator
+   total no longer use Playfair's old-style figures. Playfair is now used only for
+   h1–h3 headings.
+8. **Fewer boxes and labels:** Contact cards use plain rows with thin dividers (no
+   nested tinted boxes); removed "HOURS"/"PHONE & FACEBOOK"/"AT A GLANCE" labels;
+   channel labels are sentence case; desktop highlight notes are sentence case.
+   Products are now 6 compact tiles (icon + name) instead of 6 cards with filler.
+9. **About:** one factual paragraph + one line on what the shop does, beside the real
+   thesis photo (now also shown on desktop, cropped below the blurred cover). The
+   fact boxes and "At a glance" card were removed (they repeated other sections).
+   A comment marks where the owner's story can go.
+10. **Decorative dots:** kept only the phone hero eyebrow dots (from the Stitch mobile
+    design); removed the eyebrow dots, photo chip, and footer dots.
+
+### Also fixed while testing
+- Cleanup removed a shared rule that also styled `.service-card__link`; restored.
+- Product tiles forced the page to 343px at 320px wide; grid now uses
+  `minmax(0, 1fr)` and stacks tiles in one column below 360px.
+- Unused CSS removed (~13 KB): info strip, photo card, glance, fact boxes, old
+  product cards, contact sub-labels, `.card`, accent highlight variants.
+
+### Re-test (2026-11-19)
+All in-page links land below the header; calculator 1–14 h correct and capped;
+0 contrast failures; 10 `tel:` links all `tel:09950429419`; one h1; all images have
+alt text and load; no overflow at 1280, 1024, 768, 375, 360, 320 px; footer clears
+the bottom nav; no tap target under 36px; no console errors.
+
+### Still needs the owner
+Daytime storefront/counter photo (no customer faces) for the hero; a short shop
+story for About; what Research Services includes; delivery area/fee; whether Smart
+Padala / cash in–out / send money to bank (seen on Google Maps photos) are offered.
