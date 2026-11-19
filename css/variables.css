@@ -31,7 +31,9 @@
   /* ---------- Text and lines ---------- */
   --color-on-surface: #131b2e;          /* main text and headings */
   --color-on-surface-variant: #3f4850;  /* secondary text */
-  --color-outline: #707881;             /* muted labels */
+  --color-outline: #5a6169;             /* muted labels (Stitch used #707881; darkened
+                                           slightly so small text meets the 4.5:1
+                                           contrast guideline on lavender backgrounds) */
   --color-outline-variant: #bfc7d2;     /* borders and dividers */
 
   /* ---------- Accent colors ---------- */

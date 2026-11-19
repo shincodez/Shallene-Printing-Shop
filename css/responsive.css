@@ -26,6 +26,18 @@
   }
 }
 
+/* ---------- Very narrow phones (below 400px) ----------
+   Not enough room for the price beside the service name, so it moves to
+   its own line under the details. */
+@media (max-width: 399.98px) {
+  .price-table .price-table__price {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: var(--space-xs);
+    text-align: left;
+  }
+}
+
 /* ---------- Small (640px+) ---------- */
 @media (min-width: 640px) {
   .header-call__text {
@@ -345,6 +357,14 @@
   }
 
   /* Pricing: a normal table with column headings */
+  .price-table {
+    display: table;
+  }
+
+  .price-table tbody {
+    display: table-row-group;
+  }
+
   .price-table thead {
     position: static;
     width: auto;

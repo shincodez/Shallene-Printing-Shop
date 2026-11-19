@@ -337,3 +337,48 @@ tab with `rel="noopener noreferrer"`.
 - **Get directions** now opens the shop's own Google Maps listing
   ("Shallene's Printing Shop", plus code 6HXR+Q5Q) instead of a search for the college.
   Checked in the browser: the link lands on the listing with the correct phone number.
+
+## Phase 6 — Testing (2026-11-19)
+
+**Status:** Complete, awaiting approval.
+
+### Repository check
+- Working tree matched GitHub before testing (`main` = `origin/main`).
+- No deleted/private photos, keys, or passwords anywhere in git history.
+- Only the blurred `thesis-binding-stack.jpg` was ever committed.
+- Photos contain no EXIF/GPS metadata. No personal names in tracked text files.
+- Note: commit author email is the user's personal Gmail (visible on GitHub).
+
+### Results
+| Area | Result |
+|---|---|
+| HTML structure | Tags balanced; no duplicate ids; one `h1`, then `h2` → `h3` in order; `lang="en"` |
+| Images | All 5 have alt text, width/height, and load; photos have no metadata |
+| Links | 51 links, all with readable names; 0 broken in-page anchors; 1 phone number used everywhere (`tel:09950429419`) |
+| External links | Facebook page, Messenger (`m.me` → shop's Messenger thread), Google Maps (shop listing) all respond; open in new tab with `noopener noreferrer` |
+| In-page navigation | All 34 `#` links land just below the fixed header |
+| Calculator | 1–14 hours all correct (₱30 … ₱420); can't go below 1 or above 14 |
+| Mobile menu | Opens/closes (✕, Esc, outside click, link), focus moves in and back, Tab stays inside |
+| Keyboard | 38 tab stops on desktop; skip link appears on focus; visible blue focus ring; hidden menus not reachable |
+| Contrast | 0 failures after fix (lowest 4.65:1) |
+| Layout | No horizontal overflow at 1440, 1280, 1024, 768, 375, 320 px |
+| Fixed bars | Header height = page top padding (112 / 92 px); footer ends exactly above the bottom nav |
+| Console | No errors from the site (only Google Fonts server header warnings) |
+| SEO | Title 60 chars, description 153 chars, Open Graph title/description/type, favicon |
+
+### Bugs found and fixed in Phase 6
+1. **Price table cut off at 320px** — the table was 307px wide inside a 280px card.
+   On phones the table now behaves like blocks; below 400px the price moves under
+   the details.
+2. **Header 2px taller than the space reserved for it** (borders added height).
+   Lines are now drawn with shadows, so header height = page padding exactly.
+3. **Muted grey text below contrast guideline** (3.65–4.48:1) — `--color-outline`
+   darkened from `#707881` to `#5a6169`.
+4. **Title and description too long for Google** (79 / 271 chars) — shortened to
+   60 / 153.
+
+### Not testable here / still open
+- Real-device test (actual phones, iPhone safe area) — please check on your phone.
+- Messenger link asks visitors to log in to Messenger first (normal behaviour).
+- `og:image` / `og:url` need a live web address (after deployment).
+- Owner: what "Research Services" includes; delivery area and fee.
