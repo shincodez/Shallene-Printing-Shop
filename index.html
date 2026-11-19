@@ -19,10 +19,12 @@
   <link rel="icon" type="image/png" href="assets/images/logo/favicon.png">
   <link rel="apple-touch-icon" href="assets/images/logo/favicon.png">
 
-  <!-- Fonts: Playfair Display (headings) and Plus Jakarta Sans (body text) -->
+  <!-- Fonts (one request, only the weights used):
+       Archivo 600/700 — headings · DM Sans 400/500/600 — text and buttons
+       IBM Plex Mono 400/500 — small labels and numbers -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
   <!-- Styles: variables first, then base styles, then screen-size adjustments -->
   <link rel="stylesheet" href="css/variables.css">
@@ -66,10 +68,6 @@
       <path d="M3 6h18"></path>
       <path d="M16 10a4 4 0 0 1-8 0"></path>
     </symbol>
-    <symbol id="icon-book" viewBox="0 0 24 24">
-      <path d="M12 7v14"></path>
-      <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path>
-    </symbol>
     <symbol id="icon-tag" viewBox="0 0 24 24">
       <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path>
       <circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>
@@ -77,50 +75,9 @@
     <symbol id="icon-message" viewBox="0 0 24 24">
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
     </symbol>
-    <symbol id="icon-chevron-down" viewBox="0 0 24 24">
-      <path d="m6 9 6 6 6-6"></path>
-    </symbol>
     <symbol id="icon-arrow-right" viewBox="0 0 24 24">
       <path d="M5 12h14"></path>
       <path d="m12 5 7 7-7 7"></path>
-    </symbol>
-    <symbol id="icon-calendar" viewBox="0 0 24 24">
-      <path d="M8 2v4"></path>
-      <path d="M16 2v4"></path>
-      <rect width="18" height="18" x="3" y="4" rx="2"></rect>
-      <path d="M3 10h18"></path>
-    </symbol>
-    <symbol id="icon-clock" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10"></circle>
-      <polyline points="12 6 12 12 16 14"></polyline>
-    </symbol>
-    <symbol id="icon-monitor" viewBox="0 0 24 24">
-      <rect width="20" height="14" x="2" y="3" rx="2"></rect>
-      <line x1="8" x2="16" y1="21" y2="21"></line>
-      <line x1="12" x2="12" y1="17" y2="21"></line>
-    </symbol>
-    <symbol id="icon-file" viewBox="0 0 24 24">
-      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
-      <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
-      <path d="M10 9H8"></path>
-      <path d="M16 13H8"></path>
-      <path d="M16 17H8"></path>
-    </symbol>
-    <symbol id="icon-check-circle" viewBox="0 0 24 24">
-      <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
-      <path d="m9 11 3 3L22 4"></path>
-    </symbol>
-    <symbol id="icon-calculator" viewBox="0 0 24 24">
-      <rect width="16" height="20" x="4" y="2" rx="2"></rect>
-      <line x1="8" x2="16" y1="6" y2="6"></line>
-      <line x1="16" x2="16" y1="14" y2="18"></line>
-      <path d="M16 10h.01"></path>
-      <path d="M12 10h.01"></path>
-      <path d="M8 10h.01"></path>
-      <path d="M12 14h.01"></path>
-      <path d="M8 14h.01"></path>
-      <path d="M12 18h.01"></path>
-      <path d="M8 18h.01"></path>
     </symbol>
     <symbol id="icon-minus" viewBox="0 0 24 24">
       <path d="M5 12h14"></path>
@@ -128,61 +85,6 @@
     <symbol id="icon-plus" viewBox="0 0 24 24">
       <path d="M5 12h14"></path>
       <path d="M12 5v14"></path>
-    </symbol>
-    <symbol id="icon-copy" viewBox="0 0 24 24">
-      <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
-      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
-    </symbol>
-    <symbol id="icon-edit" viewBox="0 0 24 24">
-      <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-      <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path>
-    </symbol>
-    <symbol id="icon-layers" viewBox="0 0 24 24">
-      <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"></path>
-      <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path>
-      <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path>
-    </symbol>
-    <symbol id="icon-binding" viewBox="0 0 24 24">
-      <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"></path>
-    </symbol>
-    <symbol id="icon-graduation" viewBox="0 0 24 24">
-      <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path>
-      <path d="M22 10v6"></path>
-      <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>
-    </symbol>
-    <symbol id="icon-briefcase" viewBox="0 0 24 24">
-      <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-      <rect width="20" height="14" x="2" y="6" rx="2"></rect>
-    </symbol>
-    <symbol id="icon-drink" viewBox="0 0 24 24">
-      <path d="m6 8 1.75 12.28a2 2 0 0 0 2 1.72h4.54a2 2 0 0 0 2-1.72L18 8"></path>
-      <path d="M5 8h14"></path>
-      <path d="M7 15a6.47 6.47 0 0 1 5 0 6.47 6.47 0 0 0 5 0"></path>
-      <path d="m12 8 1-6h2"></path>
-    </symbol>
-    <symbol id="icon-cookie" viewBox="0 0 24 24">
-      <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path>
-      <path d="M8.5 8.5v.01"></path>
-      <path d="M16 15.5v.01"></path>
-      <path d="M12 12v.01"></path>
-      <path d="M11 17v.01"></path>
-      <path d="M7 14v.01"></path>
-    </symbol>
-    <symbol id="icon-scan" viewBox="0 0 24 24">
-      <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
-      <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
-      <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
-      <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
-      <path d="M7 12h10"></path>
-    </symbol>
-    <symbol id="icon-smartphone" viewBox="0 0 24 24">
-      <rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect>
-      <path d="M12 18h.01"></path>
-    </symbol>
-    <symbol id="icon-receipt" viewBox="0 0 24 24">
-      <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path>
-      <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path>
-      <path d="M12 17.5v-11"></path>
     </symbol>
     <!-- Brand logos below are from Simple Icons (simpleicons.org), v13.21.0, CC0.
          They are solid shapes, so use them with class="icon icon--brand". -->
@@ -194,10 +96,6 @@
     </symbol>
     <symbol id="icon-directions" viewBox="0 0 24 24">
       <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
-    </symbol>
-    <symbol id="icon-map-pin" viewBox="0 0 24 24">
-      <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
-      <circle cx="12" cy="10" r="3"></circle>
     </symbol>
   </svg>
 
@@ -211,13 +109,19 @@
     <!-- Desktop-only info strip -->
     <div class="top-strip">
       <div class="container top-strip__inner">
-        <p class="top-strip__hours">
-          <span class="status-dot" aria-hidden="true"></span>
-          <span>Open Sunday – Friday • 7:00 AM – 9:00 PM <span class="top-strip__muted">(Closed Saturday)</span></span>
+        <p class="top-strip__item">
+          <span class="top-strip__label">Hours</span>
+          <span>Sun – Fri, 7:00 AM – 9:00 PM <span class="top-strip__muted">· Closed Saturday</span></span>
         </p>
         <div class="top-strip__meta">
-          <span class="top-strip__location">In front of Siquijor State College, Gate 1 · Larena</span>
-          <a class="top-strip__phone" href="tel:09950429419">Hotline: 0995 042 9419</a>
+          <p class="top-strip__item">
+            <span class="top-strip__label">Location</span>
+            <span>In front of SSC Gate 1, Larena</span>
+          </p>
+          <p class="top-strip__item">
+            <span class="top-strip__label">Hotline</span>
+            <a class="top-strip__phone" href="tel:09950429419">0995 042 9419</a>
+          </p>
         </div>
       </div>
     </div>
@@ -249,7 +153,7 @@
       <div class="header-actions">
         <!-- Desktop -->
         <a class="button button--outline header-phone" href="tel:09950429419">
-          <span class="header-phone__prefix">PH</span>
+          <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-phone"></use></svg>
           <span>0995 042 9419</span>
         </a>
         <a class="button button--primary header-cta" href="#contact">Get in Touch</a>
@@ -288,22 +192,22 @@
 
         <nav class="mobile-menu__nav" aria-label="Mobile">
           <a class="mobile-menu__link" href="#home" data-nav-link>
-            <svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg>Home
+            <span class="mobile-menu__num" aria-hidden="true">00</span>Home
           </a>
           <a class="mobile-menu__link" href="#services" data-nav-link>
-            <svg class="icon" aria-hidden="true"><use href="#icon-printer"></use></svg>Services
+            <span class="mobile-menu__num" aria-hidden="true">01</span>Services
           </a>
           <a class="mobile-menu__link" href="#products" data-nav-link>
-            <svg class="icon" aria-hidden="true"><use href="#icon-bag"></use></svg>Products
+            <span class="mobile-menu__num" aria-hidden="true">02</span>Products
           </a>
           <a class="mobile-menu__link" href="#about" data-nav-link>
-            <svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg>About Us
+            <span class="mobile-menu__num" aria-hidden="true">03</span>About Us
           </a>
           <a class="mobile-menu__link" href="#pricing" data-nav-link>
-            <svg class="icon" aria-hidden="true"><use href="#icon-tag"></use></svg>Pricing
+            <span class="mobile-menu__num" aria-hidden="true">04</span>Pricing
           </a>
           <a class="mobile-menu__link" href="#contact" data-nav-link>
-            <svg class="icon" aria-hidden="true"><use href="#icon-message"></use></svg>Contact
+            <span class="mobile-menu__num" aria-hidden="true">05</span>Contact
           </a>
         </nav>
       </div>
@@ -321,80 +225,58 @@
   <main id="main-content">
     <!-- ==================================================================
          2. HOME: hero + key facts
-         Some text differs between phones and larger screens, as in the
-         Stitch designs. "phone-only" and "tablet-up" (style.css, section 4)
-         show the right version for each screen size.
+         Some text differs between phones and larger screens.
+         "phone-only" and "tablet-up" (responsive.css) show the right version.
          ================================================================== -->
     <section id="home" class="home" data-nav-label="Home" aria-labelledby="hero-title">
-
-      <!-- Hero -->
       <div class="container hero">
         <div class="hero__content">
           <p class="hero__eyebrow">
-            <!-- Phones: CMYK dots (the one place the brand dots are used) -->
-            <span class="cmyk-dots phone-only" aria-hidden="true">
+            <span class="cmyk-dots" aria-hidden="true">
               <span></span><span></span><span></span><span></span>
             </span>
-            <!-- Larger screens: printer icon -->
-            <svg class="icon icon--sm tablet-up" aria-hidden="true"><use href="#icon-printer"></use></svg>
-            North Poblacion, Larena, Siquijor
+            North Poblacion · Larena · Siquijor
           </p>
 
           <h1 class="hero__title" id="hero-title">
-            Printing &amp; Document Services <span class="hero__title-accent">at SSC Gate 1</span>
+            Printing and<br class="tablet-up"> document services,
+            <span class="hero__title-accent">right by SSC Gate&nbsp;1.</span>
           </h1>
 
           <p class="hero__lead">
-            Printing, photocopying, lamination, scanning, binding, and computer rental —
-            right in front of Siquijor State College. Open Sunday to Friday.
+            Printing, photocopying, lamination, binding, and computer rental in
+            Larena, Siquijor. Visit us in front of Siquijor State College.
           </p>
 
           <div class="hero__actions">
-            <a class="button button--primary hero__button" href="#services">
+            <a class="button button--primary" href="#services">
               <span>See Our Services</span>
-              <svg class="icon icon--sm tablet-up" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
-              <svg class="icon icon--sm phone-only" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+              <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
             </a>
-            <a class="button hero__button hero__button--call" href="tel:09950429419">
+            <a class="button button--outline" href="tel:09950429419">
               <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-phone"></use></svg>
               <span>Call 0995 042 9419</span>
             </a>
           </div>
 
           <!-- Key facts (these act as the "featured services") -->
-          <ul class="hero__highlights" aria-label="Key details">
-            <li class="highlight">
-              <p class="highlight__label phone-only">
-                <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-calendar"></use></svg>
-                Hours
-              </p>
-              <p class="highlight__value highlight__value--primary">7 AM – 9 PM</p>
-              <p class="highlight__note">Sun – Fri · Closed Sat</p>
-            </li>
-            <li class="highlight">
-              <p class="highlight__label phone-only">
-                <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-monitor"></use></svg>
-                Computer rental
-              </p>
-              <p class="highlight__value highlight__value--primary">
-                <span data-price="computer-rental">₱30</span><span class="tablet-up">/hr</span><span class="phone-only"> / hour</span>
-              </p>
-              <p class="highlight__note tablet-up">Computer rental</p>
-            </li>
-            <li class="highlight highlight--wide">
-              <span class="highlight__icon phone-only" aria-hidden="true">
-                <svg class="icon icon--sm"><use href="#icon-file"></use></svg>
-              </span>
-              <div>
-                <p class="highlight__label phone-only">Paper sizes</p>
-                <p class="highlight__value">
-                  <span class="tablet-up">Short to A3</span>
-                  <span class="phone-only">Short · A4 · Long · A3</span>
-                </p>
-                <p class="highlight__note tablet-up">Short, A4, Long, A3 paper</p>
-              </div>
-            </li>
-          </ul>
+          <dl class="facts">
+            <div class="facts__item">
+              <dt class="facts__label">Hours</dt>
+              <dd class="facts__value">7 AM – 9 PM</dd>
+              <dd class="facts__note">Sunday – Friday · Closed Saturday</dd>
+            </div>
+            <div class="facts__item">
+              <dt class="facts__label">Computer rental</dt>
+              <dd class="facts__value"><span data-price="computer-rental">₱30</span> / hour</dd>
+              <dd class="facts__note">During shop hours</dd>
+            </div>
+            <div class="facts__item">
+              <dt class="facts__label">Paper sizes</dt>
+              <dd class="facts__value">Short · A4 · Long · A3</dd>
+              <dd class="facts__note">Printing &amp; photocopying</dd>
+            </div>
+          </dl>
         </div>
 
         <!-- Hero photo (from the shop's Facebook page, used with permission).
@@ -402,236 +284,186 @@
              src, width, height, alt, and the caption below. -->
         <figure class="hero__media">
           <img class="hero__photo" src="assets/images/services/photocopying.jpg"
-               width="1046" height="960"
-               alt="Stacks of freshly photocopied documents laid out on the counter at Shallene's Printing Shop">
-          <figcaption class="hero__caption">Photocopying at the shop counter</figcaption>
+               width="1046" height="412"
+               alt="Stacks of freshly photocopied documents on the counter at Shallene's Printing Shop">
+          <figcaption class="caption">Fig. 1 — Photocopied documents on the shop counter</figcaption>
         </figure>
       </div>
     </section>
 
     <!-- ==================================================================
-         3. SERVICES
+         3. SERVICES — a numbered list (not cards)
          Only confirmed services, sizes, and prices.
          "Contact us for pricing" items are marked with data-price="…" so
          they are easy to find when the owner provides a price list.
          ================================================================== -->
     <section id="services" class="section services" data-nav-label="Services" aria-labelledby="services-title">
       <div class="container">
-        <header class="section-header section-header--center">
-          <span class="eyebrow">Our Services</span>
+        <header class="section-header">
+          <span class="eyebrow">01 — Services</span>
           <h2 id="services-title">Printing &amp; Document Services</h2>
         </header>
 
-        <div class="services__grid">
-          <!-- Printing -->
-          <article class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__icon" aria-hidden="true">
-                <svg class="icon icon--lg"><use href="#icon-printer"></use></svg>
-              </span>
+        <ol class="service-list">
+          <li class="service-row">
+            <span class="service-row__num" aria-hidden="true">01</span>
+            <h3 class="service-row__name">Printing</h3>
+            <div class="service-row__details">
+              <dl class="service-row__specs">
+                <div><dt>Sizes</dt><dd>Short, A4, Long, A3</dd></div>
+                <div><dt>Color</dt><dd>Colored &amp; black-and-white</dd></div>
+              </dl>
             </div>
-            <h3 class="service-card__title">Printing</h3>
-            <dl class="service-card__specs">
-              <div><dt>Sizes</dt><dd class="service-card__highlight">Short, A4, Long, A3</dd></div>
-              <div><dt>Color</dt><dd>Colored &amp; black-and-white</dd></div>
-            </dl>
-            <div class="service-card__footer">
-              <a class="service-card__link" href="#contact">
+            <div class="service-row__action">
+              <a class="service-row__link" href="#contact">
                 <span data-price="printing">Contact us for pricing</span>
                 <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
               </a>
             </div>
-          </article>
-
-          <!-- Photocopying -->
-          <article class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__icon" aria-hidden="true">
-                <svg class="icon icon--lg"><use href="#icon-copy"></use></svg>
-              </span>
+          </li>
+          <li class="service-row">
+            <span class="service-row__num" aria-hidden="true">02</span>
+            <h3 class="service-row__name">Photocopying</h3>
+            <div class="service-row__details">
+              <dl class="service-row__specs">
+                <div><dt>Sizes</dt><dd>Short, A4, Long, A3</dd></div>
+              </dl>
             </div>
-            <h3 class="service-card__title">Photocopying</h3>
-            <dl class="service-card__specs">
-              <div><dt>Sizes</dt><dd class="service-card__highlight">Short, A4, Long, A3</dd></div>
-            </dl>
-            <div class="service-card__footer">
-              <a class="service-card__link" href="#contact">
+            <div class="service-row__action">
+              <a class="service-row__link" href="#contact">
                 <span data-price="photocopying">Contact us for pricing</span>
                 <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
               </a>
             </div>
-          </article>
-
-          <!-- Computer rental (confirmed price) -->
-          <article class="service-card service-card--featured">
-            <div class="service-card__top">
-              <span class="service-card__icon" aria-hidden="true">
-                <svg class="icon icon--lg"><use href="#icon-monitor"></use></svg>
-              </span>
+          </li>
+          <li class="service-row">
+            <span class="service-row__num" aria-hidden="true">03</span>
+            <h3 class="service-row__name">Scanning</h3>
+            <div class="service-row__details">
+              <dl class="service-row__specs">
+                <div><dt>For</dt><dd>Documents</dd></div>
+              </dl>
             </div>
-            <h3 class="service-card__title">Computer Rental</h3>
-            <div class="service-card__price">
-              <span class="service-card__price-label">Computer rental</span>
-              <p class="service-card__price-value">
-                <span class="service-card__price-amount" data-price="computer-rental">₱30</span>
-                <span class="service-card__price-unit">/ hour</span>
-              </p>
-            </div>
-            <div class="service-card__footer">
-              <a class="service-card__link service-card__link--small" href="#rental-estimator">
-                <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-calculator"></use></svg>
-                <span>Estimate your cost</span>
-              </a>
-            </div>
-          </article>
-
-          <!-- Document editing and encoding -->
-          <article class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__icon" aria-hidden="true">
-                <svg class="icon icon--lg"><use href="#icon-edit"></use></svg>
-              </span>
-            </div>
-            <h3 class="service-card__title">Document Editing &amp; Encoding</h3>
-            <p class="service-card__text">Encoding means typing up your handwritten or printed documents.</p>
-            <dl class="service-card__specs">
-              <div><dt>Sizes</dt><dd class="service-card__highlight">Short, Long, A4</dd></div>
-            </dl>
-            <div class="service-card__footer">
-              <a class="service-card__link" href="#contact">
-                <span data-price="editing-encoding">Contact us for pricing</span>
-                <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
-              </a>
-            </div>
-          </article>
-
-          <!-- Research services -->
-          <article class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__icon" aria-hidden="true">
-                <svg class="icon icon--lg"><use href="#icon-book"></use></svg>
-              </span>
-            </div>
-            <h3 class="service-card__title">Research Services</h3>
-            <dl class="service-card__specs">
-              <div><dt>Covers</dt><dd class="service-card__highlight">Research papers, thesis, reports</dd></div>
-            </dl>
-            <div class="service-card__footer">
-              <a class="service-card__link" href="#contact">
-                <span data-price="research">Contact us for pricing</span>
-                <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
-              </a>
-            </div>
-          </article>
-
-          <!-- Lamination -->
-          <article class="service-card">
-            <div class="service-card__top">
-              <span class="service-card__icon" aria-hidden="true">
-                <svg class="icon icon--lg"><use href="#icon-layers"></use></svg>
-              </span>
-            </div>
-            <h3 class="service-card__title">Lamination</h3>
-            <dl class="service-card__specs">
-              <div><dt>Sizes</dt><dd class="service-card__highlight">ID size, A4</dd></div>
-            </dl>
-            <div class="service-card__footer">
-              <a class="service-card__link" href="#contact">
-                <span data-price="lamination">Contact us for pricing</span>
-                <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
-              </a>
-            </div>
-          </article>
-
-          <!-- Scanning (half-width on desktop) -->
-          <article class="service-card service-card--half">
-            <div class="service-card__top">
-              <span class="service-card__icon" aria-hidden="true">
-                <svg class="icon icon--lg"><use href="#icon-scan"></use></svg>
-              </span>
-            </div>
-            <h3 class="service-card__title">Scanning</h3>
-            <div class="service-card__footer">
-              <a class="service-card__link" href="#contact">
+            <div class="service-row__action">
+              <a class="service-row__link" href="#contact">
                 <span data-price="scanning">Contact us for pricing</span>
                 <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
               </a>
             </div>
-          </article>
-
-          <!-- Binding (half-width on desktop) -->
-          <article class="service-card service-card--half">
-            <div class="service-card__top">
-              <span class="service-card__icon" aria-hidden="true">
-                <svg class="icon icon--lg"><use href="#icon-binding"></use></svg>
-              </span>
+          </li>
+          <li class="service-row">
+            <span class="service-row__num" aria-hidden="true">04</span>
+            <h3 class="service-row__name">Lamination</h3>
+            <div class="service-row__details">
+              <dl class="service-row__specs">
+                <div><dt>Sizes</dt><dd>ID size, A4</dd></div>
+              </dl>
             </div>
-            <h3 class="service-card__title">Binding</h3>
-            <dl class="service-card__specs">
-              <div><dt>Includes</dt><dd class="service-card__highlight">Hardbound binding (e.g. theses)</dd></div>
-              <div><dt>Delivery</dt><dd>Available — contact us for details</dd></div>
-            </dl>
-            <div class="service-card__footer">
-              <a class="service-card__link" href="#contact">
+            <div class="service-row__action">
+              <a class="service-row__link" href="#contact">
+                <span data-price="lamination">Contact us for pricing</span>
+                <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+              </a>
+            </div>
+          </li>
+          <li class="service-row">
+            <span class="service-row__num" aria-hidden="true">05</span>
+            <h3 class="service-row__name">Binding</h3>
+            <div class="service-row__details">
+              <p class="service-row__note">Ask us about available binding options.</p>
+            </div>
+            <div class="service-row__action">
+              <a class="service-row__link" href="#contact">
                 <span data-price="binding">Contact us for pricing</span>
                 <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
               </a>
             </div>
-          </article>
-        </div>
+          </li>
+          <li class="service-row">
+            <span class="service-row__num" aria-hidden="true">06</span>
+            <h3 class="service-row__name">Document Editing &amp; Encoding</h3>
+            <div class="service-row__details">
+              <p class="service-row__note">Encoding means typing up your handwritten or printed documents.</p>
+              <dl class="service-row__specs">
+                <div><dt>Sizes</dt><dd>Short, Long, A4</dd></div>
+              </dl>
+            </div>
+            <div class="service-row__action">
+              <a class="service-row__link" href="#contact">
+                <span data-price="editing-encoding">Contact us for pricing</span>
+                <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+              </a>
+            </div>
+          </li>
+          <li class="service-row">
+            <span class="service-row__num" aria-hidden="true">07</span>
+            <h3 class="service-row__name">Research Services</h3>
+            <div class="service-row__details">
+              <dl class="service-row__specs">
+                <div><dt>Covers</dt><dd>Research papers, thesis, reports</dd></div>
+              </dl>
+            </div>
+            <div class="service-row__action">
+              <a class="service-row__link" href="#contact">
+                <span data-price="research">Contact us for pricing</span>
+                <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+              </a>
+            </div>
+          </li>
+          <li class="service-row">
+            <span class="service-row__num" aria-hidden="true">08</span>
+            <h3 class="service-row__name">Computer Rental</h3>
+            <div class="service-row__details">
+              <dl class="service-row__specs">
+                <div><dt>Billing</dt><dd>Per hour, during shop hours</dd></div>
+              </dl>
+            </div>
+            <div class="service-row__action">
+              <p class="service-row__price"><span data-price="computer-rental">₱30</span> <span class="service-row__unit">/ hour</span></p>
+              <a class="service-row__link" href="#rental-estimator">
+                <span>Estimate your cost</span>
+                <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+              </a>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
 
     <!-- ==================================================================
-         4. PRODUCTS
+         4. PRODUCTS — grouped lists
          Categories only — no specific brands, items, stock, or prices.
          ================================================================== -->
     <section id="products" class="section products" data-nav-label="Products" aria-labelledby="products-title">
       <div class="container">
-        <header class="section-header section-header--center">
-          <span class="eyebrow products__eyebrow">Also Available</span>
+        <header class="section-header">
+          <span class="eyebrow">02 — Also Available</span>
           <h2 id="products-title">Shop Essentials &amp; More</h2>
         </header>
 
-        <!-- Simple tiles: what the shop has, without invented item lists -->
-        <ul class="products__grid">
-          <li class="product-tile">
-            <span class="product-tile__icon" aria-hidden="true">
-              <svg class="icon"><use href="#icon-graduation"></use></svg>
-            </span>
-            <span class="product-tile__name">School Supplies</span>
-          </li>
-          <li class="product-tile">
-            <span class="product-tile__icon" aria-hidden="true">
-              <svg class="icon"><use href="#icon-briefcase"></use></svg>
-            </span>
-            <span class="product-tile__name">Office Supplies</span>
-          </li>
-          <li class="product-tile product-tile--magenta">
-            <span class="product-tile__icon" aria-hidden="true">
-              <svg class="icon"><use href="#icon-drink"></use></svg>
-            </span>
-            <span class="product-tile__name">Beverages</span>
-          </li>
-          <li class="product-tile product-tile--yellow">
-            <span class="product-tile__icon" aria-hidden="true">
-              <svg class="icon"><use href="#icon-cookie"></use></svg>
-            </span>
-            <span class="product-tile__name">Snack Items</span>
-          </li>
-          <li class="product-tile">
-            <span class="product-tile__icon" aria-hidden="true">
-              <svg class="icon"><use href="#icon-smartphone"></use></svg>
-            </span>
-            <span class="product-tile__name">E-Loading</span>
-          </li>
-          <li class="product-tile">
-            <span class="product-tile__icon" aria-hidden="true">
-              <svg class="icon"><use href="#icon-receipt"></use></svg>
-            </span>
-            <span class="product-tile__name">Bills Payment</span>
-          </li>
-        </ul>
+        <div class="product-groups">
+          <div class="product-group">
+            <h3 class="product-group__title">Supplies</h3>
+            <ul class="product-group__list">
+              <li>School supplies</li>
+              <li>Office supplies</li>
+            </ul>
+          </div>
+          <div class="product-group">
+            <h3 class="product-group__title">Food &amp; Drinks</h3>
+            <ul class="product-group__list">
+              <li>Beverages</li>
+              <li>Snack items</li>
+            </ul>
+          </div>
+          <div class="product-group">
+            <h3 class="product-group__title">Load &amp; Payments</h3>
+            <ul class="product-group__list">
+              <li>E-Loading</li>
+              <li>Bills payment</li>
+            </ul>
+          </div>
+        </div>
 
         <p class="products__note">Please ask at the shop about currently available items.</p>
       </div>
@@ -645,7 +477,7 @@
       <div class="container about__layout">
         <div class="about__body">
           <header class="section-header">
-            <span class="eyebrow">About Us</span>
+            <span class="eyebrow">03 — About</span>
             <h2 id="about-title">About Shallene's Printing Shop</h2>
           </header>
 
@@ -656,8 +488,8 @@
             Larena, Siquijor — right in front of Gate 1 of Siquijor State College.
           </p>
           <p class="about__text">
-            Besides printing and photocopying, we laminate and scan, type up and edit
-            documents, bind theses in hardbound covers, and rent out computers by the hour.
+            Besides printing and photocopying, we laminate, scan, and bind documents,
+            type up and edit files, and rent out computers by the hour.
           </p>
         </div>
 
@@ -666,8 +498,8 @@
              alt, and the caption below. -->
         <figure class="about__photo">
           <img src="assets/images/services/thesis-binding-stack.jpg" width="640" height="1352"
-               alt="A stack of hardbound theses finished at Shallene's Printing Shop">
-          <figcaption class="about__caption">Hardbound theses bound at the shop</figcaption>
+               alt="A stack of bound theses at Shallene's Printing Shop">
+          <figcaption class="caption">Fig. 2 — Bound theses at the shop</figcaption>
         </figure>
       </div>
     </section>
@@ -676,103 +508,90 @@
          6. PRICING
          Price list (table) + computer rental estimator.
          The computer rental estimator lives here so "Pricing" in the menu,
-         and "Estimate your cost" on the Computer Rental card, both lead to it.
+         and "Estimate your cost" on the Computer Rental row, both lead to it.
          data-rate is the price per hour used by js/main.js.
          If the rental price changes, update data-rate AND every
          data-price="computer-rental" on this page.
          ================================================================== -->
     <section id="pricing" class="section pricing" data-nav-label="Pricing" aria-labelledby="pricing-title">
       <div class="container">
-        <header class="section-header section-header--center">
-          <span class="eyebrow">Pricing</span>
+        <header class="section-header">
+          <span class="eyebrow">04 — Pricing</span>
           <h2 id="pricing-title">Prices &amp; Estimates</h2>
-          <p class="section-header__text">
-            Ask us for prices on any service without a listed rate.
-          </p>
+          <p class="section-header__text">Ask us for prices on any service without a listed rate.</p>
         </header>
 
         <!-- Price list
              To add a price when the owner provides it: find the service's
-             data-price="…" badge below and replace it with the price, e.g.
+             data-price="…" text below and replace it with the price, e.g.
              <span class="price-table__amount" data-price="printing">₱5</span> per page -->
-        <div class="price-table-card">
-          <table class="price-table">
-            <caption class="visually-hidden">Service prices</caption>
-            <thead>
-              <tr>
-                <th scope="col">Service</th>
-                <th scope="col">Details</th>
-                <th scope="col">Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="price-table__row--confirmed">
-                <th scope="row" class="price-table__service">
-                  Computer Rental
-                </th>
-                <td class="price-table__details">Charged per hour, during shop hours</td>
-                <td class="price-table__price">
-                  <span class="price-table__amount" data-price="computer-rental">₱30</span>
-                  <span class="price-table__unit">/ hour</span>
-                </td>
-              </tr>
+        <table class="price-table">
+          <caption class="visually-hidden">Service prices</caption>
+          <thead>
+            <tr>
+              <th scope="col">Service</th>
+              <th scope="col">Details</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="price-table__row--fixed">
+              <th scope="row" class="price-table__service">Computer Rental</th>
+              <td class="price-table__details">Per hour, during shop hours</td>
+              <td class="price-table__price">
+                <span class="price-table__amount" data-price="computer-rental">₱30</span>
+                <span class="price-table__unit">/ hour</span>
+              </td>
+            </tr>
               <tr>
                 <th scope="row" class="price-table__service">Printing</th>
                 <td class="price-table__details">Short, A4, Long, A3 · Colored &amp; black-and-white</td>
-                <td class="price-table__price"><span class="badge badge--neutral" data-price="printing">Contact us for pricing</span></td>
+                <td class="price-table__price"><span class="price-table__ask" data-price="printing">Contact us for pricing</span></td>
               </tr>
               <tr>
                 <th scope="row" class="price-table__service">Photocopying</th>
                 <td class="price-table__details">Short, A4, Long, A3</td>
-                <td class="price-table__price"><span class="badge badge--neutral" data-price="photocopying">Contact us for pricing</span></td>
-              </tr>
-              <tr>
-                <th scope="row" class="price-table__service">Lamination</th>
-                <td class="price-table__details">ID size, A4</td>
-                <td class="price-table__price"><span class="badge badge--neutral" data-price="lamination">Contact us for pricing</span></td>
-              </tr>
-              <tr>
-                <th scope="row" class="price-table__service">Document Editing &amp; Encoding</th>
-                <td class="price-table__details">Short, Long, A4</td>
-                <td class="price-table__price"><span class="badge badge--neutral" data-price="editing-encoding">Contact us for pricing</span></td>
-              </tr>
-              <tr>
-                <th scope="row" class="price-table__service">Research Services</th>
-                <td class="price-table__details">Research papers, thesis, reports</td>
-                <td class="price-table__price"><span class="badge badge--neutral" data-price="research">Contact us for pricing</span></td>
+                <td class="price-table__price"><span class="price-table__ask" data-price="photocopying">Contact us for pricing</span></td>
               </tr>
               <tr>
                 <th scope="row" class="price-table__service">Scanning</th>
                 <td class="price-table__details">Documents</td>
-                <td class="price-table__price"><span class="badge badge--neutral" data-price="scanning">Contact us for pricing</span></td>
+                <td class="price-table__price"><span class="price-table__ask" data-price="scanning">Contact us for pricing</span></td>
+              </tr>
+              <tr>
+                <th scope="row" class="price-table__service">Lamination</th>
+                <td class="price-table__details">ID size, A4</td>
+                <td class="price-table__price"><span class="price-table__ask" data-price="lamination">Contact us for pricing</span></td>
               </tr>
               <tr>
                 <th scope="row" class="price-table__service">Binding</th>
-                <td class="price-table__details">Includes hardbound binding (e.g. theses)</td>
-                <td class="price-table__price"><span class="badge badge--neutral" data-price="binding">Contact us for pricing</span></td>
+                <td class="price-table__details">Ask about available binding options</td>
+                <td class="price-table__price"><span class="price-table__ask" data-price="binding">Contact us for pricing</span></td>
               </tr>
-            </tbody>
-          </table>
-        </div>
+              <tr>
+                <th scope="row" class="price-table__service">Document Editing &amp; Encoding</th>
+                <td class="price-table__details">Short, Long, A4</td>
+                <td class="price-table__price"><span class="price-table__ask" data-price="editing-encoding">Contact us for pricing</span></td>
+              </tr>
+              <tr>
+                <th scope="row" class="price-table__service">Research Services</th>
+                <td class="price-table__details">Research papers, thesis, reports</td>
+                <td class="price-table__price"><span class="price-table__ask" data-price="research">Contact us for pricing</span></td>
+              </tr>
+          </tbody>
+        </table>
 
         <p class="pricing__note">
           For prices not listed, <a href="tel:09950429419">call 0995 042 9419</a> or
           <a href="https://m.me/shalenecover" target="_blank" rel="noopener noreferrer">message us on Facebook</a>.
         </p>
 
-        <div class="rental__card" id="rental-estimator" data-rental-calculator data-rate="30">
+        <!-- Computer rental estimator (js/main.js) -->
+        <div class="rental" id="rental-estimator" data-rental-calculator data-rate="30">
           <div class="rental__intro">
-            <div class="rental__heading">
-              <div>
-                <span class="eyebrow phone-only">Estimate</span>
-                <h3 class="rental__title" id="rental-title">
-                  <svg class="icon icon--lg tablet-up" aria-hidden="true"><use href="#icon-calculator"></use></svg>
-                  Computer Rental Estimator
-                </h3>
-              </div>
-              <span class="badge badge--primary phone-only"><span><span data-price="computer-rental">₱30</span> / hour</span></span>
-            </div>
-            <p class="rental__text">Choose from 1 to 14 hours to see an estimated total.</p>
+            <span class="eyebrow">Estimate</span>
+            <h3 class="rental__title" id="rental-title">Computer Rental Estimator</h3>
+            <p class="rental__text">Choose from 1 to 14 hours to see an estimated total at <span data-price="computer-rental">₱30</span> per hour.</p>
           </div>
 
           <div class="rental__controls">
@@ -782,7 +601,7 @@
               </button>
               <div class="rental__hours">
                 <output class="rental__hours-value" data-rental-hours aria-live="polite">1 hour</output>
-                <span class="rental__hours-label">Duration</span>
+                <span class="rental__label">Duration</span>
               </div>
               <button class="rental__step" type="button" aria-label="Add one hour" data-rental-increase>
                 <svg class="icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
@@ -790,22 +609,15 @@
             </div>
 
             <div class="rental__total">
-              <span class="rental__total-label">Estimated total</span>
+              <span class="rental__label">Estimated total</span>
               <output class="rental__total-value" data-rental-total aria-live="polite">₱30</output>
             </div>
-
-            <a class="button button--primary rental__call tablet-up" href="tel:09950429419">
-              <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-phone"></use></svg>
-              <span>Call the Shop</span>
-            </a>
           </div>
 
           <p class="rental__note">
-            Estimate only, based on <span data-price="computer-rental">₱30</span> per hour.
-            Please ask the shop about computer availability.
+            Estimate only. Please ask the shop about computer availability.
           </p>
         </div>
-
       </div>
     </section>
 
@@ -817,19 +629,16 @@
          ================================================================== -->
     <section id="contact" class="section contact" data-nav-label="Contact" aria-labelledby="contact-title">
       <div class="container">
-        <header class="section-header section-header--center">
-          <span class="eyebrow">Contact Us</span>
+        <header class="section-header">
+          <span class="eyebrow">05 — Contact</span>
           <h2 id="contact-title">Contact &amp; Opening Hours</h2>
           <p class="section-header__text">Call or message us for prices, questions, or document requests.</p>
         </header>
 
         <div class="contact__grid">
           <!-- Opening hours + location -->
-          <article class="contact-card">
-            <h3 class="contact-card__title">
-              <svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg>
-              Opening Hours
-            </h3>
+          <div class="contact-block">
+            <h3 class="contact-block__title">Opening Hours</h3>
 
             <ul class="hours">
               <li class="hours__row">
@@ -843,32 +652,26 @@
             </ul>
 
             <div class="location">
-              <p class="location__title">
-                <svg class="icon" aria-hidden="true"><use href="#icon-map-pin"></use></svg>
-                Where to find us
-              </p>
+              <span class="eyebrow">Where to find us</span>
               <address class="location__address">
                 North Poblacion, Larena, Siquijor<br>
                 In front of Siquijor State College, Gate 1
               </address>
-              <a class="button button--tonal location__button" href="https://www.google.com/maps/search/?api=1&amp;query=Shallene%27s+Printing+Shop%2C+Larena%2C+Siquijor" target="_blank" rel="noopener noreferrer">
+              <a class="button button--outline location__button" href="https://www.google.com/maps/search/?api=1&amp;query=Shallene%27s+Printing+Shop%2C+Larena%2C+Siquijor" target="_blank" rel="noopener noreferrer">
                 <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-directions"></use></svg>
                 <span>Get directions</span>
                 <span class="visually-hidden">(opens Google Maps in a new tab)</span>
               </a>
             </div>
-          </article>
+          </div>
 
           <!-- Phone + Facebook -->
-          <article class="contact-card">
-            <h3 class="contact-card__title">
-              <svg class="icon" aria-hidden="true"><use href="#icon-message"></use></svg>
-              Get in Touch
-            </h3>
+          <div class="contact-block">
+            <h3 class="contact-block__title">Get in Touch</h3>
 
             <div class="channels">
               <div class="channel">
-                <span class="channel__label">Phone</span>
+                <span class="eyebrow">Phone</span>
                 <p class="channel__value">0995 042 9419</p>
                 <a class="button button--primary button--block" href="tel:09950429419">
                   <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-phone"></use></svg>
@@ -877,7 +680,7 @@
               </div>
 
               <div class="channel">
-                <span class="channel__label">Facebook</span>
+                <span class="eyebrow">Facebook</span>
                 <p class="channel__value">Shallene's Printing Shop</p>
                 <div class="channel__buttons">
                   <a class="button button--primary button--block" href="https://m.me/shalenecover" target="_blank" rel="noopener noreferrer">
@@ -893,53 +696,52 @@
                 </div>
               </div>
             </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <!-- ==================================================================
-       8. FOOTER
-       Larger screens: 4 columns. Phones: short centred sign-off.
+       8. FOOTER (ink background)
+       Uses the official logo version made for dark backgrounds.
        ================================================================== -->
   <footer class="site-footer">
     <div class="container">
-      <div class="footer__columns tablet-up">
+      <div class="footer__columns">
         <div class="footer__brand">
-          <img class="footer__logo" src="assets/images/logo/logo-primary-web.png" width="1641" height="545"
-               alt="Shallene's Printing Shop" loading="lazy">
+          <img class="footer__logo" src="assets/images/logo/logo-dark-transparent-web.png" width="1641" height="545"
+               alt="Shallene's Printing Shop">
           <p class="footer__text">
-            Printing and document services in North Poblacion, Larena, Siquijor —
+            North Poblacion, Larena, Siquijor —
             in front of Siquijor State College, Gate 1.
           </p>
-          <div class="footer__chips">
-            <a class="footer__chip footer__chip--primary" href="tel:09950429419">0995 042 9419</a>
-            <a class="footer__chip" href="https://www.facebook.com/shalenecover" target="_blank" rel="noopener noreferrer">
-              <svg class="icon icon--sm icon--brand icon--facebook" aria-hidden="true"><use href="#icon-facebook"></use></svg>
-              Facebook Page
-            </a>
-          </div>
         </div>
 
         <div class="footer__group">
-          <h2 class="footer__heading">Services</h2>
+          <h2 class="footer__heading">Contact</h2>
           <ul class="footer__list">
-            <li>Printing</li>
-            <li>Photocopying</li>
-            <li>Lamination</li>
-            <li>Document Editing &amp; Encoding</li>
-            <li>Research Services</li>
-            <li>Scanning</li>
-            <li>Binding</li>
-            <li>Computer Rental</li>
+            <li><a href="tel:09950429419">0995 042 9419</a></li>
+            <li>
+              <a class="footer__fb" href="https://www.facebook.com/shalenecover" target="_blank" rel="noopener noreferrer">
+                <svg class="icon icon--sm icon--brand" aria-hidden="true"><use href="#icon-facebook"></use></svg>
+                Facebook Page
+              </a>
+            </li>
           </ul>
         </div>
 
-        <nav class="footer__group" aria-label="Footer">
-          <h2 class="footer__heading">Quick Links</h2>
+        <div class="footer__group">
+          <h2 class="footer__heading">Opening Hours</h2>
           <ul class="footer__list">
-            <li><a href="#home">Home</a></li>
+            <li>Sunday – Friday<br><span class="footer__strong">7:00 AM – 9:00 PM</span></li>
+            <li>Saturday<br><span class="footer__strong">Closed</span></li>
+          </ul>
+        </div>
+
+        <nav class="footer__group tablet-up" aria-label="Footer">
+          <h2 class="footer__heading">Sections</h2>
+          <ul class="footer__list">
             <li><a href="#services">Services</a></li>
             <li><a href="#products">Products</a></li>
             <li><a href="#about">About</a></li>
@@ -947,32 +749,11 @@
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
-
-        <div class="footer__group">
-          <h2 class="footer__heading">Opening Hours</h2>
-          <div class="footer__hours">
-            <p class="footer__hours-row"><span>Sunday – Friday</span><span class="footer__hours-time">7:00 AM – 9:00 PM</span></p>
-            <p class="footer__hours-row"><span>Saturday</span><span class="footer__hours-closed">Closed</span></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Phones: short sign-off (as in the mobile design) -->
-      <div class="footer__signoff phone-only">
-        <p class="footer__signoff-name">Shallene's Printing Shop</p>
-        <p class="footer__signoff-text">Printing &amp; document services in Larena, Siquijor</p>
-        <p class="footer__signoff-meta">
-          <a href="tel:09950429419">0995 042 9419</a> • Sun – Fri, 7:00 AM – 9:00 PM
-        </p>
-        <a class="footer__signoff-link" href="https://www.facebook.com/shalenecover" target="_blank" rel="noopener noreferrer">
-          <svg class="icon icon--sm icon--brand icon--facebook" aria-hidden="true"><use href="#icon-facebook"></use></svg>
-          Facebook Page
-        </a>
       </div>
 
       <div class="footer__bottom">
         <p>&copy; <span data-current-year></span> Shallene's Printing Shop. All rights reserved.</p>
-        <p class="tablet-up">Larena, Siquijor</p>
+        <p>Larena, Siquijor</p>
       </div>
     </div>
   </footer>

@@ -55,8 +55,13 @@ Confirmed by the user on 2026-11-19:
 - Address and landmark (see Contact table above).
 - Additional service: **Scan**.
 - Also available: **E-Loading**, **Bills Payment**.
-- Binding includes **hardbound binding** (e.g. theses).
-- **Delivery** is available (details such as area or fee not yet provided).
+- Binding is available. **Binding types are NOT confirmed** — the "hardbound"
+  wording was removed from the site on 2026-11-19 until the owner confirms it.
+  (The shop's Facebook post shows hardbound theses, but that is not a confirmed
+  list of binding options.)
+- **Delivery is NOT confirmed** — removed from the site on 2026-11-19 until the owner
+  confirms the arrangements (area, fee, how to request). The Facebook post caption
+  "Ready for delivery" is not enough on its own.
 
 Website placement (2026-11-19): Scanning is a service card (next to Binding);
 E-Loading and Bills Payment are cards in the Products section.
@@ -65,8 +70,8 @@ E-Loading and Bills Payment are cards in the Products section.
 
 | File | Shows | Used on site? |
 |---|---|---|
-| `assets/images/services/photocopying.jpg` | Photocopied documents on the counter (person, face not shown) | Yes — hero |
-| `assets/images/services/thesis-binding-stack.jpg` | Stack of hardbound theses (cover text blurred) | Yes — About (phones) |
+| `assets/images/services/photocopying.jpg` | Photocopied documents on the counter (cropped to remove the "Photocopy" sticker; no people) | Yes — hero |
+| `assets/images/services/thesis-binding-stack.jpg` | Stack of bound theses (cover text blurred) | Yes — About |
 | `docs/design-references/business-photos/shop-signboard.jpg` | Old signboard | Reference only |
 
 ### Privacy rules for photos
@@ -85,6 +90,7 @@ student's name, and a Facebook post screenshot showing people's names.
 - [ ] Price list for printing, photocopying, lamination, editing/encoding, research, binding
 - [x] Selected shop photos (received 2026-11-19) — still needed: shop front / sign, product shelves
 - [ ] What "Research Services" includes (one sentence)
-- [x] Confirm signboard details (address, Scan, E-Loading, Bills Payment, hardbound binding, delivery)
-- [ ] Delivery details (area, fee, how to request)
+- [x] Confirm signboard details (address, Scan, E-Loading, Bills Payment)
+- [ ] Binding types offered (e.g. hardbound, softbound, spiral)
+- [ ] Whether delivery is offered, and if so: area, fee, how to request
 - [ ] Short "About" text (history, owner's message) — optional

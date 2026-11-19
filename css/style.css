@@ -1,6 +1,10 @@
 /* ==========================================================================
-   style.css — Base styles, shared components, and page sections
+   style.css — Base styles, components, and page sections
    --------------------------------------------------------------------------
+   Visual identity: "Editorial Print Studio" — paper background, ink type,
+   thin rules instead of shadows, numbered lists instead of repeated cards.
+   Fonts: Archivo (headings), DM Sans (text/UI), IBM Plex Mono (labels).
+
    Written "mobile first": these rules target phones. Wider screens are
    adjusted in responsive.css.
 
@@ -10,13 +14,17 @@
      3. Typography
      4. Utilities
      5. Icons
-     6. Shared components (buttons, badges, cards, eyebrow labels)
+     6. Components (buttons, labels, captions, dots)
      7. Header
      8. Mobile menu (slide-out drawer)
      9. Bottom navigation (phones and tablets)
     10. Sections
+        10a. Section header   10b. Hero        10c. Services
+        10d. Products         10e. About       10f. Pricing + estimator
+        10g. Contact
     11. Footer
    ========================================================================== */
+
 
 /* ---------- 1. Reset ---------- */
 *,
@@ -33,12 +41,14 @@ h4,
 p,
 ul,
 ol,
+dl,
+dd,
 figure {
   margin: 0;
 }
 
 /* :where() gives this reset zero priority, so a component's own padding
-   (e.g. .hero__highlights) always wins over it. */
+   always wins over it. */
 :where(ul[class], ol[class]) {
   padding: 0;
   list-style: none;
@@ -59,10 +69,10 @@ button {
   cursor: pointer;
 }
 
+
 /* ---------- 2. Page layout ---------- */
 :root {
-  /* Total height of the fixed header on phones/tablets:
-     header bar (64px) + "current section" strip (28px) = 92px.
+  /* Fixed header height on phones/tablets: bar (64px) + section strip (28px).
      responsive.css changes this for desktop. */
   --header-height: calc(var(--header-bar-height) + var(--header-subbar-height));
 
@@ -83,10 +93,10 @@ body {
   padding-bottom: var(--bottom-nav-space);
 
   font-family: var(--font-body);
-  font-size: var(--text-body-md-size);
-  line-height: var(--text-body-md-line);
-  color: var(--color-on-surface);
-  background-color: var(--color-surface);
+  font-size: var(--text-body);
+  line-height: var(--text-body-line);
+  color: var(--color-ink);
+  background-color: var(--color-paper);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -96,46 +106,49 @@ body.is-menu-open {
   overflow: hidden;
 }
 
+
 /* ---------- 3. Typography ---------- */
 h1,
 h2,
 h3 {
   font-family: var(--font-heading);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-on-surface);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+  letter-spacing: -0.02em;
 }
 
 h1 {
-  font-size: var(--text-display-mobile-size);
-  line-height: var(--text-display-mobile-line);
-  letter-spacing: -0.01em;
+  font-size: var(--text-hero);
+  line-height: var(--text-hero-line);
 }
 
 h2 {
-  font-size: var(--text-headline-lg-mobile-size);
-  line-height: var(--text-headline-lg-mobile-line);
-  letter-spacing: -0.01em;
+  font-size: var(--text-h2);
+  line-height: var(--text-h2-line);
 }
 
 h3 {
-  font-size: var(--text-headline-sm-size);
-  line-height: var(--text-headline-sm-line);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--text-h3);
+  line-height: var(--text-h3-line);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.01em;
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--color-blue);
+  text-underline-offset: 3px;
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+  outline: 2px solid var(--color-blue);
+  outline-offset: 3px;
 }
 
 ::selection {
-  background: var(--color-primary-soft);
-  color: var(--color-on-surface);
+  background: var(--color-yellow);
+  color: var(--color-ink);
 }
+
 
 /* ---------- 4. Utilities ---------- */
 .container {
@@ -163,8 +176,8 @@ a {
   left: var(--space-sm);
   z-index: 100;
   padding: var(--space-sm) var(--space-md);
-  background: var(--color-on-surface);
-  color: var(--color-on-primary);
+  background: var(--color-ink);
+  color: var(--color-on-ink);
   border-radius: var(--radius);
   transform: translateY(-200%);
 }
@@ -172,6 +185,7 @@ a {
 .skip-link:focus {
   transform: translateY(0);
 }
+
 
 /* ---------- 5. Icons ---------- */
 /* Icons are drawn once in the SVG "sprite" at the top of index.html and
@@ -189,7 +203,7 @@ a {
   height: 1.25rem;
   fill: none;
   stroke: currentColor;
-  stroke-width: 2;
+  stroke-width: 1.75;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -208,136 +222,106 @@ a {
   height: 1.125rem;
 }
 
-/* Facebook logo in its official blue (on light buttons and links) */
+/* Facebook logo in its official blue (on light backgrounds) */
 .icon--facebook {
   color: var(--color-facebook);
 }
 
-/* ---------- 6. Shared components ---------- */
 
-/* Buttons
-   <a class="button button--primary">…</a> */
+/* ---------- 6. Components ---------- */
+
+/* Buttons — <a class="button button--primary">…</a> */
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  min-height: 44px;           /* comfortable tap size */
-  padding: 0.75rem 1.5rem;
+  min-height: 46px;           /* comfortable tap size */
+  padding: 0.6875rem 1.25rem;
   border: 1px solid transparent;
   border-radius: var(--radius);
   font-family: var(--font-body);
-  font-size: var(--text-title-md-size);
-  line-height: var(--text-title-md-line);
+  font-size: 0.9375rem;
+  line-height: 1.4;
   font-weight: var(--font-weight-semibold);
-  letter-spacing: -0.005em;
   text-decoration: none;
-  white-space: nowrap;        /* button labels stay on one line */
+  white-space: nowrap;
   transition: background-color var(--transition-fast), color var(--transition-fast),
     border-color var(--transition-fast);
 }
 
 .button--primary {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
-  box-shadow: var(--shadow-sm);
+  background: var(--color-blue);
+  color: var(--color-white);
 }
 
 .button--primary:hover {
-  background: var(--color-primary-hover);
-}
-
-.button--tonal {
-  background: var(--color-surface-container);
-  color: var(--color-on-surface);
-}
-
-.button--tonal:hover {
-  background: var(--color-surface-high);
+  background: var(--color-blue-dark);
 }
 
 .button--outline {
   background: transparent;
-  border-color: var(--color-outline-variant);
-  color: var(--color-on-surface);
+  border-color: var(--color-ink);
+  color: var(--color-ink);
 }
 
 .button--outline:hover {
-  background: var(--color-surface-container);
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+/* Keep the Facebook logo blue except on the dark hover state */
+.button--outline:hover .icon--facebook {
+  color: var(--color-paper);
 }
 
 .button--block {
   width: 100%;
-  padding-inline: 1rem;     /* full width already gives room, so less side padding */
-  white-space: normal;      /* very long labels may wrap instead of overflowing */
+  padding-inline: 1rem;
+  white-space: normal;        /* very long labels may wrap instead of overflowing */
   text-align: center;
 }
 
-/* Small uppercase label shown above section headings, e.g. "OUR SERVICES" */
+/* Small uppercase mono label, e.g. "01 — Services" */
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-}
-
-/* Badges / chips, e.g. "SUN – FRI" or "Contact us for pricing" */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.125rem 0.5rem;
-  border-radius: var(--radius);
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.06em;
-  white-space: nowrap;      /* keep short badges on one line */
-}
-
-.badge--primary {
-  background: var(--color-primary-soft);
-  color: var(--color-primary);
-}
-
-.badge--neutral {
-  background: var(--color-surface-container);
-  color: var(--color-on-surface-variant);
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label-line);
   font-weight: var(--font-weight-medium);
-  letter-spacing: 0.02em;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-muted);
 }
 
-/* Small round status dot (e.g. next to the opening hours) */
-.status-dot {
-  display: inline-block;
-  flex-shrink: 0;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: var(--radius-round);
-  background: var(--color-primary);
+/* Photo captions, e.g. "Fig. 1 — Photocopying at the shop counter" */
+.caption {
+  margin-top: var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label-line);
+  color: var(--color-muted);
 }
 
-/* Four dots in the logo's cyan, magenta, yellow, and black */
+/* Four small dots in the logo's cyan, magenta, yellow, and black —
+   a printer's colour mark, used once in the hero label. */
 .cmyk-dots {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
+  gap: 4px;
 }
 
 .cmyk-dots span {
-  width: 0.75rem;
-  height: 0.375rem;
+  width: 8px;
+  height: 8px;
   border-radius: var(--radius-round);
 }
 
 .cmyk-dots span:nth-child(1) { background: var(--color-logo-cyan); }
 .cmyk-dots span:nth-child(2) { background: var(--color-logo-magenta); }
-.cmyk-dots span:nth-child(3) { background: var(--color-tertiary-bright); }
+.cmyk-dots span:nth-child(3) { background: var(--color-yellow); }
 .cmyk-dots span:nth-child(4) { background: var(--color-logo-charcoal); }
+
 
 /* ---------- 7. Header ---------- */
 .site-header {
@@ -346,24 +330,20 @@ a {
   left: 0;
   right: 0;
   z-index: 50;
-  background: rgba(250, 248, 255, 0.92);
-  -webkit-backdrop-filter: blur(24px);
-  backdrop-filter: blur(24px);
-  /* The bottom line is drawn with a shadow (not a border) so it adds no
-     height — the page's top padding then matches the header exactly. */
-  box-shadow: 0 1px 0 rgba(191, 199, 210, 0.3), var(--shadow-header);
+  background: var(--color-paper);
+  /* Bottom line drawn with a shadow so it adds no height (the page's top
+     padding then matches the header exactly). */
+  box-shadow: 0 1px 0 var(--color-border);
 }
 
-/* 7a. Desktop info strip (hidden on phones/tablets — see responsive.css) */
+/* 7a. Desktop info strip (ink background; hidden on phones/tablets)
+   The information is in DM Sans; only the small labels use the mono font. */
 .top-strip {
   display: none;
-  background: rgba(242, 243, 255, 0.8);
-  box-shadow: inset 0 -1px 0 rgba(191, 199, 210, 0.2);   /* line without extra height */
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.03em;
-  color: var(--color-on-surface-variant);
+  background: var(--color-ink);
+  color: var(--color-on-ink);
+  font-size: 0.8125rem;         /* 13px */
+  line-height: 1.3;
 }
 
 .top-strip__inner {
@@ -374,35 +354,39 @@ a {
   gap: var(--gutter);
 }
 
-.top-strip__hours {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.top-strip__muted {
-  color: var(--color-outline);
-}
-
 .top-strip__meta {
   display: flex;
   align-items: center;
-  gap: var(--gutter);
+  gap: var(--space-xl);
 }
 
-.top-strip__location {
+.top-strip__item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+}
+
+/* "HOURS", "LOCATION", "HOTLINE" */
+.top-strip__label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;         /* 11px */
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-outline);
+  color: var(--color-on-ink-muted);
+}
+
+.top-strip__muted {
+  color: var(--color-on-ink-muted);
 }
 
 .top-strip__phone {
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-on-ink);
   text-decoration: none;
 }
 
 .top-strip__phone:hover {
-  color: var(--color-primary-dark);
+  text-decoration: underline;
 }
 
 /* 7b. Main header bar: logo, navigation, actions */
@@ -429,12 +413,11 @@ a {
   height: 44px;
   margin-left: -10px;        /* lines the icon up with the page margin */
   border-radius: var(--radius);
-  color: var(--color-on-surface-variant);
+  color: var(--color-ink);
 }
 
 .menu-toggle:hover {
-  color: var(--color-on-surface);
-  background: var(--color-surface-high);
+  background: var(--color-surface);
 }
 
 /* Logo: only the height is set, so the width follows automatically
@@ -455,47 +438,44 @@ a {
 }
 
 .primary-nav__link {
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius);
-  font-size: var(--text-title-md-size);
-  line-height: var(--text-title-md-line);
+  position: relative;
+  padding: var(--space-sm) 0.875rem;
+  font-size: 0.9375rem;
+  line-height: 1.4;
   font-weight: var(--font-weight-medium);
-  color: var(--color-on-surface-variant);
+  color: var(--color-ink);
   text-decoration: none;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .primary-nav__link:hover {
-  color: var(--color-on-surface);
-  background: var(--color-surface-container);
+  color: var(--color-blue);
 }
 
+/* Current section: blue text with a short underline */
 .primary-nav__link.is-active {
-  color: var(--color-primary);
-  background: var(--color-surface-high);
-  font-weight: var(--font-weight-semibold);
+  color: var(--color-blue);
+}
+
+.primary-nav__link.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0.875rem;
+  right: 0.875rem;
+  bottom: 0;
+  height: 2px;
+  background: var(--color-blue);
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: 0.75rem;
 }
 
 /* Desktop-only actions (shown in responsive.css) */
 .header-phone,
 .header-cta {
   display: none;
-}
-
-.header-phone__prefix {
-  font-size: var(--text-label-sm-size);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
-}
-
-.header-cta {
-  padding-inline: var(--space-lg);
 }
 
 /* Phone/tablet call button */
@@ -505,17 +485,16 @@ a {
   gap: 0.375rem;
   height: 40px;
   padding-inline: 0.75rem;
+  border: var(--line);
   border-radius: var(--radius);
-  background: var(--color-surface-low);
-  color: var(--color-primary);
-  font-size: var(--text-label-md-size);
+  color: var(--color-blue);
+  font-size: var(--text-small);
   font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.04em;
   text-decoration: none;
 }
 
 .header-call:hover {
-  background: var(--color-surface-container);
+  border-color: var(--color-blue);
 }
 
 .header-call__text {
@@ -529,21 +508,22 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.5);
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.06em;
+  box-shadow: inset 0 1px 0 var(--color-border);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label-line);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
 }
 
 .header-subbar__section {
-  text-transform: uppercase;
-  color: var(--color-outline);
+  color: var(--color-muted);
 }
 
 .header-subbar__location {
-  color: var(--color-primary);
+  color: var(--color-blue);
 }
+
 
 /* ---------- 8. Mobile menu (slide-out drawer) ---------- */
 /* The menu uses the HTML "hidden" attribute; navigation.js removes it to open. */
@@ -554,10 +534,8 @@ a {
 .mobile-menu {
   position: fixed;
   inset: 0;
-  z-index: 60;                         /* above the header and bottom nav */
-  background: rgba(40, 48, 68, 0.4);   /* dimmed page behind the menu */
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
+  z-index: 60;                          /* above the header and bottom nav */
+  background: rgba(32, 37, 34, 0.45);   /* dimmed page behind the menu */
 }
 
 /* Opening animation: the dark background fades in, the panel slides in
@@ -599,7 +577,7 @@ a {
 }
 
 .mobile-menu__panel {
-  width: 80%;
+  width: 82%;
   max-width: 320px;
   height: 100%;
   overflow-y: auto;
@@ -609,8 +587,8 @@ a {
   gap: var(--space-lg);
   padding: var(--space-lg);
   padding-bottom: calc(var(--space-lg) + env(safe-area-inset-bottom, 0px));
-  background: var(--color-surface-lowest);
-  box-shadow: var(--shadow-drawer);
+  background: var(--color-paper);
+  border-right: var(--line);
 }
 
 .mobile-menu__top {
@@ -638,53 +616,52 @@ a {
   height: 44px;
   margin-right: -10px;
   border-radius: var(--radius);
-  color: var(--color-on-surface-variant);
+  color: var(--color-ink);
 }
 
 .mobile-menu__close:hover {
-  color: var(--color-on-surface);
-  background: var(--color-surface-low);
+  background: var(--color-surface);
 }
 
 .mobile-menu__divider {
   height: 1px;
   margin: 0;
   border: 0;
-  background: rgba(191, 199, 210, 0.3);
+  background: var(--color-ink);
 }
 
 .mobile-menu__nav {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
-  /* Pulls the links 12px left so their icons line up with the logo edge. */
-  margin-inline: -0.75rem;
 }
 
 .mobile-menu__link {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem;
-  border-radius: var(--radius);
-  font-size: var(--text-title-md-size);
-  line-height: var(--text-title-md-line);
+  align-items: baseline;
+  gap: var(--space-md);
+  padding: 0.875rem 0;
+  border-bottom: var(--line);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  line-height: 1.3;
   font-weight: var(--font-weight-semibold);
-  color: var(--color-on-surface);
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
   text-decoration: none;
 }
 
-.mobile-menu__link .icon {
-  color: var(--color-primary);
+.mobile-menu__num {
+  min-width: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 0;
+  color: var(--color-muted);
 }
 
 .mobile-menu__link:hover,
 .mobile-menu__link.is-active {
-  background: var(--color-surface-low);
-}
-
-.mobile-menu__link.is-active {
-  color: var(--color-primary);
+  color: var(--color-blue);
 }
 
 .mobile-menu__bottom {
@@ -695,11 +672,12 @@ a {
 
 .mobile-menu__note {
   text-align: center;
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-outline);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label-line);
+  color: var(--color-muted);
 }
+
 
 /* ---------- 9. Bottom navigation (phones and tablets) ---------- */
 .bottom-nav {
@@ -709,268 +687,509 @@ a {
   bottom: 0;
   z-index: 50;
   padding-bottom: env(safe-area-inset-bottom, 0px);
-  background: rgba(255, 255, 255, 0.92);
-  -webkit-backdrop-filter: blur(24px);
-  backdrop-filter: blur(24px);
-  box-shadow: var(--shadow-bottom-nav);
+  background: var(--color-paper);
+  box-shadow: 0 -1px 0 var(--color-border);
 }
 
 .bottom-nav__list {
   height: var(--bottom-nav-height);
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-around;
-  padding-inline: var(--space-xs);
 }
 
 .bottom-nav__link {
+  position: relative;
   flex: 1;
-  height: 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.125rem;
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.03em;
-  color: var(--color-on-surface-variant);
+  gap: 0.25rem;
+  font-size: var(--text-label);
+  line-height: var(--text-label-line);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-muted);
   text-decoration: none;
 }
 
 .bottom-nav__link .icon {
-  box-sizing: content-box;     /* padding adds to the size, so the icon stays 22px */
   width: 22px;
   height: 22px;
-  padding: 3px 16px;
-  border-radius: var(--radius-round);
-  transition: background-color var(--transition-fast);
 }
 
+/* Current section: blue, with a short bar along the top edge */
 .bottom-nav__link.is-active {
-  color: var(--color-primary);
-  font-weight: var(--font-weight-bold);
+  color: var(--color-blue);
+  font-weight: var(--font-weight-semibold);
 }
 
-/* Soft pill behind the current section's icon */
-.bottom-nav__link.is-active .icon {
-  background: var(--color-primary-soft);
+.bottom-nav__link.is-active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 28%;
+  right: 28%;
+  height: 2px;
+  background: var(--color-blue);
 }
+
 
 /* ---------- 10. Sections ---------- */
 .section {
   padding-block: var(--section-space);
 }
 
-/* 10a. Services strip (top of the home section) ------------------------ */
-/* Phones: a small rounded card */
+/* 10a. Section header: a thin ink rule, a mono label, then the heading ---- */
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+  padding-top: var(--space-md);
+  border-top: var(--line-strong);   /* full-width rule, like the lists below */
+}
+
+.section-header h2,
+.section-header__text {
+  max-width: 46rem;               /* keep lines of text a comfortable length */
+}
+
+.section-header__text {
+  margin-top: var(--space-xs);
+  color: var(--color-muted);
+}
 
 /* 10b. Hero ------------------------------------------------------------ */
 .hero {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
-  padding-top: var(--space-md);
+  gap: var(--space-xl);
+  padding-top: var(--space-xl);
   padding-bottom: var(--section-space);
 }
 
-/* Phones show the items in this order: eyebrow, title, text, highlights,
-   buttons. Larger screens put the buttons before the highlights. */
 .hero__content {
   display: flex;
   flex-direction: column;
+  gap: var(--space-lg);
 }
 
 .hero__eyebrow {
   display: flex;
   align-items: center;
-  gap: 0.375rem;
-  margin-bottom: var(--space-sm);
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.06em;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label-line);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  color: var(--color-outline);
+  color: var(--color-muted);
 }
 
-.hero__eyebrow .cmyk-dots {
-  margin-right: var(--space-xs);
-}
-
-.hero__title {
-  letter-spacing: -0.015em;
+.hero__title-accent {
+  display: block;
+  color: var(--color-blue);
 }
 
 .hero__lead {
-  margin-top: var(--space-sm);
-  color: var(--color-on-surface-variant);
-  line-height: 1.625;
-}
-
-.hero__highlights {
-  order: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin-top: var(--space-lg);
+  max-width: 36rem;
+  font-size: var(--text-lead);
+  line-height: var(--text-lead-line);
+  color: var(--color-muted);
 }
 
 .hero__actions {
-  order: 2;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-top: var(--space-lg);
 }
 
-.hero__button {
+.hero__actions .button {
   width: 100%;
 }
 
-.hero__button--call {
-  background: var(--color-surface-lowest);
-  color: var(--color-on-surface);
-  box-shadow: var(--shadow-sm);
+/* Key facts: a ruled list instead of cards */
+.facts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  border-top: var(--line-strong);
 }
 
-.hero__button--call .icon {
-  color: var(--color-primary);
+.facts__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  column-gap: var(--space-md);
+  padding-block: 0.875rem;
+  border-bottom: var(--line);
 }
 
-.hero__button--call:hover {
-  background: var(--color-surface-low);
-}
-
-/* Highlight cards (featured services).
-   These are small "stat" cards, so they use slightly less padding than
-   regular cards on phones (two fit side by side). */
-.highlight {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0.75rem;
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-lowest);
-  box-shadow: var(--shadow-sm);
-}
-
-.highlight--wide {
-  grid-column: span 2;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: var(--space-sm);
-}
-
-.highlight__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius);
-  background: var(--color-surface-high);
-  color: var(--color-primary);
-}
-
-.highlight__label {
-  display: flex;
-  align-items: center;
-  gap: 0.375rem;
-  margin-bottom: 0.125rem;
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.06em;
+.facts__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label-line);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  color: var(--color-outline);
+  color: var(--color-muted);
 }
 
-.highlight__label .icon {
-  color: var(--color-primary);
-}
-
-.highlight__value {
-  font-size: var(--text-title-md-size);
-  line-height: var(--text-title-md-line);
+.facts__value {
+  grid-row: 1;
+  grid-column: 2;
+  text-align: right;
+  font-size: var(--text-body);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-on-surface);
+  color: var(--color-ink);
 }
 
-.highlight__note {
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  color: var(--color-outline);
+.facts__note {
+  grid-column: 1 / -1;
+  margin-top: 2px;
+  font-size: var(--text-small);
+  line-height: var(--text-small-line);
+  color: var(--color-muted);
 }
 
-/* Hero photo */
+/* Hero photo: square-ish corners, thin outline, caption underneath */
 .hero__media {
   margin: 0;
 }
 
 .hero__photo {
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;     /* fills the box without stretching the image */
-  object-position: center 70%;
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-container);
-  box-shadow: var(--shadow-sm);
+  object-position: 65% center;   /* keeps the stack of copies in view */
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  outline: 1px solid var(--color-border);
 }
 
-.hero__caption {
-  margin-top: var(--space-sm);
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-  color: var(--color-outline);
+/* 10c. Services: numbered list ----------------------------------------- */
+.service-list {
+  border-top: var(--line-strong);
 }
 
-/* 10c. Computer rental estimator (inside the Pricing section) ---------- */
-.rental__card {
+/* Phones: number + name on one line, details and action underneath */
+.service-row {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  column-gap: var(--space-sm);
+  row-gap: var(--space-sm);
+  padding-block: var(--space-lg);
+  border-bottom: var(--line);
+}
+
+.service-row__num {
+  padding-top: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label-line);
+  color: var(--color-muted);
+}
+
+.service-row__name {
+  grid-column: 2;
+}
+
+.service-row__details,
+.service-row__action {
+  grid-column: 2;
+}
+
+.service-row__note {
+  margin-bottom: var(--space-sm);
+  font-size: var(--text-small);
+  line-height: var(--text-small-line);
+  color: var(--color-muted);
+}
+
+/* Specification rows, e.g. "SIZES  Short, A4, Long, A3" */
+.service-row__specs {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: var(--card-padding);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-lowest);
-  box-shadow: var(--shadow-sm);
+  gap: var(--space-xs);
 }
 
-.rental__heading {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+.service-row__specs div {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
   gap: var(--space-sm);
 }
 
-/* Card heading: Playfair Display, 20px on phones, 22px from 768px */
-.rental__title {
+.service-row__specs dt {
+  padding-top: 0.2rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label-line);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.service-row__specs dd {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-ink);
+}
+
+.service-row__action {
   display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-xs) var(--space-md);
+}
+
+/* "Contact us for pricing →" — invisible extra space makes it easy to tap */
+.service-row__link {
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
-  font-size: var(--text-card-title-mobile-size);
-  line-height: var(--text-card-title-mobile-line);
+  gap: var(--space-xs);
+  padding-block: 0.625rem;
+  margin-block: -0.625rem;
+  font-size: 0.9375rem;
   font-weight: var(--font-weight-semibold);
-  letter-spacing: 0;
+  color: var(--color-blue);
+  text-decoration: none;
 }
 
-.rental__title .icon {
-  color: var(--color-primary);
+.service-row__link:hover {
+  text-decoration: underline;
+}
+
+/* The one fixed price (computer rental) */
+.service-row__price {
+  font-family: var(--font-heading);
+  font-size: var(--text-h3);
+  line-height: var(--text-h3-line);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+}
+
+.service-row__unit {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-muted);
+}
+
+/* 10d. Products: three short grouped lists ----------------------------- */
+.products {
+  background: var(--color-surface);
+}
+
+.product-groups {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  border-top: var(--line-strong);
+}
+
+.product-group {
+  padding-block: var(--space-lg);
+  border-bottom: 1px solid #cfccc2;   /* slightly darker line on the surface background */
+}
+
+.product-group__title {
+  margin-bottom: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label-line);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.product-group__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.product-group__list li {
+  font-family: var(--font-heading);
+  font-size: var(--text-h3);
+  line-height: var(--text-h3-line);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.01em;
+}
+
+.products__note {
+  margin-top: var(--space-lg);
+  font-size: var(--text-small);
+  line-height: var(--text-small-line);
+  color: var(--color-muted);
+}
+
+/* 10e. About ----------------------------------------------------------- */
+.about__layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.about__body .section-header {
+  margin-bottom: var(--space-lg);
+}
+
+.about__lead {
+  font-size: var(--text-lead);
+  line-height: var(--text-lead-line);
+  color: var(--color-ink);
+}
+
+.about__text {
+  margin-top: var(--space-md);
+  color: var(--color-muted);
+}
+
+.about__photo {
+  margin: 0;
+}
+
+.about__photo img {
+  width: 100%;
+  height: 14rem;
+  object-fit: cover;
+  /* Shows the edges of the book stack, not the (blurred) top cover. */
+  object-position: center 82%;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  outline: 1px solid var(--color-border);
+}
+
+/* 10f. Pricing + computer rental estimator ----------------------------- */
+.pricing {
+  background: var(--color-surface);
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: var(--line-strong);
+}
+
+/* Phones: the table and its body act like plain blocks, so the table can
+   never grow wider than the screen (tables normally stretch to fit). */
+.price-table,
+.price-table tbody {
+  display: block;
+}
+
+/* Phones: column headings hidden visually (still read by screen readers);
+   each row becomes a small block — name + price, details underneath. */
+.price-table thead {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.price-table tr {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  column-gap: 0.75rem;
+  row-gap: var(--space-xs);
+  padding-block: var(--space-md);
+  border-bottom: 1px solid #cfccc2;
+}
+
+.price-table th,
+.price-table td {
+  display: block;
+  padding: 0;
+  text-align: left;
+}
+
+.price-table__service {
+  font-size: var(--text-body);
+  line-height: 1.4;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
+}
+
+.price-table__details {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  font-size: var(--text-small);
+  line-height: var(--text-small-line);
+  color: var(--color-muted);
+}
+
+.price-table .price-table__price {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Computer rental has a fixed price, so its row is marked with a blue rule */
+.price-table__row--fixed {
+  box-shadow: inset 3px 0 0 var(--color-blue);
+  padding-left: var(--space-md);
+}
+
+.price-table__amount {
+  font-family: var(--font-heading);
+  font-size: var(--text-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-blue);
+}
+
+.price-table__unit {
+  font-size: var(--text-small);
+  color: var(--color-muted);
+}
+
+.price-table__ask {
+  font-size: var(--text-small);
+  color: var(--color-muted);
+}
+
+.pricing__note {
+  margin-top: var(--space-md);
+  font-size: var(--text-small);
+  line-height: var(--text-small-line);
+  color: var(--color-muted);
+}
+
+.pricing__note a {
+  display: inline-block;
+  padding-block: 0.625rem;   /* easier to tap */
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Estimator: a bordered "worksheet" panel on paper */
+.rental {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  border: var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--color-paper);
+}
+
+.rental__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
 }
 
 .rental__text {
-  margin-top: var(--space-xs);
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-  color: var(--color-on-surface-variant);
+  font-size: var(--text-small);
+  line-height: var(--text-small-line);
+  color: var(--color-muted);
 }
 
 .rental__controls {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-md);
 }
 
 .rental__stepper {
@@ -978,30 +1197,27 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-sm);
-  padding: var(--space-sm);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-low);
+  border: var(--line);
+  border-radius: var(--radius);
 }
 
 .rental__step {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius);
-  background: var(--color-surface-lowest);
-  color: var(--color-on-surface);
-  box-shadow: var(--shadow-sm);
+  width: 48px;
+  height: 48px;
+  color: var(--color-ink);
 }
 
 .rental__step:hover {
-  color: var(--color-primary);
+  background: var(--color-surface);
+  color: var(--color-blue);
 }
 
 /* Greyed out at the minimum (1 hour) and maximum */
 .rental__step[aria-disabled="true"] {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
@@ -1013,500 +1229,60 @@ a {
 }
 
 .rental__hours-value {
-  font-size: var(--text-title-lg-size);
-  line-height: var(--text-title-lg-line);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-on-surface);
+  font-size: 1.125rem;
+  line-height: 1.4;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
 }
 
-.rental__hours-label,
-.rental__total-label {
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.06em;
+.rental__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label-line);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  color: var(--color-outline);
+  color: var(--color-muted);
 }
 
 .rental__total {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: var(--space-sm);
-  padding-top: var(--space-xs);
 }
 
 .rental__total-value {
-  font-size: var(--text-headline-sm-size);
-  line-height: var(--text-headline-sm-line);
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  line-height: 1.2;
   font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
+  color: var(--color-blue);
 }
 
 .rental__note {
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  color: var(--color-outline);
-  text-align: right;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label-line);
+  color: var(--color-muted);
 }
 
-/* 10d. Section header (eyebrow + heading + intro) ---------------------- */
-.section-header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-  max-width: 42rem;
-  margin-bottom: var(--space-lg);
-}
-
-.section-header__text {
-  margin-top: var(--space-xs);
-  color: var(--color-on-surface-variant);
-}
-
-/* 10e. Services -------------------------------------------------------- */
-.services__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--gutter-mobile);
-}
-
-/* Phones: compact card — icon on the left, title and text on the right.
-   (display: contents lets the icon join the card's grid directly.) */
-.service-card {
-  position: relative;
-  display: grid;
-  grid-template-columns: 2.5rem 1fr;
-  column-gap: 0.75rem;
-  align-content: start;
-  padding: var(--card-padding);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-lowest);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--transition-fast);
-}
-
-.service-card:hover {
-  box-shadow: var(--shadow-md);
-}
-
-.service-card__top {
-  display: contents;
-}
-
-.service-card__icon {
-  grid-row: 1 / span 2;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-low);
-  color: var(--color-primary);
-}
-
-.service-card__icon .icon--lg {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.service-card__title {
-  grid-column: 2;
-  font-size: var(--text-card-title-mobile-size);
-  line-height: var(--text-card-title-mobile-line);
-  font-weight: var(--font-weight-semibold);
-}
-
-.service-card__text {
-  grid-column: 2;
-  margin-top: 0.125rem;
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-  color: var(--color-on-surface-variant);
-}
-
-/* Specification rows, e.g. "Sizes: Short, A4, Long, A3" */
-.service-card__specs {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.375rem;
-  margin: var(--space-md) 0 0;
-  padding: 0.625rem 0.75rem;
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-low);
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-}
-
-.service-card__specs div {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--space-md);
-}
-
-.service-card__specs dt {
-  font-weight: var(--font-weight-medium);
-  color: var(--color-on-surface);
-}
-
-.service-card__specs dd {
-  margin: 0;
-  text-align: right;
-  color: var(--color-on-surface-variant);
-}
-
-.service-card__specs .service-card__highlight {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-primary);
-}
-
-.service-card__footer {
-  grid-column: 1 / -1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-sm);
-  margin-top: var(--space-md);
-  padding-top: var(--space-md);
-  border-top: 1px solid rgba(191, 199, 210, 0.3);
-}
-
-/* The last item always sits on the right edge */
-.service-card__footer > :last-child {
-  margin-left: auto;
-}
-
-.service-card__link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  font-size: var(--text-title-md-size);
-  line-height: var(--text-title-md-line);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-primary);
-  text-decoration: none;
-}
-
-.service-card__link:hover {
-  text-decoration: underline;
-}
-
-/* Invisible extra space above and below so the link is easy to tap
-   (about 44px tall) without changing the card's layout. */
-.service-card__link {
-  padding-block: 0.625rem;
-  margin-block: -0.625rem;
-}
-
-.service-card__link--small {
-  padding-block: 0.875rem;
-  margin-block: -0.875rem;
-}
-
-/* Smaller link, e.g. "Estimate your cost" on the Computer Rental card */
-.service-card__link--small {
-  font-size: var(--text-label-md-size);
-  line-height: var(--text-label-md-line);
-  letter-spacing: 0.02em;
-}
-
-/* Computer rental: the only confirmed price, so it is highlighted */
-.service-card--featured {
-  overflow: hidden;
-  box-shadow: var(--shadow-sm), 0 0 0 1px rgba(0, 97, 148, 0.2);
-}
-
-.service-card--featured .service-card__icon {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
-}
-
-.service-card__price {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
-  margin-top: var(--space-md);
-  padding: var(--space-md);
-  border-radius: var(--radius-lg);
-  background: rgba(0, 97, 148, 0.06);
-}
-
-.service-card__price-value {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-xs);
-}
-
-/* Prices, times, and phone numbers use the body font: its numbers line up
-   evenly (Playfair's numbers rise and drop, so "₱30" can read like "₱3o"). */
-.service-card__price-amount {
-  font-size: var(--text-headline-md-size);
-  line-height: var(--text-headline-md-line);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
-}
-
-.service-card__price-unit {
-  font-weight: var(--font-weight-medium);
-  color: var(--color-on-surface-variant);
-}
-
-/* 10f. Products -------------------------------------------------------- */
-.products {
-  background: var(--color-surface-low);
-}
-
-/* Phones: magenta label, as in the mobile design */
-.products__eyebrow {
-  color: var(--color-secondary);
-}
-
-.products__grid {
-  display: grid;
-  /* minmax(0, 1fr) lets columns shrink, so tiles can never widen the page */
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
-}
-
-/* One small tile per item: icon + name */
-.product-tile {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.875rem var(--space-md);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-lowest);
-  box-shadow: var(--shadow-sm);
-}
-
-.product-tile__icon {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-low);
-  color: var(--color-primary);
-}
-
-/* Phones: drinks in magenta, snacks in yellow (as in the mobile design) */
-.product-tile--magenta .product-tile__icon { color: var(--color-secondary); }
-.product-tile--yellow .product-tile__icon { color: var(--color-tertiary); }
-
-.product-tile__name {
-  font-size: var(--text-title-md-size);
-  line-height: var(--text-title-md-line);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-on-surface);
-}
-
-.products__note {
-  margin-top: var(--space-lg);
-  text-align: center;
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-  color: var(--color-on-surface-variant);
-}
-
-/* 10g. About ----------------------------------------------------------- */
-.about__layout {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gutter);
-}
-
-.about__photo {
-  order: -1;            /* phones: photo above the text, as in the mobile design */
-  margin: 0;
-}
-
-.about__photo img {
-  width: 100%;
-  height: 12rem;
-  object-fit: cover;
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-container);
-  box-shadow: var(--shadow-sm);
-  /* Shows the edges of the book stack, not the (blurred) top cover. */
-  object-position: center 82%;
-}
-
-.about__caption {
-  margin-top: var(--space-sm);
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-  color: var(--color-outline);
-}
-
-.about__body .section-header {
-  margin-bottom: var(--space-md);
-}
-
-.about__lead,
-.about__text {
-  color: var(--color-on-surface-variant);
-  line-height: 1.625;
-}
-
-.about__text {
-  margin-top: var(--space-md);
-}
-
-/* 10h. Pricing --------------------------------------------------------- */
-.pricing {
-  background: var(--color-surface-low);
-}
-
-.price-table-card {
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-lowest);
-  box-shadow: var(--shadow-sm);
-}
-
-.price-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-/* Phones: the table and its body act like plain blocks, so the table can
-   never grow wider than its card (tables normally stretch to fit content). */
-.price-table,
-.price-table tbody {
-  display: block;
-}
-
-/* Phones: the column headings are hidden visually (still read by screen
-   readers) and each row becomes a small block: name + price, details below. */
-.price-table thead {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-}
-
-.price-table tr {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  column-gap: 0.75rem;
-  row-gap: var(--space-xs);
-  padding: var(--space-md) var(--card-padding);
-}
-
-.price-table tbody tr + tr {
-  border-top: 1px solid rgba(191, 199, 210, 0.35);
-}
-
-.price-table th,
-.price-table td {
-  display: block;
-  padding: 0;
-  text-align: left;
-}
-
-.price-table__service {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-sm);
-  font-size: var(--text-title-md-size);
-  line-height: var(--text-title-md-line);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-on-surface);
-}
-
-.price-table__details {
-  grid-column: 1 / -1;
-  grid-row: 2;
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-  color: var(--color-on-surface-variant);
-}
-
-.price-table .price-table__price {
-  grid-column: 2;
-  grid-row: 1;
-  text-align: right;
-  white-space: nowrap;
-}
-
-/* Computer rental has a fixed price, so its row stands out */
-.price-table__row--confirmed {
-  background: rgba(0, 97, 148, 0.06);
-}
-
-.price-table__amount {
-  font-size: var(--text-title-lg-size);
-  line-height: var(--text-headline-sm-line);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
-}
-
-.price-table__unit {
-  font-size: var(--text-body-sm-size);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-on-surface-variant);
-}
-
-.pricing__note {
-  margin-top: var(--space-md);
-  text-align: center;
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-  color: var(--color-on-surface-variant);
-}
-
-.pricing__note a {
-  display: inline-block;
-  padding-block: 0.625rem;   /* easier to tap */
-  font-weight: var(--font-weight-semibold);
-}
-
-.pricing .rental__card {
-  margin-top: var(--space-xl);
-}
-
-/* 10i. Contact --------------------------------------------------------- */
-.contact {
-  background: var(--color-surface-container);
-}
-
+/* 10g. Contact --------------------------------------------------------- */
 .contact__grid {
   display: grid;
-  gap: var(--gutter-mobile);
+  gap: var(--space-xl);
 }
 
-.contact-card {
+.contact-block {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-  padding: var(--card-padding);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-lowest);
-  box-shadow: var(--shadow-sm);
 }
 
-.contact-card__title {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-size: var(--text-card-title-mobile-size);
-  line-height: var(--text-card-title-mobile-line);
+.contact-block__title {
+  padding-bottom: var(--space-sm);
+  border-bottom: var(--line-strong);
 }
 
-.contact-card__title .icon {
-  color: var(--color-primary);
-}
-
-/* Opening hours rows */
 .hours {
   display: flex;
   flex-direction: column;
@@ -1515,61 +1291,36 @@ a {
 .hours__row {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: var(--space-xs) var(--space-md);
   padding-block: 0.75rem;
-}
-
-.hours__row + .hours__row {
-  border-top: 1px solid rgba(191, 199, 210, 0.45);
+  border-bottom: var(--line);
 }
 
 .hours__day {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-on-surface);
+  color: var(--color-ink);
 }
 
 .hours__time {
-  font-size: var(--text-title-md-size);
-  line-height: var(--text-title-md-line);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
 }
 
 .hours__row--closed .hours__time {
-  text-transform: uppercase;
-  color: var(--color-secondary);
+  color: var(--color-magenta-text);
 }
 
-/* Address box with the "Get directions" button */
 .location {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  padding-top: var(--space-md);
-  border-top: 1px solid rgba(191, 199, 210, 0.45);
-}
-
-.location__title {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-size: var(--text-title-md-size);
-  line-height: var(--text-title-md-line);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-on-surface);
-}
-
-.location__title .icon {
-  color: var(--color-primary);
+  padding-top: var(--space-sm);
 }
 
 .location__address {
   font-style: normal;
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-  color: var(--color-on-surface-variant);
+  color: var(--color-ink);
 }
 
 .location__button {
@@ -1577,7 +1328,6 @@ a {
   margin-top: var(--space-xs);
 }
 
-/* Phone and Facebook boxes */
 .channels {
   display: grid;
   gap: var(--space-lg);
@@ -1592,22 +1342,15 @@ a {
 
 .channel + .channel {
   padding-top: var(--space-lg);
-  border-top: 1px solid rgba(191, 199, 210, 0.45);
-}
-
-.channel__label {
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-on-surface-variant);
+  border-top: var(--line);
 }
 
 .channel__value {
   margin-bottom: var(--space-sm);
-  font-size: var(--text-title-lg-size);
-  line-height: var(--text-title-lg-line);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-on-surface);
+  font-size: 1.125rem;
+  line-height: 1.4;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
 }
 
 .channel__buttons {
@@ -1616,171 +1359,84 @@ a {
   gap: var(--space-sm);
 }
 
-/* ---------- 11. Footer ---------- */
+
+/* ---------- 11. Footer (ink background) ---------- */
 .site-footer {
-  padding-block: var(--space-xl) var(--space-lg);
-  border-top: 1px solid rgba(191, 199, 210, 0.3);
-  background: var(--color-surface-lowest);
-  font-size: var(--text-body-sm-size);
-  line-height: var(--text-body-sm-line);
-  color: var(--color-on-surface-variant);
+  padding-block: var(--space-2xl) var(--space-lg);
+  background: var(--color-ink);
+  color: var(--color-on-ink-muted);
+  font-size: var(--text-small);
+  line-height: var(--text-small-line);
 }
 
 .site-footer a {
-  color: inherit;
+  color: var(--color-on-ink);
   text-decoration: none;
 }
 
 .site-footer a:hover {
-  color: var(--color-primary);
+  text-decoration: underline;
 }
 
-/* Larger screens: columns (layout set in responsive.css) */
+.site-footer :focus-visible {
+  outline-color: var(--color-yellow);
+}
+
 .footer__columns {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-xl) var(--gutter);
   padding-bottom: var(--space-xl);
-  border-bottom: 1px solid rgba(191, 199, 210, 0.3);
 }
 
 .footer__logo {
-  height: 48px;
+  height: 44px;
   width: auto;
 }
 
 .footer__text {
-  max-width: 24rem;
+  max-width: 22rem;
   margin-top: var(--space-md);
 }
 
-.footer__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-  margin-top: var(--space-md);
-}
-
-.site-footer .footer__chip {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  min-height: 2.25rem;
-  padding: var(--space-xs) var(--space-md);
-  border-radius: var(--radius);
-  background: var(--color-surface-container);
-  font-size: var(--text-label-md-size);
-  line-height: var(--text-label-md-line);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.04em;
-}
-
-.site-footer .footer__chip:hover {
-  background: var(--color-surface-high);
-}
-
-.site-footer .footer__chip--primary {
-  color: var(--color-primary);
-}
-
-/* Footer headings are small sans-serif labels, not big serif headings */
+/* Footer headings are small mono labels, not big headings */
 .footer__heading {
-  margin-bottom: var(--space-sm);
-  font-family: var(--font-body);
-  font-size: var(--text-title-md-size);
-  line-height: var(--text-title-md-line);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0;
-  color: var(--color-on-surface);
+  margin-bottom: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label-line);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-on-ink-muted);
 }
 
 .footer__list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
 }
 
-.footer__hours {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-  padding: var(--space-md);
-  border: 1px solid rgba(191, 199, 210, 0.3);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface-low);
-}
-
-.footer__hours-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--space-xs) var(--space-md);
-  color: var(--color-on-surface);
-}
-
-.footer__hours-time {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-primary);
-}
-
-.footer__hours-closed {
-  font-size: var(--text-label-sm-size);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-secondary);
-}
-
-/* Phones: short centred sign-off */
-.footer__signoff {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.375rem;
-  text-align: center;
-}
-
-.footer__signoff .cmyk-dots span {
-  width: 0.5rem;
-  height: 0.5rem;
-}
-
-.footer__signoff-name {
-  font-size: var(--text-title-md-size);
-  line-height: var(--text-title-md-line);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-on-surface);
-}
-
-.footer__signoff-text {
-  color: var(--color-outline);
-}
-
-.footer__signoff-meta {
-  font-size: var(--text-label-md-size);
-  line-height: var(--text-label-md-line);
-  color: var(--color-outline);
-}
-
-.site-footer .footer__signoff-meta a,
-.site-footer .footer__signoff-link {
+.footer__list a {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-xs);
-  padding-block: 0.625rem;   /* easier to tap */
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-primary);
+  gap: var(--space-sm);
+  padding-block: 0.5rem;     /* easier to tap (about 40px tall) */
+  font-size: var(--text-body);
+}
+
+.footer__strong {
+  font-size: var(--text-body);
+  color: var(--color-on-ink);
 }
 
 .footer__bottom {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: var(--space-xs);
-  padding-top: var(--space-md);
-  text-align: center;
-  font-size: var(--text-label-sm-size);
-  line-height: var(--text-label-sm-line);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.03em;
-  color: var(--color-outline);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-ink-line);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: var(--text-label-line);
 }

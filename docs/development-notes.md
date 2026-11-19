@@ -449,3 +449,80 @@ the bottom nav; no tap target under 36px; no console errors.
 Daytime storefront/counter photo (no customer faces) for the hero; a short shop
 story for About; what Research Services includes; delivery area/fee; whether Smart
 Padala / cash in–out / send money to bank (seen on Google Maps photos) are offered.
+
+## Visual identity redesign — "Editorial Print Studio" (2026-11-19)
+
+**Status:** Implemented, awaiting review. Not committed.
+**Undo:** everything before the redesign is committed as `e5c6bb2`. To discard the
+redesign: `git restore .` (then `git clean -n` to list any new files).
+
+### What changed
+- **Tokens** (`css/variables.css`, rewritten): paper/ink/blue palette, magenta and
+  yellow as small accents, Archivo / DM Sans / IBM Plex Mono, 4px spacing scale,
+  4–6px radii, line tokens instead of shadows.
+- **Stylesheets** (`css/style.css`, `css/responsive.css`): rewritten from scratch in
+  the new identity (no leftover lavender rules or overrides). All class names that
+  JavaScript relies on are unchanged.
+- **Markup** (`index.html`):
+  - Fonts: one Google Fonts request (7 weights total).
+  - Header: solid paper bar with a hairline; ink top strip in mono; active nav link
+    is blue with an underline; phone button shows an icon instead of "PH".
+  - Mobile menu: numbered links (00 Home … 05 Contact) matching section numbers.
+  - Hero: headline "Print it, copy it, bind it. Right outside SSC Gate 1.";
+    key facts as a ruled row (Hours · Computer rental · Paper sizes);
+    photo with a mono figure caption.
+  - Services: numbered index (01–08) — number | name | specs | price/action —
+    instead of icon cards. Same eight services and details.
+  - Products: three grouped lists (Supplies · Food & Drinks · Load & Payments).
+  - Section headers: thin ink rule + mono label ("01 — Services") + heading,
+    left-aligned.
+  - Pricing: ruled table; the fixed-price row is marked with a blue left rule;
+    other prices read "Contact us for pricing" in muted text (no pill badges).
+  - Estimator: bordered "worksheet" panel; same JS, 1–14 h, ₱30–₱420.
+  - Contact: ruled blocks (no nested boxes).
+  - Footer: ink background with the official dark-background logo.
+  - Removed 20 unused icons from the sprite.
+- **CLAUDE.md**: documents the approved identity (sections 3 and 4).
+
+### Tested (2026-11-19)
+1440, 1280, 768, 375, 320 px: no horizontal overflow; header height = page padding
+(108 / 92 px); footer clears the bottom nav; all in-page links land below the header;
+calculator 1–14 h correct, buttons disabled at 1 and 14; 8 `tel:09950429419` links;
+Messenger + Facebook links with `noopener noreferrer`; all images load with alt text;
+one h1; no duplicate ids; 0 contrast failures (lowest 4.65:1; footer 8:1);
+keyboard focus ring blue (yellow on the footer); mobile menu open / Esc / focus return.
+Console: only network resets reaching Google Fonts during testing (local files all 200).
+
+### Notes
+- Products and services: the brief mentions "four product categories" and "seven
+  service categories"; the confirmed lists are six products and eight services
+  (Scanning, E-Loading, Bills Payment were confirmed later), so all are kept.
+- Delivery is shown only as "Available — contact us for details" (confirmed by the
+  user); no area or fee is stated.
+
+### Refinements after approval (2026-11-19)
+- Hero headline: "Printing and document services, right by SSC Gate 1." (line break
+  after "Printing and" from 768px up; natural wrapping on phones).
+- Hero description: "Printing, photocopying, lamination, binding, and computer rental in
+  Larena, Siquijor. Visit us in front of Siquijor State College."
+- Hero photo: the pink "Photocopy" sticker (baked into the Facebook photo) removed by
+  cropping to the lower part of the same real photo (stacks of copies on the counter;
+  no people). `photocopying.jpg` is now 1046 × 412. Frame heights: 220px phone,
+  300px tablet, 320px desktop, positioned on the stack. Caption: "Fig. 1 —
+  Photocopied documents on the shop counter".
+- Top strip: information in DM Sans 13px; only the labels (HOURS, LOCATION, HOTLINE)
+  in IBM Plex Mono 11px, muted. Status dot removed.
+- Hero → Services gap reduced from 176px to 152px on desktop (hero bottom padding
+  64px from 768px up).
+- Re-tested at 1440, 1280, 768, 375, 320 px: no overflow, links, menu, calculator
+  (1–14 h, ₱30–₱420), 8 `tel:` links, Facebook/Messenger links, contrast, images OK.
+
+### Business accuracy review (2026-11-19)
+- Removed "Hardbound binding (e.g. theses)" (services row, price table, About text,
+  photo alt/caption) — binding types not confirmed by the owner. Binding now reads
+  "Ask us about available binding options."
+- Removed "Delivery: Available — contact us for details" — not confirmed.
+- Kept E-Loading: documented on the shop signboard (`shop-signboard.jpg`, "Available:
+  … E-Loading …") and confirmed by the user.
+- Research Services unchanged (research papers, thesis, reports).
+- Visual design unchanged.

@@ -4,7 +4,7 @@
    style.css targets phones first. The media queries below add changes as
    the screen gets wider.
 
-   Breakpoints (from the Stitch design):
+   Breakpoints:
      - Small:   640px and wider   (large phones)
      - Tablet:  768px and wider
      - Desktop: 1024px and wider  (full desktop header, no bottom nav)
@@ -12,8 +12,7 @@
 
 /* ---------- Phone / larger-screen switches ----------
    .phone-only  → shown below 768px only
-   .tablet-up   → shown from 768px only
-   Used where the Stitch mobile and desktop designs show different text. */
+   .tablet-up   → shown from 768px only */
 @media (max-width: 767.98px) {
   .tablet-up {
     display: none !important;
@@ -26,30 +25,20 @@
   }
 }
 
-/* ---------- Very small phones (below 360px) ----------
-   Two product tiles don't fit side by side, so they stack. */
-@media (max-width: 359.98px) {
-  .products__grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-/* ---------- Very narrow phones (below 400px) ----------
-   Not enough room for the price beside the service name, so it moves to
-   its own line under the details. */
-@media (max-width: 399.98px) {
-  .price-table .price-table__price {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    margin-top: var(--space-xs);
-    text-align: left;
-  }
-}
-
 /* ---------- Small (640px+) ---------- */
 @media (min-width: 640px) {
   .header-call__text {
     display: inline;
+  }
+
+  /* Hero buttons side by side */
+  .hero__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .hero__actions .button {
+    width: auto;
   }
 
   /* Contact: phone and Facebook side by side, with a thin line between */
@@ -61,7 +50,7 @@
     padding-top: 0;
     padding-left: var(--space-lg);
     border-top: 0;
-    border-left: 1px solid rgba(191, 199, 210, 0.45);
+    border-left: var(--line);
   }
 
   .footer__bottom {
@@ -74,243 +63,87 @@
 @media (min-width: 768px) {
   :root {
     --page-margin: var(--page-margin-tablet);
-    --section-space: 4rem;    /* 64px */
-    --card-padding: 1.5rem;   /* 24px */
+    --section-space: 4.5rem;     /* 72px */
+    --text-hero: 3rem;           /* 48px */
+    --text-h2: 2.25rem;          /* 36px */
+    --text-h3: 1.375rem;         /* 22px */
   }
 
-  h1 {
-    font-size: var(--text-display-size);
-    line-height: var(--text-display-line);
-    letter-spacing: -0.02em;
+  /* Key facts: three columns divided by thin vertical lines */
+  .facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-bottom: var(--line);
   }
 
-  h2 {
-    font-size: var(--text-headline-lg-size);
-    line-height: var(--text-headline-lg-line);
-    letter-spacing: -0.015em;
+  .facts__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-md) var(--space-md) var(--space-md) 0;
+    border-bottom: 0;
   }
 
-  /* Hero: desktop-style content (stacked until 1024px) */
-  .hero {
-    gap: var(--space-xl);
-    padding-top: var(--section-space);
-    /* Services starts right after on the same background, so a smaller
-       bottom space avoids a big empty gap between the two. */
-    padding-bottom: var(--space-xl);
+  .facts__item + .facts__item {
+    padding-left: var(--space-md);
+    border-left: var(--line);
   }
 
-  .hero__content {
-    gap: var(--space-md);
-  }
-
-  .hero__eyebrow {
-    width: fit-content;
-    gap: var(--space-sm);
-    margin-bottom: 0;
-    padding: var(--space-xs) 0.75rem;
-    border-radius: var(--radius);
-    background: var(--color-surface-container);
-    color: var(--color-primary);
-  }
-
-  .hero__title-accent {
-    font-style: italic;
-    font-weight: var(--font-weight-medium);
-    color: var(--color-primary);
-  }
-
-  .hero__lead {
-    max-width: 36rem;
-    margin-top: 0;
-    font-size: var(--text-body-lg-size);
-    line-height: var(--text-body-lg-line);
-  }
-
-  .hero__actions {
-    order: 1;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: var(--space-sm);
-    margin-top: 0;
-    padding-top: var(--space-sm);
-  }
-
-  .hero__button {
-    width: auto;
-  }
-
-  .hero__button--call {
-    background: var(--color-surface-container);
-    box-shadow: none;
-  }
-
-  .hero__button--call:hover {
-    background: var(--color-surface-high);
-  }
-
-  .hero__highlights {
-    order: 2;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--gutter);
-    margin-top: 0;
-    padding-top: var(--space-lg);
-  }
-
-  .highlight {
-    padding: var(--space-md) 1.25rem;
-  }
-
-  .highlight--wide {
-    grid-column: auto;
-  }
-
-  /* Body font for times and prices (even numbers) */
-  .highlight__value {
-    font-size: var(--text-title-lg-size);
-    line-height: var(--text-title-lg-line);
-    font-weight: var(--font-weight-bold);
-  }
-
-  .highlight__value--primary {
-    color: var(--color-primary);
-  }
-
-  .highlight__note {
-    font-size: var(--text-body-sm-size);
-    line-height: var(--text-body-sm-line);
-    color: var(--color-on-surface-variant);
+  .facts__value {
+    text-align: left;
+    font-size: 1.125rem;
   }
 
   .hero__photo {
-    height: 420px;
-    object-position: center;
-    box-shadow: 0 20px 25px -5px rgba(19, 27, 46, 0.1), 0 8px 10px -6px rgba(19, 27, 46, 0.1);
+    height: 300px;
+    object-position: 70% center;   /* keeps the stack of copies in view */
   }
 
-  .rental__title {
-    font-size: var(--text-headline-sm-size);
-    line-height: var(--text-headline-sm-line);
-    font-weight: var(--font-weight-medium);
+  /* A little less space between the hero and Services (they share a background) */
+  .hero {
+    padding-bottom: var(--space-2xl);
   }
 
-  .rental__controls {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.75rem;
+  /* Services: details and action side by side under the name */
+  .service-row {
+    grid-template-columns: 3rem minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: var(--gutter);
+    padding-block: 1.75rem;
   }
 
-  .rental__total {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    padding: var(--space-sm) var(--space-md);
-    border-radius: var(--radius);
-    background: var(--color-surface-high);
+  .service-row__name {
+    grid-column: 2 / -1;
   }
 
-  .rental__total-value {
-    font-family: var(--font-body);
-    font-size: var(--text-title-lg-size);
-    line-height: var(--text-title-lg-line);
+  .service-row__details {
+    grid-column: 2;
   }
 
-  /* Section headers */
-  .section-header {
-    margin-bottom: var(--space-xl);
+  .service-row__action {
+    grid-column: 3;
+    grid-row: 2;
+    justify-content: flex-end;
+    text-align: right;
   }
 
-  .section-header--center {
-    align-items: center;
-    margin-inline: auto;
-    text-align: center;
+  /* Products: three groups side by side */
+  .product-groups {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-bottom: 1px solid #cfccc2;
   }
 
-  /* Services: 2 columns, cards stacked top to bottom (desktop design) */
-  .services__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--gutter);
+  .product-group {
+    padding: var(--space-lg) var(--space-lg) var(--space-lg) 0;
+    border-bottom: 0;
   }
 
-  .service-card {
-    display: flex;
-    flex-direction: column;
+  .product-group + .product-group {
+    padding-left: var(--space-lg);
+    border-left: 1px solid #cfccc2;
   }
 
-  .service-card__top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-sm);
-    margin-bottom: var(--space-md);
-  }
-
-  .service-card__icon {
-    width: 3rem;
-    height: 3rem;
-    background: var(--color-surface-container);
-  }
-
-  .service-card__icon .icon--lg {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  .service-card__title {
-    font-size: var(--text-headline-sm-size);
-    line-height: var(--text-headline-sm-line);
-    font-weight: var(--font-weight-medium);
-  }
-
-  .service-card__text {
-    margin-top: var(--space-xs);
-  }
-
-  .service-card__specs,
-  .service-card__price {
-    margin-bottom: var(--space-md);
-  }
-
-  /* Pushes the footer to the bottom so all cards in a row line up */
-  .service-card__footer {
-    margin-top: auto;
-  }
-
-  .service-card--featured .service-card__icon {
-    background: var(--color-primary-soft);
-    color: var(--color-primary);
-  }
-
-  .service-card--featured .service-card__top .badge {
-    position: relative;   /* stays above the decorative corner */
-  }
-
-  /* Products */
-  .products__eyebrow {
-    color: var(--color-primary);
-  }
-
-  .products__grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-md);
-  }
-
-  .product-tile--magenta .product-tile__icon,
-  .product-tile--yellow .product-tile__icon {
-    color: var(--color-primary);
-  }
-
+  /* About photo */
   .about__photo img {
-    height: 18rem;
-  }
-
-  .about__body .section-header {
-    margin-bottom: var(--space-lg);
-  }
-
-  .about__lead {
-    font-size: var(--text-body-lg-size);
-    line-height: var(--text-body-lg-line);
+    height: 20rem;
   }
 
   /* Pricing: a normal table with column headings */
@@ -338,56 +171,63 @@
   .price-table th,
   .price-table td {
     display: table-cell;
-    vertical-align: middle;
-    padding: var(--space-md) var(--card-padding);
+    vertical-align: baseline;
+    padding: var(--space-md);
+    border-bottom: 1px solid #cfccc2;
   }
 
   .price-table thead th {
     padding-block: 0.75rem;
-    background: var(--color-surface-container);
-    font-size: var(--text-label-sm-size);
-    line-height: var(--text-label-sm-line);
-    font-weight: var(--font-weight-bold);
-    letter-spacing: 0.06em;
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    line-height: var(--text-label-line);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-label);
     text-transform: uppercase;
-    color: var(--color-on-surface-variant);
+    color: var(--color-muted);
   }
 
   .price-table thead th:last-child {
     text-align: right;
   }
 
-  .price-table__service {
-    display: table-cell;
-  }
-
-  .price-table__service .badge {
-    margin-left: var(--space-sm);
+  .price-table__row--fixed {
+    padding-left: 0;
   }
 
   .price-table__details {
-    font-size: var(--text-body-md-size);
-    line-height: var(--text-body-md-line);
+    font-size: var(--text-body);
   }
 
-  /* Contact */
-  .contact__grid {
-    gap: var(--gutter);
+  /* Estimator: text on the left, controls on the right */
+  .rental {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: var(--space-xl);
+    padding: var(--space-xl);
   }
 
-  .contact-card__title {
-    font-size: var(--text-headline-sm-size);
-    line-height: var(--text-headline-sm-line);
-    font-weight: var(--font-weight-medium);
+  .rental__controls {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-lg);
   }
 
-  /* Footer: 2 columns on tablets */
+  .rental__total {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    min-width: 8rem;
+  }
+
+  .rental__note {
+    grid-column: 1 / -1;
+  }
+
+  /* Footer: two columns on tablets */
   .footer__columns {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .footer__bottom {
-    padding-top: var(--space-lg);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -395,9 +235,11 @@
 @media (min-width: 1024px) {
   :root {
     --page-margin: var(--page-margin-desktop);
-    --section-space: 5rem;    /* 80px */
+    --section-space: 5.5rem;     /* 88px */
+    --text-hero: 3.5rem;         /* 56px */
+    --text-h2: 2.5rem;           /* 40px */
 
-    /* Desktop header = info strip (32px) + header bar (80px) = 112px */
+    /* Desktop header = info strip (32px) + header bar (76px) = 108px */
     --header-height: calc(var(--top-strip-height) + var(--header-bar-height-desktop));
 
     /* No bottom navigation on desktop */
@@ -414,7 +256,7 @@
   }
 
   .site-logo img {
-    height: 48px;
+    height: 46px;
   }
 
   .menu-toggle,
@@ -428,7 +270,6 @@
   .primary-nav {
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
   }
 
   .header-phone,
@@ -436,79 +277,72 @@
     display: inline-flex;
   }
 
-  .header-phone {
-    min-height: 0;
-    padding: var(--space-sm) var(--space-md);
-    gap: var(--space-xs);
-  }
-
+  .header-phone,
   .header-cta {
-    min-height: 0;
+    min-height: 40px;
     padding-block: var(--space-sm);
   }
 
-  /* Hero: two columns — text (7/12) and photo (5/12) */
+  /* Hero: text (7/12) and photo (5/12) */
   .hero {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    align-items: center;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: end;
     gap: var(--gutter);
+    padding-top: var(--space-2xl);
   }
 
   .hero__content {
     grid-column: span 7;
+    padding-right: var(--space-xl);
   }
 
   .hero__media {
     grid-column: span 5;
   }
 
-  /* Calculator: text on the left, controls on the right */
-  .rental__card {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    column-gap: var(--gutter);
+  /* The photo is wide (about 2.5 : 1), so a shorter frame keeps it sharp
+     and shows the stack of copies instead of the tablecloth. */
+  .hero__photo {
+    height: 320px;
+    object-position: 72% center;
   }
 
-  .rental__note {
-    grid-column: 1 / -1;
+  /* Services: an index — number | name | details | price */
+  .service-row {
+    grid-template-columns: 3.5rem minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr);
+    align-items: baseline;
   }
 
-  /* Services: a 6-part grid. Regular cards take 2 parts (3 per row);
-     the two "half" cards (Scanning, Binding) take 3 parts (2 per row). */
-  .services__grid {
-    grid-template-columns: repeat(6, 1fr);
+  .service-row__name {
+    grid-column: 2;
   }
 
-  .service-card {
-    grid-column: span 2;
+  .service-row__details {
+    grid-column: 3;
+    grid-row: 1;
   }
 
-  .service-card--half {
-    grid-column: span 3;
-  }
-
-  /* Products: 3 per row (2 rows of 3) */
-  .products__grid {
-    grid-template-columns: repeat(3, 1fr);
+  .service-row__action {
+    grid-column: 4;
+    grid-row: 1;
   }
 
   /* About: text (7/12) and photo (5/12) */
   .about__layout {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    align-items: center;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: start;
     gap: var(--gutter);
   }
 
   .about__body {
     grid-column: span 7;
+    padding-right: var(--space-xl);
   }
 
   .about__photo {
     grid-column: span 5;
-    order: 0;
   }
 
   .about__photo img {
@@ -519,18 +353,13 @@
   /* Contact: hours (5/12) and get-in-touch (7/12) */
   .contact__grid {
     grid-template-columns: 5fr 7fr;
-    align-items: stretch;
+    gap: var(--space-2xl);
   }
 
-  /* Footer: 4 columns (4 + 3 + 2 + 3 of 12) */
+  /* Footer: brand wider than the three lists */
   .footer__columns {
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: 2fr 1fr 1fr 1fr;
   }
-
-  .footer__brand { grid-column: span 4; }
-  .footer__columns > .footer__group:nth-child(2) { grid-column: span 3; }
-  .footer__columns > .footer__group:nth-child(3) { grid-column: span 2; }
-  .footer__columns > .footer__group:nth-child(4) { grid-column: span 3; }
 }
 
 /* ---------- Narrow desktops (1024px – 1199px) ----------

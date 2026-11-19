@@ -41,26 +41,51 @@ Business name: Shallene's Printing Shop
 
 Use the provided official logo files.
 
-Brand colors:
-- Cyan
-- Magenta
-- Yellow
-- Black / dark charcoal
-- White
+Logo brand colors (in the logo only — never recolor it):
+- Cyan, Magenta, Yellow, Black / dark charcoal, White
 
-Visual direction:
-- Modern minimalist
-- Professional
-- Friendly and approachable
-- Clean editorial layouts
-- Generous whitespace
-- Strong typography
-- Clear visual hierarchy
+### Approved Visual Identity — "Editorial Print Studio" (approved 2026-11-19)
 
-Typography:
-- Use a refined serif font for selected headings where appropriate.
-- Use a clean sans-serif font for body text and navigation.
-- Maintain readability across desktop and mobile.
+This replaces the earlier lavender Stitch styling. All design tokens live in
+`css/variables.css`; change them there, not with one-off overrides.
+
+Inspiration: Swiss graphic design, independent print studios, editorial
+typography, stationery and publishing brands, grid-based layouts.
+
+Typography (Google Fonts, one request, only these weights):
+- **Archivo** 600/700 — headings, hero headline, section headings, prominent text.
+- **DM Sans** 400/500/600 — body text, navigation, buttons, general UI.
+- **IBM Plex Mono** 400/500 — small uppercase labels, section numbers
+  ("01 — Services"), service numbers, figure captions ("Fig. 1 — …"), metadata.
+- Prices, times, and phone numbers: DM Sans or Archivo (never a font with
+  old-style numerals).
+
+Colors:
+| Token | Value | Use |
+|---|---|---|
+| `--color-paper` | #F5F3EB | Page background |
+| `--color-ink` | #202522 | Headings, main text, top strip, footer background |
+| `--color-blue` | #245B78 | Buttons, links, interactive elements |
+| `--color-muted` | #646964 | Secondary text (brief said #6F746F; darkened for 4.5:1 contrast) |
+| `--color-border` | #D9D7CE | Dividers and outlines |
+| `--color-surface` | #ECEAE2 | Alternate section backgrounds (Products, Pricing) |
+| `--color-magenta` | #D94B83 | Small decorative accents only |
+| `--color-magenta-text` | #A3305E | Short accent text, e.g. "Closed" |
+| `--color-yellow` | #E7B83F | Small decorative accents only |
+| `--color-white` | #FFFFFF | Text on blue buttons |
+
+Layout rules:
+- Max content width 1280px; side margins ~48px desktop, ~32px tablet, ~20px phone.
+- Corners 4–6px. Thin 1px lines instead of shadows. No gradients, glass/blur
+  effects, glows, or floating decorative elements.
+- Each section starts with a thin ink rule, a mono label ("02 — Also Available"),
+  then an Archivo heading. Headings are left-aligned.
+- Prefer ruled lists, tables, and numbered rows over repeated card grids
+  (services = numbered list; products = grouped lists; facts = ruled row).
+- The small CMYK dots appear once only (hero label).
+- Footer uses the ink background with the official dark-background logo
+  (`logo-dark-transparent-web.png`).
+- Text contrast must meet 4.5:1 (3:1 for large text).
 
 ### Logo Rules
 
@@ -72,9 +97,11 @@ Typography:
 
 ## 4. Design Reference
 
-Google Stitch will be used to generate the initial website design.
-
-Follow the supplied Stitch screenshots and design references as closely as possible.
+Google Stitch was used to generate the initial website design
+(`docs/design-references/stitch-revised/`). Its section order and information
+architecture are still followed, but its visual styling has been replaced by the
+approved "Editorial Print Studio" identity in section 3 — follow that for colors,
+fonts, and components.
 
 Before implementing a section:
 1. Inspect its design reference.
@@ -106,7 +133,7 @@ Address: North Poblacion, Larena, Siquijor — in front of Siquijor State Colleg
 
 Google Maps: the shop has its own listing, "Shallene's Printing Shop" (plus code 6HXR+Q5Q, Larena, Siquijor). The "Get directions" link opens it.
 
-Also confirmed 2026-11-19: Scan service; E-Loading and Bills Payment available; binding includes hardbound binding (e.g. theses); delivery is available (details not yet provided — do not invent area or fees). See docs/business-information.md.
+Also confirmed 2026-11-19: Scan service; E-Loading and Bills Payment available (both on the shop signboard). Binding is available, but binding TYPES are not confirmed — do not mention hardbound or any other type. Delivery is NOT confirmed — do not mention delivery. See docs/business-information.md.
 
 Keep contact information easy to update.
 
