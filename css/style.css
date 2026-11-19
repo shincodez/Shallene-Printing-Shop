@@ -281,13 +281,27 @@ a {
 
 /* Small uppercase label shown above section headings, e.g. "OUR SERVICES" */
 .eyebrow {
-  display: block;
+  display: inline-flex;
+  align-items: center;
   font-size: var(--text-label-sm-size);
   line-height: var(--text-label-sm-line);
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-primary);
+}
+
+/* Three small dots in the logo's cyan, magenta, and yellow before each label.
+   One dot is drawn; the other two are copies made with box-shadow. */
+.eyebrow::before {
+  content: "";
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  margin-right: calc(18px + var(--space-sm));   /* room for the two copies */
+  border-radius: var(--radius-round);
+  background: var(--color-logo-cyan);
+  box-shadow: 9px 0 0 var(--color-logo-magenta), 18px 0 0 var(--color-tertiary-bright);
 }
 
 /* Badges / chips, e.g. "SUN – FRI" or "Contact us for pricing" */
@@ -768,13 +782,22 @@ a {
 }
 
 .bottom-nav__link .icon {
+  box-sizing: content-box;     /* padding adds to the size, so the icon stays 22px */
   width: 22px;
   height: 22px;
+  padding: 3px 16px;
+  border-radius: var(--radius-round);
+  transition: background-color var(--transition-fast);
 }
 
 .bottom-nav__link.is-active {
   color: var(--color-primary);
   font-weight: var(--font-weight-bold);
+}
+
+/* Soft pill behind the current section's icon */
+.bottom-nav__link.is-active .icon {
+  background: var(--color-primary-soft);
 }
 
 
@@ -1532,12 +1555,11 @@ a {
 .product-card--magenta .product-card__icon { color: var(--color-secondary); }
 .product-card--yellow .product-card__icon { color: var(--color-tertiary); }
 
+/* Same style as the other card titles (Playfair Display) */
 .product-card__title {
-  font-family: var(--font-body);
-  font-size: 1.1875rem;   /* 19px phones, 20px from 768px */
-  line-height: 1.625rem;
+  font-size: var(--text-card-title-mobile-size);
+  line-height: var(--text-card-title-mobile-line);
   font-weight: var(--font-weight-semibold);
-  letter-spacing: -0.01em;
 }
 
 .product-card__text {

@@ -382,3 +382,15 @@ tab with `rel="noopener noreferrer"`.
 - Messenger link asks visitors to log in to Messenger first (normal behaviour).
 - `og:image` / `og:url` need a live web address (after deployment).
 - Owner: what "Research Services" includes; delivery area and fee.
+
+### Polish pass (2026-11-19)
+- **Section headings:** Services and Pricing are now centred like Products and
+  Contact (from 768px; phones stay left-aligned). About stays left because its
+  text sits beside the "At a glance" card.
+- **Brand accent:** every small section label (`.eyebrow`) starts with three tiny
+  dots in the logo's cyan, magenta, and yellow (pure CSS, `.eyebrow::before`).
+- **Product card titles** now use Playfair Display like every other card title
+  (20px phones / 22px desktop).
+- **Bottom navigation:** the current section's icon sits on a soft blue pill, so
+  it's easier to see where you are.
+- Tested at 1280, 768, 375, 320px: no overflow, no console errors.

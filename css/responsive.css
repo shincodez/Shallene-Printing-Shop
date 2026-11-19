@@ -326,8 +326,9 @@
   }
 
   .product-card__title {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+    font-size: var(--text-headline-sm-size);
+    line-height: var(--text-headline-sm-line);
+    font-weight: var(--font-weight-medium);
   }
 
   /* About: the story is plain text (no card) on larger screens */
