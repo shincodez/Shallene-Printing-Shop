@@ -202,6 +202,22 @@ a {
 .icon--sm { width: 1rem; height: 1rem; }
 .icon--lg { width: 1.5rem; height: 1.5rem; }
 
+/* Brand logos (Facebook, Messenger) are solid shapes, not outlines */
+.icon--brand {
+  fill: currentColor;
+  stroke: none;
+}
+
+.icon--sm.icon--brand {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* Facebook logo in its official blue (on light buttons and links) */
+.icon--facebook {
+  color: var(--color-facebook);
+}
+
 
 /* ---------- 6. Shared components ---------- */
 
@@ -258,6 +274,9 @@ a {
 
 .button--block {
   width: 100%;
+  padding-inline: 1rem;     /* full width already gives room, so less side padding */
+  white-space: normal;      /* very long labels may wrap instead of overflowing */
+  text-align: center;
 }
 
 /* Small uppercase label shown above section headings, e.g. "OUR SERVICES" */
@@ -1381,6 +1400,18 @@ a {
   text-decoration: underline;
 }
 
+/* Invisible extra space above and below so the link is easy to tap
+   (about 44px tall) without changing the card's layout. */
+.service-card__link {
+  padding-block: 0.625rem;
+  margin-block: -0.625rem;
+}
+
+.service-card__link--small {
+  padding-block: 0.875rem;
+  margin-block: -0.875rem;
+}
+
 /* Smaller link, e.g. "Estimate your cost" on the Computer Rental card */
 .service-card__link--small {
   font-size: var(--text-label-md-size);
@@ -1723,27 +1754,469 @@ a {
   color: var(--color-secondary);
 }
 
-/* TEMPORARY (Phase 2): gives the empty sections some height so the
-   navigation can be tested. Remove each one as its section is built. */
-.section-placeholder {
-  min-height: 70vh;
-}
-
-.section-placeholder:nth-of-type(even) {
+/* 10h. Pricing --------------------------------------------------------- */
+.pricing {
   background: var(--color-surface-low);
 }
 
-.placeholder-note {
-  margin-top: var(--space-sm);
+.price-table-card {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-lowest);
+  box-shadow: var(--shadow-sm);
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Phones: the column headings are hidden visually (still read by screen
+   readers) and each row becomes a small block: name + price, details below. */
+.price-table thead {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.price-table tr {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 0.75rem;
+  row-gap: var(--space-xs);
+  padding: var(--space-md) var(--card-padding);
+}
+
+.price-table tbody tr + tr {
+  border-top: 1px solid rgba(191, 199, 210, 0.35);
+}
+
+.price-table th,
+.price-table td {
+  display: block;
+  padding: 0;
+  text-align: left;
+}
+
+.price-table__service {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-title-md-size);
+  line-height: var(--text-title-md-line);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-on-surface);
+}
+
+.price-table__details {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  font-size: var(--text-body-sm-size);
+  line-height: var(--text-body-sm-line);
+  color: var(--color-on-surface-variant);
+}
+
+.price-table .price-table__price {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* The confirmed price stands out: tinted row, large blue amount */
+.price-table__row--confirmed {
+  background: rgba(0, 97, 148, 0.06);
+}
+
+.price-table__amount {
+  font-family: var(--font-heading);
+  font-size: var(--text-headline-sm-size);
+  line-height: var(--text-headline-sm-line);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.price-table__unit {
+  font-size: var(--text-body-sm-size);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-on-surface-variant);
+}
+
+.pricing__note {
+  margin-top: var(--space-md);
+  text-align: center;
+  font-size: var(--text-body-sm-size);
+  line-height: var(--text-body-sm-line);
+  color: var(--color-on-surface-variant);
+}
+
+.pricing__note a {
+  display: inline-block;
+  padding-block: 0.625rem;   /* easier to tap */
+  font-weight: var(--font-weight-semibold);
+}
+
+.pricing .rental__card {
+  margin-top: var(--space-xl);
+}
+
+/* 10i. Contact --------------------------------------------------------- */
+.contact {
+  background: var(--color-surface-container);
+}
+
+.contact__grid {
+  display: grid;
+  gap: var(--gutter-mobile);
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--card-padding);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-lowest);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.contact-card__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-card-title-mobile-size);
+  line-height: var(--text-card-title-mobile-line);
+}
+
+.contact-card__title .icon {
+  color: var(--color-primary);
+}
+
+.contact-card__label,
+.channel__label {
+  font-size: var(--text-label-sm-size);
+  line-height: var(--text-label-sm-line);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--color-outline);
 }
 
+.contact-card__text {
+  color: var(--color-on-surface-variant);
+}
+
+/* Opening hours rows */
+.hours {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.hours__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs) var(--space-md);
+  padding: 0.75rem var(--space-md);
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-low);
+}
+
+.hours__day {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-on-surface);
+}
+
+.hours__time {
+  font-size: var(--text-title-md-size);
+  line-height: var(--text-title-md-line);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.hours__row--closed {
+  border-color: rgba(186, 0, 53, 0.2);
+}
+
+.hours__row--closed .hours__time {
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+/* Address box with the "Get directions" button */
+.location {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-high);
+}
+
+.location__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-title-md-size);
+  line-height: var(--text-title-md-line);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-on-surface);
+}
+
+.location__title .icon {
+  color: var(--color-primary);
+}
+
+.location__address {
+  font-style: normal;
+  font-size: var(--text-body-sm-size);
+  line-height: var(--text-body-sm-line);
+  color: var(--color-on-surface-variant);
+}
+
+.location__button {
+  align-self: flex-start;
+  margin-top: var(--space-xs);
+  background: var(--color-surface-lowest);
+}
+
+/* Phone and Facebook boxes */
+.channels {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.channel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-low);
+}
+
+.channel__value {
+  font-family: var(--font-heading);
+  font-size: var(--text-headline-sm-size);
+  line-height: var(--text-headline-sm-line);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-on-surface);
+}
+
+.channel__hint {
+  margin-bottom: var(--space-sm);
+  font-size: var(--text-body-sm-size);
+  line-height: var(--text-body-sm-line);
+  color: var(--color-on-surface-variant);
+}
+
+/* Buttons sit at the bottom of each box so both boxes line up */
+.channel > .button,
+.channel__buttons {
+  margin-top: auto;
+}
+
+.channel__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.contact-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-xs) var(--space-md);
+  margin-top: auto;
+  font-size: var(--text-label-md-size);
+  line-height: var(--text-label-md-line);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-outline);
+}
+
+.contact-card__footer-hours {
+  color: var(--color-primary);
+}
 
 /* ---------- 11. Footer ---------- */
 .site-footer {
-  padding-block: var(--space-xl);
+  padding-block: var(--space-xl) var(--space-lg);
   border-top: 1px solid rgba(191, 199, 210, 0.3);
   background: var(--color-surface-lowest);
   font-size: var(--text-body-sm-size);
+  line-height: var(--text-body-sm-line);
+  color: var(--color-on-surface-variant);
+}
+
+.site-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--color-primary);
+}
+
+/* Larger screens: columns (layout set in responsive.css) */
+.footer__columns {
+  display: grid;
+  gap: var(--space-xl) var(--gutter);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid rgba(191, 199, 210, 0.3);
+}
+
+.footer__logo {
+  height: 48px;
+  width: auto;
+}
+
+.footer__text {
+  max-width: 24rem;
+  margin-top: var(--space-md);
+}
+
+.footer__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.site-footer .footer__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 2.25rem;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius);
+  background: var(--color-surface-container);
+  font-size: var(--text-label-md-size);
+  line-height: var(--text-label-md-line);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.04em;
+}
+
+.site-footer .footer__chip:hover {
+  background: var(--color-surface-high);
+}
+
+.site-footer .footer__chip--primary {
+  color: var(--color-primary);
+}
+
+/* Footer headings are small sans-serif labels, not big serif headings */
+.footer__heading {
+  margin-bottom: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-title-md-size);
+  line-height: var(--text-title-md-line);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0;
+  color: var(--color-on-surface);
+}
+
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.footer__hours {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  border: 1px solid rgba(191, 199, 210, 0.3);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-low);
+}
+
+.footer__hours-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-xs) var(--space-md);
+  color: var(--color-on-surface);
+}
+
+.footer__hours-time {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+.footer__hours-closed {
+  font-size: var(--text-label-sm-size);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+/* Phones: short centred sign-off */
+.footer__signoff {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  text-align: center;
+}
+
+.footer__signoff .cmyk-dots span {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.footer__signoff-name {
+  font-size: var(--text-title-md-size);
+  line-height: var(--text-title-md-line);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-on-surface);
+}
+
+.footer__signoff-text {
+  color: var(--color-outline);
+}
+
+.footer__signoff-meta {
+  font-size: var(--text-label-md-size);
+  line-height: var(--text-label-md-line);
+  color: var(--color-outline);
+}
+
+.site-footer .footer__signoff-meta a,
+.site-footer .footer__signoff-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding-block: 0.625rem;   /* easier to tap */
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding-top: var(--space-md);
+  text-align: center;
+  font-size: var(--text-label-sm-size);
+  line-height: var(--text-label-sm-line);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.03em;
   color: var(--color-outline);
 }

@@ -281,3 +281,59 @@ computer-rental. Search for the tag to update a price everywhere.
   (people's names). Originals remain only on the user's Desktop.
 - `thesis-binding-stack.jpg` replaced with a copy whose top-cover text is blurred.
 - Privacy rules for future photos added to `docs/business-information.md`.
+
+## Phase 5 — Pricing, Contact, Footer (2026-11-19)
+
+**Status:** Complete, awaiting approval.
+
+### Done
+- **Price list** (`#pricing`): a table of all 8 services. The confirmed row
+  (Computer Rental, ₱30 / hour) is tinted blue with a "Confirmed" badge and a large
+  blue price; every other row shows a grey "Contact us for pricing" badge.
+  Phones: each row becomes a small block (name + price, details underneath);
+  from 768px it is a normal table with column headings. A note under the table links
+  to the phone number and Messenger. The rental estimator sits below.
+- **Contact** (`#contact`): "Opening Hours" card (Sun–Fri 7:00 AM – 9:00 PM,
+  Saturday closed, address box with "Get directions") and "Get in Touch" card
+  (Phone box with "Call the Shop"; Facebook box with "Message us on Facebook" →
+  `https://m.me/shalenecover` and "Visit our Facebook page" →
+  `https://www.facebook.com/shalenecover`). 5/7 columns from 1024px.
+- **Get directions** opens a Google Maps search for "Siquijor State College, Larena,
+  Siquijor" (the shop is in front of Gate 1). It sends no visitor data.
+- **Footer:** 4 columns from 1024px (logo + address + phone/Facebook chips; real
+  services list; quick links; opening hours), 2 columns on tablets, short centred
+  sign-off on phones (as in the mobile design). Copyright year is automatic.
+- Removed all temporary placeholders (`.section-placeholder`, `.placeholder-note`).
+- New Lucide icons: facebook, message-circle (Messenger), navigation (directions).
+- Full-width buttons use 16px side padding so long labels fit on phones.
+
+### Link check (2026-11-19)
+No broken in-page links. 11 click-to-call links (`tel:09950429419`), 2 Messenger
+links, 3 Facebook page links, 1 Google Maps link — all external links open in a new
+tab with `rel="noopener noreferrer"`.
+
+### Still open (owner)
+- What "Research Services" includes.
+- Delivery area and fee.
+
+### Brand icons + UI/UX consistency pass (2026-11-19)
+- **Real Facebook and Messenger logos** from Simple Icons (v13.21.0, CC0) replace the
+  outline icons. They use `class="icon icon--brand"` (solid fill). The Facebook logo
+  is shown in official Facebook blue (`--color-facebook: #0866ff`) on light
+  backgrounds; the Messenger logo is white on the blue button. Footer "Facebook Page"
+  links now show the logo too.
+- **Audit results (measured):** cards 24px padding desktop / 20px phone, 8px
+  corners everywhere; inner boxes 16px; grid gaps 24px desktop / 12–16px phone;
+  sections 80px desktop / 64px tablet / 48px phone.
+- **Fixes:**
+  - Smallest text raised from 11px to 12px (labels, badges, eyebrows,
+    "Contact us for pricing").
+  - Tap targets: "Contact us for pricing" and "Estimate your cost" links were
+    16–24px tall; footer and price-note links ~15px. All now ≥36px (most ~44px),
+    using invisible padding so the layout looks the same.
+  - Desktop gap between the hero and Services reduced from 160px to 128px.
+  - Bottom navigation now has 5 items (added Pricing) so the price list and
+    estimator are one tap away on phones. All labels fit at 320px.
+- **Get directions** now opens the shop's own Google Maps listing
+  ("Shallene's Printing Shop", plus code 6HXR+Q5Q) instead of a search for the college.
+  Checked in the browser: the link lands on the listing with the correct phone number.

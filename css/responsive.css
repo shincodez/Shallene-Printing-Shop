@@ -31,6 +31,16 @@
   .header-call__text {
     display: inline;
   }
+
+  /* Contact: phone and Facebook boxes side by side */
+  .channels {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 /* ---------- Tablet (768px+) ---------- */
@@ -61,7 +71,10 @@
   /* Hero: desktop-style content (stacked until 1024px) */
   .hero {
     gap: var(--space-xl);
-    padding-block: var(--section-space);
+    padding-top: var(--section-space);
+    /* Services starts right after on the same background, so a smaller
+       bottom space avoids a big empty gap between the two. */
+    padding-bottom: var(--space-xl);
   }
 
   .hero__content {
@@ -160,10 +173,6 @@
     box-shadow: 0 20px 25px -5px rgba(19, 27, 46, 0.1), 0 8px 10px -6px rgba(19, 27, 46, 0.1);
   }
 
-  /* Pricing (with the estimator) sits on a lavender band */
-  .pricing {
-    background: var(--color-surface-container);
-  }
 
   .rental__title {
     font-size: var(--text-headline-sm-size);
@@ -334,6 +343,75 @@
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-md);
   }
+
+  /* Pricing: a normal table with column headings */
+  .price-table thead {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+  }
+
+  .price-table tr {
+    display: table-row;
+    padding: 0;
+  }
+
+  .price-table th,
+  .price-table td {
+    display: table-cell;
+    vertical-align: middle;
+    padding: var(--space-md) var(--card-padding);
+  }
+
+  .price-table thead th {
+    padding-block: 0.75rem;
+    background: var(--color-surface-container);
+    font-size: var(--text-label-sm-size);
+    line-height: var(--text-label-sm-line);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-on-surface-variant);
+  }
+
+  .price-table thead th:last-child {
+    text-align: right;
+  }
+
+  .price-table__service {
+    display: table-cell;
+  }
+
+  .price-table__service .badge {
+    margin-left: var(--space-sm);
+  }
+
+  .price-table__details {
+    font-size: var(--text-body-md-size);
+    line-height: var(--text-body-md-line);
+  }
+
+  /* Contact */
+  .contact__grid {
+    gap: var(--gutter);
+  }
+
+  .contact-card__title {
+    font-size: var(--text-headline-sm-size);
+    line-height: var(--text-headline-sm-line);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* Footer: 2 columns on tablets */
+  .footer__columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer__bottom {
+    padding-top: var(--space-lg);
+  }
 }
 
 /* ---------- Desktop (1024px+) ---------- */
@@ -454,6 +532,22 @@
   .glance {
     grid-column: span 5;
   }
+
+  /* Contact: hours (5/12) and get-in-touch (7/12) */
+  .contact__grid {
+    grid-template-columns: 5fr 7fr;
+    align-items: stretch;
+  }
+
+  /* Footer: 4 columns (4 + 3 + 2 + 3 of 12) */
+  .footer__columns {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .footer__brand { grid-column: span 4; }
+  .footer__columns > .footer__group:nth-child(2) { grid-column: span 3; }
+  .footer__columns > .footer__group:nth-child(3) { grid-column: span 2; }
+  .footer__columns > .footer__group:nth-child(4) { grid-column: span 3; }
 }
 
 /* ---------- Narrow desktops (1024px – 1199px) ----------

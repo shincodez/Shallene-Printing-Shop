@@ -14,6 +14,8 @@ Update this file first, then update the website to match.
 | Location | Larena | Confirmed by owner (2026-11-19) |
 | Address | North Poblacion, Larena, Siquijor | Confirmed (2026-11-19) |
 | Landmark | In front of Siquijor State College, Gate 1 | Confirmed (2026-11-19) |
+| Google Maps listing | "Shallene's Printing Shop" (Store), plus code 6HXR+Q5Q, Larena, Siquijor | Confirmed by user (2026-11-19) |
+| Directions link | https://www.google.com/maps/search/?api=1&query=Shallene%27s+Printing+Shop%2C+Larena%2C+Siquijor | Opens the listing (checked 2026-11-19) |
 | Email | — | Not provided |
 
 ## Operating Hours

@@ -184,6 +184,17 @@
       <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path>
       <path d="M12 17.5v-11"></path>
     </symbol>
+    <!-- Brand logos below are from Simple Icons (simpleicons.org), v13.21.0, CC0.
+         They are solid shapes, so use them with class="icon icon--brand". -->
+    <symbol id="icon-facebook" viewBox="0 0 24 24">
+      <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"></path>
+    </symbol>
+    <symbol id="icon-messenger" viewBox="0 0 24 24">
+      <path d="M.001 11.639C.001 4.949 5.241 0 12.001 0S24 4.95 24 11.639c0 6.689-5.24 11.638-12 11.638-1.21 0-2.38-.16-3.47-.46a.96.96 0 00-.64.05l-2.39 1.05a.96.96 0 01-1.35-.85l-.07-2.14a.97.97 0 00-.32-.68A11.39 11.389 0 01.002 11.64zm8.32-2.19l-3.52 5.6c-.35.53.32 1.139.82.75l3.79-2.87c.26-.2.6-.2.87 0l2.8 2.1c.84.63 2.04.4 2.6-.48l3.52-5.6c.35-.53-.32-1.13-.82-.75l-3.79 2.87c-.25.2-.6.2-.86 0l-2.8-2.1a1.8 1.8 0 00-2.61.48z"></path>
+    </symbol>
+    <symbol id="icon-directions" viewBox="0 0 24 24">
+      <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+    </symbol>
     <symbol id="icon-map-pin" viewBox="0 0 24 24">
       <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
       <circle cx="12" cy="10" r="3"></circle>
@@ -308,9 +319,6 @@
   </div>
 
   <main id="main-content">
-    <!-- NOTE: "section-placeholder" and "placeholder-note" are temporary.
-         Each section is built in a later phase and the placeholder removed. -->
-
     <!-- ==================================================================
          2. HOME: services strip + hero + featured highlights
          Some text differs between phones and larger screens, as in the
@@ -804,7 +812,7 @@
 
     <!-- ==================================================================
          6. PRICING
-         Phase 5 adds the full price list here.
+         Price list (table) + computer rental estimator.
          The computer rental estimator lives here so "Pricing" in the menu,
          and "Estimate your cost" on the Computer Rental card, both lead to it.
          data-rate is the price per hour used by js/main.js.
@@ -821,6 +829,76 @@
             For other services, contact us for pricing.
           </p>
         </header>
+
+        <!-- Price list
+             To add a price when the owner provides it: find the service's
+             data-price="…" badge below and replace it with the price, e.g.
+             <span class="price-table__amount" data-price="printing">₱5</span> per page -->
+        <div class="price-table-card">
+          <table class="price-table">
+            <caption class="visually-hidden">Service prices</caption>
+            <thead>
+              <tr>
+                <th scope="col">Service</th>
+                <th scope="col">Details</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="price-table__row--confirmed">
+                <th scope="row" class="price-table__service">
+                  Computer Rental
+                  <span class="badge badge--accent">Confirmed</span>
+                </th>
+                <td class="price-table__details">Charged per hour, during shop hours</td>
+                <td class="price-table__price">
+                  <span class="price-table__amount" data-price="computer-rental">₱30</span>
+                  <span class="price-table__unit">/ hour</span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="price-table__service">Printing</th>
+                <td class="price-table__details">Short, A4, Long, A3 · Colored &amp; black-and-white</td>
+                <td class="price-table__price"><span class="badge badge--neutral" data-price="printing">Contact us for pricing</span></td>
+              </tr>
+              <tr>
+                <th scope="row" class="price-table__service">Photocopying</th>
+                <td class="price-table__details">Short, A4, Long, A3</td>
+                <td class="price-table__price"><span class="badge badge--neutral" data-price="photocopying">Contact us for pricing</span></td>
+              </tr>
+              <tr>
+                <th scope="row" class="price-table__service">Lamination</th>
+                <td class="price-table__details">ID size, A4</td>
+                <td class="price-table__price"><span class="badge badge--neutral" data-price="lamination">Contact us for pricing</span></td>
+              </tr>
+              <tr>
+                <th scope="row" class="price-table__service">Document Editing &amp; Encoding</th>
+                <td class="price-table__details">Short, Long, A4</td>
+                <td class="price-table__price"><span class="badge badge--neutral" data-price="editing-encoding">Contact us for pricing</span></td>
+              </tr>
+              <tr>
+                <th scope="row" class="price-table__service">Research Services</th>
+                <td class="price-table__details">Research papers, thesis, reports</td>
+                <td class="price-table__price"><span class="badge badge--neutral" data-price="research">Contact us for pricing</span></td>
+              </tr>
+              <tr>
+                <th scope="row" class="price-table__service">Scanning</th>
+                <td class="price-table__details">Documents</td>
+                <td class="price-table__price"><span class="badge badge--neutral" data-price="scanning">Contact us for pricing</span></td>
+              </tr>
+              <tr>
+                <th scope="row" class="price-table__service">Binding</th>
+                <td class="price-table__details">Includes hardbound binding (e.g. theses)</td>
+                <td class="price-table__price"><span class="badge badge--neutral" data-price="binding">Contact us for pricing</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="pricing__note">
+          For prices not listed, <a href="tel:09950429419">call 09950429419</a> or
+          <a href="https://m.me/shalenecover" target="_blank" rel="noopener noreferrer">message us on Facebook</a>.
+        </p>
 
         <div class="rental__card" id="rental-estimator" data-rental-calculator data-rate="30">
           <div class="rental__intro">
@@ -868,23 +946,191 @@
           </p>
         </div>
 
-        <p class="placeholder-note">Full price list — built in Phase 5.</p>
       </div>
     </section>
 
-    <!-- 7. Contact (Phase 5) -->
-    <section id="contact" class="section contact section-placeholder" data-nav-label="Contact" aria-labelledby="contact-title">
+    <!-- ==================================================================
+         7. CONTACT
+         Phone: tel:09950429419 · Facebook page: facebook.com/shalenecover
+         Messenger: m.me/shalenecover · Directions: opens the shop's own
+         Google Maps listing (plus code 6HXR+Q5Q, Larena, Siquijor).
+         ================================================================== -->
+    <section id="contact" class="section contact" data-nav-label="Contact" aria-labelledby="contact-title">
       <div class="container">
-        <h2 id="contact-title">Contact</h2>
-        <p class="placeholder-note">Hours and contact options — built in Phase 5.</p>
+        <header class="section-header section-header--center">
+          <span class="eyebrow">Contact Us</span>
+          <h2 id="contact-title">Contact &amp; Opening Hours</h2>
+          <p class="section-header__text">Call or message us for prices, questions, or document requests.</p>
+        </header>
+
+        <div class="contact__grid">
+          <!-- Opening hours + location -->
+          <article class="contact-card">
+            <div class="contact-card__head">
+              <h3 class="contact-card__title">
+                <svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg>
+                Opening Hours
+              </h3>
+              <span class="badge badge--primary">Hours</span>
+            </div>
+
+            <ul class="hours">
+              <li class="hours__row">
+                <span class="hours__day">Sunday – Friday</span>
+                <span class="hours__time">7:00 AM – 9:00 PM</span>
+              </li>
+              <li class="hours__row hours__row--closed">
+                <span class="hours__day">Saturday</span>
+                <span class="hours__time">Closed</span>
+              </li>
+            </ul>
+
+            <div class="location">
+              <p class="location__title">
+                <svg class="icon" aria-hidden="true"><use href="#icon-map-pin"></use></svg>
+                Where to find us
+              </p>
+              <address class="location__address">
+                North Poblacion, Larena, Siquijor<br>
+                In front of Siquijor State College, Gate 1
+              </address>
+              <a class="button button--tonal location__button" href="https://www.google.com/maps/search/?api=1&amp;query=Shallene%27s+Printing+Shop%2C+Larena%2C+Siquijor" target="_blank" rel="noopener noreferrer">
+                <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-directions"></use></svg>
+                <span>Get directions</span>
+                <span class="visually-hidden">(opens Google Maps in a new tab)</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Phone + Facebook -->
+          <article class="contact-card">
+            <div class="contact-card__head">
+              <h3 class="contact-card__title">
+                <svg class="icon" aria-hidden="true"><use href="#icon-message"></use></svg>
+                Get in Touch
+              </h3>
+              <span class="contact-card__label">Phone &amp; Facebook</span>
+            </div>
+            <p class="contact-card__text">
+              Reach us by phone or on Facebook for prices, file questions, or document requests.
+            </p>
+
+            <div class="channels">
+              <div class="channel">
+                <span class="channel__label">Phone</span>
+                <p class="channel__value">09950429419</p>
+                <span class="channel__hint">Tap the button to call</span>
+                <a class="button button--primary button--block" href="tel:09950429419">
+                  <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-phone"></use></svg>
+                  <span>Call the Shop</span>
+                </a>
+              </div>
+
+              <div class="channel">
+                <span class="channel__label">Facebook</span>
+                <p class="channel__value">Shallene's Printing Shop</p>
+                <span class="channel__hint">Message us or visit our page</span>
+                <div class="channel__buttons">
+                  <a class="button button--primary button--block" href="https://m.me/shalenecover" target="_blank" rel="noopener noreferrer">
+                    <svg class="icon icon--sm icon--brand" aria-hidden="true"><use href="#icon-messenger"></use></svg>
+                    <span>Message us on Facebook</span>
+                    <span class="visually-hidden">(opens Messenger in a new tab)</span>
+                  </a>
+                  <a class="button button--outline button--block" href="https://www.facebook.com/shalenecover" target="_blank" rel="noopener noreferrer">
+                    <svg class="icon icon--sm icon--brand icon--facebook" aria-hidden="true"><use href="#icon-facebook"></use></svg>
+                    <span>Visit our Facebook page</span>
+                    <span class="visually-hidden">(opens in a new tab)</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <p class="contact-card__footer">
+              <span>Open Sunday – Friday</span>
+              <span class="contact-card__footer-hours">7:00 AM – 9:00 PM</span>
+            </p>
+          </article>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- 8. Footer (Phase 5) -->
+  <!-- ==================================================================
+       8. FOOTER
+       Larger screens: 4 columns. Phones: short centred sign-off.
+       ================================================================== -->
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; <span data-current-year></span> Shallene's Printing Shop · Larena</p>
+      <div class="footer__columns tablet-up">
+        <div class="footer__brand">
+          <img class="footer__logo" src="assets/images/logo/logo-primary-web.png" width="1641" height="545"
+               alt="Shallene's Printing Shop" loading="lazy">
+          <p class="footer__text">
+            Printing and document services in North Poblacion, Larena, Siquijor —
+            in front of Siquijor State College, Gate 1.
+          </p>
+          <div class="footer__chips">
+            <a class="footer__chip footer__chip--primary" href="tel:09950429419">09950429419</a>
+            <a class="footer__chip" href="https://www.facebook.com/shalenecover" target="_blank" rel="noopener noreferrer">
+              <svg class="icon icon--sm icon--brand icon--facebook" aria-hidden="true"><use href="#icon-facebook"></use></svg>
+              Facebook Page
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__group">
+          <h2 class="footer__heading">Services</h2>
+          <ul class="footer__list">
+            <li>Printing</li>
+            <li>Photocopying</li>
+            <li>Lamination</li>
+            <li>Document Editing &amp; Encoding</li>
+            <li>Research Services</li>
+            <li>Scanning</li>
+            <li>Binding</li>
+            <li>Computer Rental</li>
+          </ul>
+        </div>
+
+        <nav class="footer__group" aria-label="Footer">
+          <h2 class="footer__heading">Quick Links</h2>
+          <ul class="footer__list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer__group">
+          <h2 class="footer__heading">Opening Hours</h2>
+          <div class="footer__hours">
+            <p class="footer__hours-row"><span>Sunday – Friday</span><span class="footer__hours-time">7:00 AM – 9:00 PM</span></p>
+            <p class="footer__hours-row"><span>Saturday</span><span class="footer__hours-closed">Closed</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phones: short sign-off (as in the mobile design) -->
+      <div class="footer__signoff phone-only">
+        <span class="cmyk-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+        <p class="footer__signoff-name">Shallene's Printing Shop</p>
+        <p class="footer__signoff-text">Printing &amp; document services in Larena, Siquijor</p>
+        <p class="footer__signoff-meta">
+          <a href="tel:09950429419">09950429419</a> • Sun – Fri, 7:00 AM – 9:00 PM
+        </p>
+        <a class="footer__signoff-link" href="https://www.facebook.com/shalenecover" target="_blank" rel="noopener noreferrer">
+          <svg class="icon icon--sm icon--brand icon--facebook" aria-hidden="true"><use href="#icon-facebook"></use></svg>
+          Facebook Page
+        </a>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; <span data-current-year></span> Shallene's Printing Shop. All rights reserved.</p>
+        <p class="tablet-up">Larena, Siquijor</p>
+      </div>
     </div>
   </footer>
 
@@ -906,6 +1152,10 @@
       <a class="bottom-nav__link" href="#products" data-nav-link>
         <svg class="icon" aria-hidden="true"><use href="#icon-bag"></use></svg>
         <span>Products</span>
+      </a>
+      <a class="bottom-nav__link" href="#pricing" data-nav-link>
+        <svg class="icon" aria-hidden="true"><use href="#icon-tag"></use></svg>
+        <span>Pricing</span>
       </a>
       <a class="bottom-nav__link" href="#contact" data-nav-link>
         <svg class="icon" aria-hidden="true"><use href="#icon-message"></use></svg>
