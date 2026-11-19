@@ -1,0 +1,107 @@
+/* ==========================================================================
+   responsive.css — Screen-size adjustments
+   --------------------------------------------------------------------------
+   style.css targets phones first. The media queries below add changes as
+   the screen gets wider.
+
+   Breakpoints (from the Stitch design):
+     - Small:   640px and wider   (large phones)
+     - Tablet:  768px and wider
+     - Desktop: 1024px and wider  (full desktop header, no bottom nav)
+   ========================================================================== */
+
+/* ---------- Small (640px+) ---------- */
+@media (min-width: 640px) {
+  .header-call__text {
+    display: inline;
+  }
+}
+
+/* ---------- Tablet (768px+) ---------- */
+@media (min-width: 768px) {
+  :root {
+    --page-margin: var(--page-margin-tablet);
+  }
+
+  h1 {
+    font-size: var(--text-display-size);
+    line-height: var(--text-display-line);
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: var(--text-headline-lg-size);
+    line-height: var(--text-headline-lg-line);
+    letter-spacing: -0.015em;
+  }
+}
+
+/* ---------- Desktop (1024px+) ---------- */
+@media (min-width: 1024px) {
+  :root {
+    --page-margin: var(--page-margin-desktop);
+
+    /* Desktop header = info strip (32px) + header bar (80px) = 112px */
+    --header-height: calc(var(--top-strip-height) + var(--header-bar-height-desktop));
+
+    /* No bottom navigation on desktop */
+    --bottom-nav-space: 0px;
+  }
+
+  .top-strip {
+    display: block;
+  }
+
+  .header-bar {
+    height: var(--header-bar-height-desktop);
+    gap: var(--gutter);
+  }
+
+  .site-logo img {
+    height: 48px;
+  }
+
+  .menu-toggle,
+  .header-call,
+  .header-subbar,
+  .bottom-nav,
+  .mobile-menu {
+    display: none;
+  }
+
+  .primary-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .header-phone,
+  .header-cta {
+    display: inline-flex;
+  }
+
+  .header-phone {
+    min-height: 0;
+    padding: var(--space-sm) var(--space-md);
+    gap: var(--space-xs);
+  }
+
+  .header-cta {
+    min-height: 0;
+    padding-block: var(--space-sm);
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

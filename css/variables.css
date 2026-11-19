@@ -1,0 +1,126 @@
+/* ==========================================================================
+   variables.css — Design system tokens
+   --------------------------------------------------------------------------
+   Every color, font, size, and spacing value used on the site lives here.
+   To change the look of the whole website, edit a value in this file
+   instead of hunting through style.css.
+
+   Source: Google Stitch "Editorial Precision Print" design
+   (docs/design-references/stitch-revised/DESIGN.md) plus the official logo.
+   ========================================================================== */
+
+:root {
+  /* ---------- Official logo colors ----------
+     Exact colors from the logo files. Used for small decorative accents
+     (for example the CMYK dots), not for text. */
+  --color-logo-cyan: #00aeef;
+  --color-logo-magenta: #ec008c;
+  --color-logo-yellow: #fff200;
+  --color-logo-charcoal: #231f20;
+
+  /* ---------- Surfaces (backgrounds) ----------
+     White and light lavender, from lightest to darkest. */
+  --color-surface-lowest: #ffffff;   /* cards */
+  --color-surface: #faf8ff;          /* page background */
+  --color-surface-low: #f2f3ff;      /* alternate sections, inset panels */
+  --color-surface-container: #eaedff;
+  --color-surface-high: #e2e7ff;     /* active nav link, highlighted panels */
+  --color-surface-highest: #dae2fd;
+  --color-inverse-surface: #283044;  /* dark overlay behind the mobile menu */
+
+  /* ---------- Text and lines ---------- */
+  --color-on-surface: #131b2e;          /* main text and headings */
+  --color-on-surface-variant: #3f4850;  /* secondary text */
+  --color-outline: #707881;             /* muted labels */
+  --color-outline-variant: #bfc7d2;     /* borders and dividers */
+
+  /* ---------- Accent colors ---------- */
+  --color-primary: #006194;             /* cyan-blue: buttons, links, active states */
+  --color-primary-hover: #007bb9;
+  --color-on-primary: #ffffff;          /* text on primary buttons */
+  --color-primary-soft: #cce5ff;        /* light cyan badge background */
+  --color-primary-dark: #004b73;
+
+  --color-secondary: #ba0035;           /* magenta accent text, e.g. "Closed" */
+  --color-secondary-bright: #e21e49;    /* magenta badge background */
+
+  --color-tertiary: #755800;            /* yellow accent text (readable on white) */
+  --color-tertiary-bright: #f7be1d;     /* yellow accent decoration */
+
+  /* ---------- Typography ---------- */
+  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Plus Jakarta Sans", "Segoe UI", Roboto, Arial, sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Type scale — each size is paired with its line height (from DESIGN.md) */
+  --text-display-size: 3.25rem;          /* 52px desktop hero */
+  --text-display-line: 3.75rem;
+  --text-display-mobile-size: 2.25rem;   /* 36px */
+  --text-display-mobile-line: 2.75rem;
+  --text-headline-lg-size: 2.5rem;       /* 40px section titles */
+  --text-headline-lg-line: 3rem;
+  --text-headline-lg-mobile-size: 1.75rem; /* 28px */
+  --text-headline-lg-mobile-line: 2.25rem;
+  --text-headline-md-size: 1.75rem;      /* 28px */
+  --text-headline-md-line: 2.25rem;
+  --text-headline-sm-size: 1.375rem;     /* 22px card titles */
+  --text-headline-sm-line: 1.875rem;
+  --text-title-lg-size: 1.125rem;        /* 18px */
+  --text-title-lg-line: 1.625rem;
+  --text-title-md-size: 1rem;            /* 16px nav links, buttons */
+  --text-title-md-line: 1.5rem;
+  --text-body-lg-size: 1.125rem;         /* 18px intro paragraphs */
+  --text-body-lg-line: 1.75rem;
+  --text-body-md-size: 0.9375rem;        /* 15px normal text */
+  --text-body-md-line: 1.5rem;
+  --text-body-sm-size: 0.8125rem;        /* 13px small text */
+  --text-body-sm-line: 1.25rem;
+  --text-label-md-size: 0.75rem;         /* 12px */
+  --text-label-md-line: 1rem;
+  --text-label-sm-size: 0.6875rem;       /* 11px uppercase labels */
+  --text-label-sm-line: 0.875rem;
+
+  /* ---------- Spacing ---------- */
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.75rem;   /* 28px — card padding */
+  --space-xl: 3rem;      /* 48px — between sections */
+
+  --gutter: 1.5rem;      /* gap between cards */
+  --gutter-mobile: 1rem;
+
+  /* ---------- Layout ---------- */
+  --container-max-width: 1280px;
+  --page-margin: 1.25rem;          /* side margin on phones (20px) */
+  --page-margin-tablet: 2rem;      /* 32px */
+  --page-margin-desktop: 3rem;     /* 48px */
+
+  /* Fixed header and bottom navigation sizes.
+     The page is padded by these amounts so nothing hides underneath them. */
+  --top-strip-height: 32px;        /* desktop info strip */
+  --header-bar-height: 64px;       /* mobile header bar */
+  --header-bar-height-desktop: 80px;
+  --header-subbar-height: 28px;    /* mobile "current section" strip */
+  --bottom-nav-height: 64px;       /* mobile bottom navigation */
+
+  /* ---------- Shape ---------- */
+  --radius-sm: 2px;
+  --radius: 4px;       /* buttons, badges, nav links */
+  --radius-lg: 8px;    /* cards */
+  --radius-round: 999px;
+
+  /* ---------- Shadows (very soft, paper-like) ---------- */
+  --shadow-sm: 0 1px 2px rgba(19, 27, 46, 0.05);
+  --shadow-md: 0 8px 24px -4px rgba(19, 27, 46, 0.08);
+  --shadow-header: 0 1px 8px rgba(0, 0, 0, 0.03);
+  --shadow-bottom-nav: 0 -2px 12px rgba(19, 27, 46, 0.04);
+  --shadow-drawer: 0 25px 50px -12px rgba(19, 27, 46, 0.25);
+
+  /* ---------- Motion ---------- */
+  --transition-fast: 150ms ease;
+}

@@ -1,0 +1,762 @@
+/* ==========================================================================
+   style.css — Base styles, shared components, and page sections
+   --------------------------------------------------------------------------
+   Written "mobile first": these rules target phones. Wider screens are
+   adjusted in responsive.css.
+
+   Contents
+     1. Reset
+     2. Page layout (fixed header + bottom nav spacing)
+     3. Typography
+     4. Utilities
+     5. Icons
+     6. Shared components (buttons, badges, cards, eyebrow labels)
+     7. Header
+     8. Mobile menu (slide-out drawer)
+     9. Bottom navigation (phones and tablets)
+    10. Sections
+    11. Footer
+   ========================================================================== */
+
+
+/* ---------- 1. Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure {
+  margin: 0;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+
+/* ---------- 2. Page layout ---------- */
+:root {
+  /* Total height of the fixed header on phones/tablets:
+     header bar (64px) + "current section" strip (28px) = 92px.
+     responsive.css changes this for desktop. */
+  --header-height: calc(var(--header-bar-height) + var(--header-subbar-height));
+
+  /* Space kept free at the bottom of the page for the bottom navigation.
+     env(safe-area-inset-bottom) adds room for the iPhone home bar. */
+  --bottom-nav-space: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px));
+}
+
+html {
+  scroll-behavior: smooth;
+  /* When a nav link jumps to a section, stop below the fixed header. */
+  scroll-padding-top: calc(var(--header-height) + var(--space-md));
+}
+
+body {
+  /* Push the page down/up so the fixed header and bottom nav never cover content. */
+  padding-top: var(--header-height);
+  padding-bottom: var(--bottom-nav-space);
+
+  font-family: var(--font-body);
+  font-size: var(--text-body-md-size);
+  line-height: var(--text-body-md-line);
+  color: var(--color-on-surface);
+  background-color: var(--color-surface);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* While the mobile menu is open, stop the page behind it from scrolling. */
+body.is-menu-open {
+  overflow: hidden;
+}
+
+
+/* ---------- 3. Typography ---------- */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-on-surface);
+}
+
+h1 {
+  font-size: var(--text-display-mobile-size);
+  line-height: var(--text-display-mobile-line);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: var(--text-headline-lg-mobile-size);
+  line-height: var(--text-headline-lg-mobile-line);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: var(--text-headline-sm-size);
+  line-height: var(--text-headline-sm-line);
+  font-weight: var(--font-weight-medium);
+}
+
+a {
+  color: var(--color-primary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--color-primary-soft);
+  color: var(--color-on-surface);
+}
+
+
+/* ---------- 4. Utilities ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--page-margin);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  z-index: 100;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-on-surface);
+  color: var(--color-on-primary);
+  border-radius: var(--radius);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+
+/* ---------- 5. Icons ---------- */
+/* Icons are drawn once in the SVG "sprite" at the top of index.html and
+   reused with <svg class="icon"><use href="#icon-name"></use></svg>. */
+.icon-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon--sm { width: 1rem; height: 1rem; }
+.icon--lg { width: 1.5rem; height: 1.5rem; }
+
+
+/* ---------- 6. Shared components ---------- */
+
+/* Buttons
+   <a class="button button--primary">…</a> */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  min-height: 44px;           /* comfortable tap size */
+  padding: 0.75rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: var(--text-title-md-size);
+  line-height: var(--text-title-md-line);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.button--primary {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.button--primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.button--tonal {
+  background: var(--color-surface-container);
+  color: var(--color-on-surface);
+}
+
+.button--tonal:hover {
+  background: var(--color-surface-high);
+}
+
+.button--outline {
+  background: transparent;
+  border-color: var(--color-outline-variant);
+  color: var(--color-on-surface);
+}
+
+.button--outline:hover {
+  background: var(--color-surface-container);
+}
+
+.button--block {
+  width: 100%;
+}
+
+/* Small uppercase label shown above section headings, e.g. "OUR SERVICES" */
+.eyebrow {
+  display: block;
+  font-size: var(--text-label-sm-size);
+  line-height: var(--text-label-sm-line);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* Badges / chips, e.g. "SUN – FRI" or "Contact us for pricing" */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius);
+  font-size: var(--text-label-sm-size);
+  line-height: var(--text-label-sm-line);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+}
+
+.badge--primary {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.badge--neutral {
+  background: var(--color-surface-container);
+  color: var(--color-on-surface-variant);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.02em;
+}
+
+.badge--accent {
+  background: var(--color-secondary-bright);
+  color: var(--color-on-primary);
+  text-transform: uppercase;
+}
+
+/* Cards — white "sheets" with a soft shadow */
+.card {
+  background: var(--color-surface-lowest);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Small round status dot (e.g. next to the opening hours) */
+.status-dot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--radius-round);
+  background: var(--color-primary);
+}
+
+
+/* ---------- 7. Header ---------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(250, 248, 255, 0.92);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(191, 199, 210, 0.3);
+  box-shadow: var(--shadow-header);
+}
+
+/* 7a. Desktop info strip (hidden on phones/tablets — see responsive.css) */
+.top-strip {
+  display: none;
+  background: rgba(242, 243, 255, 0.8);
+  border-bottom: 1px solid rgba(191, 199, 210, 0.2);
+  font-size: var(--text-label-sm-size);
+  line-height: var(--text-label-sm-line);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.03em;
+  color: var(--color-on-surface-variant);
+}
+
+.top-strip__inner {
+  height: var(--top-strip-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gutter);
+}
+
+.top-strip__hours {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.top-strip__muted {
+  color: var(--color-outline);
+}
+
+.top-strip__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--gutter);
+}
+
+.top-strip__location {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-outline);
+}
+
+.top-strip__phone {
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+}
+
+.top-strip__phone:hover {
+  color: var(--color-primary-dark);
+}
+
+/* 7b. Main header bar: logo, navigation, actions */
+.header-bar {
+  height: var(--header-bar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.header-bar__start {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-left: -10px;        /* lines the icon up with the page margin */
+  border-radius: var(--radius);
+  color: var(--color-on-surface-variant);
+}
+
+.menu-toggle:hover {
+  color: var(--color-on-surface);
+  background: var(--color-surface-high);
+}
+
+/* Logo: only the height is set, so the width follows automatically
+   and the logo is never stretched. */
+.site-logo {
+  display: block;
+  flex-shrink: 0;
+}
+
+.site-logo img {
+  height: 40px;
+  width: auto;
+}
+
+/* Desktop navigation links (hidden on phones/tablets) */
+.primary-nav {
+  display: none;
+}
+
+.primary-nav__link {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius);
+  font-size: var(--text-title-md-size);
+  line-height: var(--text-title-md-line);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-on-surface-variant);
+  text-decoration: none;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.primary-nav__link:hover {
+  color: var(--color-on-surface);
+  background: var(--color-surface-container);
+}
+
+.primary-nav__link.is-active {
+  color: var(--color-primary);
+  background: var(--color-surface-high);
+  font-weight: var(--font-weight-semibold);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* Desktop-only actions (shown in responsive.css) */
+.header-phone,
+.header-cta {
+  display: none;
+}
+
+.header-phone__prefix {
+  font-size: var(--text-label-sm-size);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.header-cta {
+  padding-inline: var(--space-lg);
+}
+
+/* Phone/tablet call button */
+.header-call {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  height: 40px;
+  padding-inline: 0.75rem;
+  border-radius: var(--radius);
+  background: var(--color-surface-low);
+  color: var(--color-primary);
+  font-size: var(--text-label-md-size);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.header-call:hover {
+  background: var(--color-surface-container);
+}
+
+.header-call__text {
+  display: none;            /* shown from 640px wide */
+}
+
+/* 7c. Phone/tablet strip showing which section you are viewing */
+.header-subbar {
+  height: var(--header-subbar-height);
+  padding-inline: var(--page-margin);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.5);
+  font-size: var(--text-label-sm-size);
+  line-height: var(--text-label-sm-line);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.06em;
+}
+
+.header-subbar__section {
+  text-transform: uppercase;
+  color: var(--color-outline);
+}
+
+.header-subbar__location {
+  color: var(--color-primary);
+}
+
+
+/* ---------- 8. Mobile menu (slide-out drawer) ---------- */
+/* The menu uses the HTML "hidden" attribute; navigation.js removes it to open. */
+.mobile-menu[hidden] {
+  display: none;
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 60;                         /* above the header and bottom nav */
+  background: rgba(40, 48, 68, 0.4);   /* dimmed page behind the menu */
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* Opening animation: the dark background fades in, the panel slides in
+   from the left. navigation.js adds "is-closing" to play them in reverse. */
+.mobile-menu {
+  animation: menu-fade-in 250ms ease-out;
+}
+
+.mobile-menu .mobile-menu__panel {
+  animation: menu-slide-in 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobile-menu.is-closing {
+  animation: menu-fade-out 200ms ease-in forwards;
+}
+
+.mobile-menu.is-closing .mobile-menu__panel {
+  animation: menu-slide-out 200ms ease-in forwards;
+}
+
+@keyframes menu-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes menu-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes menu-slide-in {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes menu-slide-out {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.mobile-menu__panel {
+  width: 80%;
+  max-width: 320px;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  padding-bottom: calc(var(--space-lg) + env(safe-area-inset-bottom, 0px));
+  background: var(--color-surface-lowest);
+  box-shadow: var(--shadow-drawer);
+}
+
+.mobile-menu__top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.mobile-menu__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-menu__logo {
+  height: 32px;
+  width: auto;
+}
+
+.mobile-menu__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  border-radius: var(--radius);
+  color: var(--color-on-surface-variant);
+}
+
+.mobile-menu__close:hover {
+  color: var(--color-on-surface);
+  background: var(--color-surface-low);
+}
+
+.mobile-menu__divider {
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: rgba(191, 199, 210, 0.3);
+}
+
+.mobile-menu__nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  /* Pulls the links 12px left so their icons line up with the logo edge. */
+  margin-inline: -0.75rem;
+}
+
+.mobile-menu__link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  font-size: var(--text-title-md-size);
+  line-height: var(--text-title-md-line);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-on-surface);
+  text-decoration: none;
+}
+
+.mobile-menu__link .icon {
+  color: var(--color-primary);
+}
+
+.mobile-menu__link:hover,
+.mobile-menu__link.is-active {
+  background: var(--color-surface-low);
+}
+
+.mobile-menu__link.is-active {
+  color: var(--color-primary);
+}
+
+.mobile-menu__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mobile-menu__note {
+  text-align: center;
+  font-size: var(--text-label-sm-size);
+  line-height: var(--text-label-sm-line);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-outline);
+}
+
+
+/* ---------- 9. Bottom navigation (phones and tablets) ---------- */
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-bottom-nav);
+}
+
+.bottom-nav__list {
+  height: var(--bottom-nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-inline: var(--space-xs);
+}
+
+.bottom-nav__link {
+  flex: 1;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.125rem;
+  font-size: var(--text-label-sm-size);
+  line-height: var(--text-label-sm-line);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.03em;
+  color: var(--color-on-surface-variant);
+  text-decoration: none;
+}
+
+.bottom-nav__link .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.bottom-nav__link.is-active {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+
+/* ---------- 10. Sections ---------- */
+.section {
+  padding-block: var(--space-xl);
+}
+
+/* TEMPORARY (Phase 2): gives the empty sections some height so the
+   navigation can be tested. Remove each one as its section is built. */
+.section-placeholder {
+  min-height: 70vh;
+}
+
+.section-placeholder:nth-of-type(even) {
+  background: var(--color-surface-low);
+}
+
+.placeholder-note {
+  margin-top: var(--space-sm);
+  color: var(--color-outline);
+}
+
+
+/* ---------- 11. Footer ---------- */
+.site-footer {
+  padding-block: var(--space-xl);
+  border-top: 1px solid rgba(191, 199, 210, 0.3);
+  background: var(--color-surface-lowest);
+  font-size: var(--text-body-sm-size);
+  color: var(--color-outline);
+}
