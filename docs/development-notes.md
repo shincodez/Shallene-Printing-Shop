@@ -111,3 +111,111 @@ Notes:
 
 ### Temporary (remove in later phases)
 - `.section-placeholder` and `.placeholder-note` in `index.html` and `style.css`.
+
+### Phase 2 follow-up (2026-11-19)
+- Mobile menu: fade + slide-in from the left on open, reverse on close (CSS keyframes
+  in `style.css`, closing delay in `navigation.js`). Respects "reduce motion".
+- Mobile menu links pulled 12px left so their icons line up with the logo.
+
+## Phase 3 — Homepage (2026-11-19)
+
+**Status:** Complete, awaiting approval.
+
+### Done
+- Services strip: phone "Open Sun – Fri · 7 AM – 9 PM" card; full-width bar from 768px.
+- Hero: eyebrow, headline (italic blue accent from 768px), intro text, two buttons,
+  three highlight cards (= featured services), photo with phone caption overlay or
+  desktop CMYK chip + info card. Two columns (7/5) from 1024px.
+- Computer Rental Estimator: −/+ hours (1 to 14), total = hours × ₱30, labelled
+  "Estimate only". Price is read from `data-rate="30"` in `index.html`.
+- `assets/images/shop/hero-placeholder.svg`: labelled placeholder ("Shop photo coming
+  soon — not an actual photo").
+- `.phone-only` / `.tablet-up` utilities (responsive.css) for text that differs
+  between the Stitch mobile and desktop designs.
+
+### Decisions
+- Calculator sits right after the hero on all screens (desktop design position),
+  so there is only one copy of it. In the mobile design it was near the bottom.
+- Maximum 14 hours = the shop's daily opening time (7 AM – 9 PM).
+- Stitch claims replaced: "Neighborhood Document & Print Atelier" → "Printing & Document
+  Services · Larena"; "Walk-in Services … available daily" → "Open Sunday – Friday";
+  "Tactile Quality & Precision / theses, legal briefs" → neutral caption;
+  "Walk-in Stations", "All stocks", "Terminal Duration", "Ask Front Desk" removed/renamed.
+
+### Price locations
+Search `data-price="computer-rental"` in `index.html` to find every place the
+₱30 rate is shown. Also update `data-rate` on the calculator.
+
+### To replace the hero placeholder
+Put a real photo in `assets/images/shop/`, then change the hero `<img>` `src`
+and `alt` in `index.html` (search for "hero-placeholder").
+
+### Phase 3 refinements (2026-11-19)
+- **Icons:** replaced the hand-typed icon paths with official Lucide icons
+  (lucide-static v0.460.0, ISC License), copied into the SVG sprite in `index.html`.
+  No icon library is loaded at runtime. To add an icon, copy its SVG contents from
+  lucide.dev into a new `<symbol>`.
+- **Typography:** phone hero heading 36px (was 28px); desktop hero 52px; section
+  headings 28px phone / 40px desktop; card headings 20px phone / 22px desktop
+  (Playfair Display); body 15px (Plus Jakarta Sans). Labels, buttons, nav and the
+  highlight values stay in Plus Jakarta Sans.
+- **Spacing tokens** (`variables.css`): `--section-space` 48px phone → 64px tablet →
+  80px desktop; `--card-padding` 20px phone → 24px from 768px. Card gaps 24px from
+  768px. Highlight cards and the hero photo card now use the 8px card radius.
+  Highlight cards keep 12px padding on phones so two fit side by side.
+- **Calculator wording:** "Choose from 1 to 14 hours…", "Duration", and the note
+  "Estimate only… Please ask the shop about computer availability." The 14-hour
+  limit is for the estimate only, not a rental policy.
+- Badges no longer wrap onto two lines.
+
+### Calculator test results (2026-11-19)
+Default 1 hour = ₱30 (minus greyed out). 2 = ₱60, 3 = ₱90, 4 = ₱120, 5 = ₱150,
+8 = ₱240, 10 = ₱300, 12 = ₱360, 14 = ₱420 — all pass. Minus at 1 stays at 1;
+plus at 14 stays at 14 (plus greyed out).
+
+## Phase 4 — Business Content (2026-11-19)
+
+**Status:** Complete, awaiting approval.
+
+### Done
+- **Services** (`#services`): section header + 7 cards — Printing, Photocopying,
+  Computer Rental (highlighted, the only confirmed price), Document Editing &
+  Encoding, Research Services, Lamination, and a full-width Binding card.
+  Phones: compact cards (icon beside the title). 2 columns from 768px, 3 from 1024px.
+- **Products** (`#products`): 4 category cards (School Supplies, Office Supplies,
+  Beverages, Snack Items) + "Please ask at the shop about currently available items."
+  2 columns on phones/tablets, 4 from 1024px.
+- **About** (`#about`): factual story + 4 fact boxes. Phones: one card with the
+  about photo placeholder on top. Larger screens: plain text + "At a glance" card
+  (hours, Saturday closed, phone, Larena). Two columns (7/5) from 1024px.
+- New Lucide icons: copy, square-pen (edit), layers, book (binding), graduation-cap,
+  briefcase, cup-soda (drink), cookie, map-pin.
+- `assets/images/shop/about-placeholder.svg` (labelled placeholder).
+- Shared `.section-header` component (eyebrow + heading + intro).
+
+### Stitch content removed or replaced (unconfirmed)
+- Printing: "High quality laser printing", "Laser Print".
+- Photocopying: "Single & Double-sided", "Rapid Duplication", "High-Speed", "multi-page sets".
+- Lamination: "thermal film", "heavy-gauge", "Clear Protective Seal", "Durable Finish".
+- Binding: "Comb, ring, and presentation booklet", "projects, manuscripts, reports, and manuals".
+- Research: "Manuscript Preparation", "Academic formatting, alignment".
+- Editing: "thesis cleanup, and transcription", "Layout adjustments".
+- Computer rental: "Walk-in workstations for browsing…", "Walk-in" badge.
+- Products: every item list (ballpens, iced teas, cardstocks, energy drinks…) and
+  "In Stock" / "Chilled" / "Available" badges; "Study Snacks", "Refreshing Drinks".
+- About: all claims (USB files, rush documents, prompt turnarounds, barangay offices,
+  enterprise clerks, "Reliable equipment", "Student-friendly", slogan quote,
+  "Single & Bulk Duplication", "Acetate & Board Binding", "Direct File Assistance").
+
+### Design deviations (on purpose)
+- Card footers show a short neutral tag (e.g. "Printing") instead of Stitch's spec claims.
+- "Contact us for pricing" links go to `#contact` (not straight to the phone), so
+  desktop visitors see both phone and Facebook options.
+- Product titles are 19px (phone) / 20px (desktop) Plus Jakarta Sans, to meet the
+  19–22px card-heading range while keeping Playfair for main headings.
+- The About photo appears on phones only (as in the mobile design).
+
+### Price tags
+Every price or "Contact us for pricing" is tagged `data-price="…"`:
+printing, photocopying, editing-encoding, research, lamination, binding,
+computer-rental. Search for the tag to update a price everywhere.

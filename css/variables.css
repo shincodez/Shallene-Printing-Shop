@@ -69,6 +69,8 @@
   --text-headline-md-line: 2.25rem;
   --text-headline-sm-size: 1.375rem;     /* 22px card titles */
   --text-headline-sm-line: 1.875rem;
+  --text-card-title-mobile-size: 1.25rem; /* 20px card titles on phones */
+  --text-card-title-mobile-line: 1.75rem;
   --text-title-lg-size: 1.125rem;        /* 18px */
   --text-title-lg-line: 1.625rem;
   --text-title-md-size: 1rem;            /* 16px nav links, buttons */
@@ -93,6 +95,11 @@
 
   --gutter: 1.5rem;      /* gap between cards */
   --gutter-mobile: 1rem;
+
+  /* Vertical space above/below each section, and inside each card.
+     Phones use these values; responsive.css makes them larger on desktop. */
+  --section-space: 3rem;   /* 48px phones → 80px desktop */
+  --card-padding: 1.25rem; /* 20px phones → 24px desktop */
 
   /* ---------- Layout ---------- */
   --container-max-width: 1280px;

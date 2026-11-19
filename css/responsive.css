@@ -10,6 +10,22 @@
      - Desktop: 1024px and wider  (full desktop header, no bottom nav)
    ========================================================================== */
 
+/* ---------- Phone / larger-screen switches ----------
+   .phone-only  → shown below 768px only
+   .tablet-up   → shown from 768px only
+   Used where the Stitch mobile and desktop designs show different text. */
+@media (max-width: 767.98px) {
+  .tablet-up {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .phone-only {
+    display: none !important;
+  }
+}
+
 /* ---------- Small (640px+) ---------- */
 @media (min-width: 640px) {
   .header-call__text {
@@ -21,6 +37,8 @@
 @media (min-width: 768px) {
   :root {
     --page-margin: var(--page-margin-tablet);
+    --section-space: 4rem;    /* 64px */
+    --card-padding: 1.5rem;   /* 24px */
   }
 
   h1 {
@@ -34,12 +52,310 @@
     line-height: var(--text-headline-lg-line);
     letter-spacing: -0.015em;
   }
+
+  /* Services strip becomes a full-width bar */
+  .info-strip {
+    background: var(--color-surface-low);
+  }
+
+  /* Hero: desktop-style content (stacked until 1024px) */
+  .hero {
+    gap: var(--space-xl);
+    padding-block: var(--section-space);
+  }
+
+  .hero__content {
+    gap: var(--space-md);
+  }
+
+  .hero__eyebrow {
+    width: fit-content;
+    gap: var(--space-sm);
+    margin-bottom: 0;
+    padding: var(--space-xs) 0.75rem;
+    border-radius: var(--radius);
+    background: var(--color-surface-container);
+    color: var(--color-primary);
+  }
+
+  .hero__title-accent {
+    font-style: italic;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-primary);
+  }
+
+  .hero__lead {
+    max-width: 36rem;
+    margin-top: 0;
+    font-size: var(--text-body-lg-size);
+    line-height: var(--text-body-lg-line);
+  }
+
+  .hero__actions {
+    order: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: 0;
+    padding-top: var(--space-sm);
+  }
+
+  .hero__button {
+    width: auto;
+  }
+
+  .hero__button--call {
+    background: var(--color-surface-container);
+    box-shadow: none;
+  }
+
+  .hero__button--call:hover {
+    background: var(--color-surface-high);
+  }
+
+  .hero__highlights {
+    order: 2;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gutter);
+    margin-top: 0;
+    padding-top: var(--space-lg);
+  }
+
+  .highlight {
+    padding: var(--space-md) 1.25rem;
+  }
+
+  .highlight--wide {
+    grid-column: auto;
+  }
+
+  .highlight__value {
+    font-family: var(--font-heading);
+    font-size: var(--text-headline-md-size);
+    line-height: var(--text-headline-md-line);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .highlight__value--primary {
+    color: var(--color-primary);
+  }
+
+  .highlight__value--accent {
+    color: var(--color-secondary);
+  }
+
+  .highlight__note {
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-on-surface-variant);
+  }
+
+  .hero__media {
+    height: 440px;
+    box-shadow: 0 20px 25px -5px rgba(19, 27, 46, 0.1), 0 8px 10px -6px rgba(19, 27, 46, 0.1);
+  }
+
+  /* Calculator: one wide card on a lavender band */
+  .rental {
+    padding-block: var(--section-space);
+    background: var(--color-surface-container);
+  }
+
+  .rental__title {
+    font-size: var(--text-headline-sm-size);
+    line-height: var(--text-headline-sm-line);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .rental__controls {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .rental__total {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius);
+    background: var(--color-surface-high);
+  }
+
+  .rental__total-value {
+    font-family: var(--font-body);
+    font-size: var(--text-title-lg-size);
+    line-height: var(--text-title-lg-line);
+  }
+
+  /* Section headers */
+  .section-header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .section-header--center {
+    align-items: center;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  /* Services: 2 columns, cards stacked top to bottom (desktop design) */
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gutter);
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .service-card__icon {
+    width: 3rem;
+    height: 3rem;
+    background: var(--color-surface-container);
+  }
+
+  .service-card__icon .icon--lg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .service-card__title {
+    font-size: var(--text-headline-sm-size);
+    line-height: var(--text-headline-sm-line);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .service-card__text {
+    margin-top: var(--space-xs);
+  }
+
+  .service-card__specs,
+  .service-card__price {
+    margin-bottom: var(--space-md);
+  }
+
+  /* Pushes the footer to the bottom so all cards in a row line up */
+  .service-card__footer {
+    margin-top: auto;
+  }
+
+  .service-card--featured::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6rem;
+    height: 6rem;
+    border-bottom-left-radius: 100%;
+    background: rgba(204, 229, 255, 0.35);
+    pointer-events: none;
+  }
+
+  .service-card--featured .service-card__icon {
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+  }
+
+  .service-card--featured .service-card__top .badge {
+    position: relative;   /* stays above the decorative corner */
+  }
+
+  .service-card--wide {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gutter);
+  }
+
+  .service-card__icon--small {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .service-card__wide-button {
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  /* Products */
+  .products__eyebrow {
+    color: var(--color-primary);
+  }
+
+  .products__grid {
+    gap: var(--gutter);
+  }
+
+  .product-card {
+    gap: var(--space-md);
+  }
+
+  .product-card__icon {
+    width: 3rem;
+    height: 3rem;
+    background: var(--color-surface-high);
+  }
+
+  .product-card__icon .icon--lg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .product-card--magenta .product-card__icon,
+  .product-card--yellow .product-card__icon {
+    color: var(--color-primary);
+  }
+
+  .product-card__title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  /* About: the story is plain text (no card) on larger screens */
+  .about__story {
+    overflow: visible;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  .about__body {
+    padding: 0;
+  }
+
+  .about__body .section-header {
+    margin-bottom: var(--space-lg);
+  }
+
+  .about__lead {
+    font-size: var(--text-body-lg-size);
+    line-height: var(--text-body-lg-line);
+  }
+
+  .about__facts {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
 }
 
 /* ---------- Desktop (1024px+) ---------- */
 @media (min-width: 1024px) {
   :root {
     --page-margin: var(--page-margin-desktop);
+    --section-space: 5rem;    /* 80px */
 
     /* Desktop header = info strip (32px) + header bar (80px) = 112px */
     --header-height: calc(var(--top-strip-height) + var(--header-bar-height-desktop));
@@ -89,6 +405,60 @@
   .header-cta {
     min-height: 0;
     padding-block: var(--space-sm);
+  }
+
+  /* Hero: two columns — text (7/12) and photo (5/12) */
+  .hero {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+    gap: var(--gutter);
+  }
+
+  .hero__content {
+    grid-column: span 7;
+  }
+
+  .hero__media {
+    grid-column: span 5;
+  }
+
+  /* Calculator: text on the left, controls on the right */
+  .rental__card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: var(--gutter);
+  }
+
+  .rental__note {
+    grid-column: 1 / -1;
+  }
+
+  /* Services: 3 columns */
+  .services__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Products: 4 in a row */
+  .products__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* About: story (7/12) and "at a glance" card (5/12) */
+  .about__layout {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+    gap: var(--gutter);
+  }
+
+  .about__story {
+    grid-column: span 7;
+  }
+
+  .glance {
+    grid-column: span 5;
   }
 }
 
