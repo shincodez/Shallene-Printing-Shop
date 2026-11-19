@@ -141,7 +141,7 @@ Alternatively, open `index.html` directly in your browser.
 
 ## Project Status
 
-**Current Stage:** Built and tested; ready for deployment.
+**Current Stage:** Live on GitHub Pages — https://shincodez.github.io/Shallene-Printing-Shop/
 
 Planned milestones:
 
@@ -155,7 +155,7 @@ Planned milestones:
 - [x] Contact section
 - [x] Responsive optimization
 - [x] Final testing
-- [ ] Deployment
+- [x] Deployment (GitHub Pages)
 
 ## Future Improvements
 

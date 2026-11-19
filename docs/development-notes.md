@@ -526,3 +526,12 @@ Console: only network resets reaching Google Fonts during testing (local files a
   … E-Loading …") and confirmed by the user.
 - Research Services unchanged (research papers, thesis, reports).
 - Visual design unchanged.
+
+### Deployment (2026-11-19)
+- Live on GitHub Pages: https://shincodez.github.io/Shallene-Printing-Shop/
+  (checked: all CSS, JS and images load; no overflow at 375px).
+- Added share tags: `og:url`, `og:image` (+ size and alt), `og:site_name`,
+  `twitter:card`, and a canonical link. If the site moves to a custom domain,
+  update the three URL lines in the `<head>`.
+- New file `assets/images/logo/og-share.jpg` (1200×630): the unmodified primary
+  logo, scaled proportionally and centred on the paper colour (#F5F3EB).
